@@ -13,10 +13,12 @@ CREATE TABLE User
     username VARCHAR  NOT NULL,
     email    VARCHAR  NOT NULL,
     password VARCHAR  NOT NULL,
+    isAdmin  BOOLEAN  NOT NULL,
 
     CONSTRAINT User_PK PRIMARY KEY (userId),
     CONSTRAINT User_email_unique UNIQUE (email),
-    CONSTRAINT User_username_unique UNIQUE (username)
+    CONSTRAINT User_username_unique UNIQUE (username),
+    CONSTRAINT User_isAdmin_CK CHECK ( isAdmin IN (0, 1) )
 );
 
 CREATE TABLE ServiceCategory
@@ -32,14 +34,16 @@ CREATE TABLE Service
     serviceId    INTEGER,
     freelancerId INTEGER        NOT NULL,
     categoryId   INTEGER,
+    title        VARCHAR,
     price        DECIMAL(10, 2) NOT NULL,
-    deliveryTime DATE           NOT NULL,
+    deliveryTime INTEGER        NOT NULL,
     description  TEXT           NOT NULL,
     status       VARCHAR        NOT NULL,
 
     CONSTRAINT Service_PK PRIMARY KEY (serviceId),
     CONSTRAINT Service_freelancer_FK FOREIGN KEY (freelancerId) REFERENCES User (userId) ON DELETE CASCADE,
     CONSTRAINT Service_category_FK FOREIGN KEY (categoryId) REFERENCES ServiceCategory (serviceCategoryId) ON DELETE SET NULL,
+    CONSTRAINT Service_deliveryTime_check CHECK ( deliveryTime > 0 ),
     CONSTRAINT Service_status_CK CHECK ( status IN ('active', 'inactive', 'deleted') )
 );
 
