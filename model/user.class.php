@@ -10,8 +10,9 @@ class User
     public string $password;
     public bool $isAdmin;
     public string $profilePicture;
+    public string $status;
 
-    public function __construct(int $id, string $name, string $username, string $email, string $password, bool $isAdmin, string $profilePicture)
+    public function __construct(int $id, string $name, string $username, string $email, string $password, bool $isAdmin, string $profilePicture, string $status)
     {
         $this->id = $id;
         $this->name = $name;
@@ -20,5 +21,6 @@ class User
         $this->password = $password;
         $this->isAdmin = $isAdmin;
         $this->profilePicture = $profilePicture;
+        $this->status = $status;
     }
 }

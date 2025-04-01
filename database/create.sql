@@ -15,7 +15,7 @@ CREATE TABLE User
     password          VARCHAR(255) NOT NULL,
     isAdmin           BOOLEAN      NOT NULL DEFAULT 0,
     profilePictureURL VARCHAR(1023),
-    status            VARCHAR(15),
+    status            VARCHAR(15)  NOT NULL DEFAULT 'inactive',
 
     CONSTRAINT User_PK PRIMARY KEY (userId),
     CONSTRAINT User_email_unique UNIQUE (email),
