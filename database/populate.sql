@@ -1,3 +1,6 @@
+PRAGMA
+FOREIGN_KEYS = ON;
+
 INSERT INTO User (name, username, email, password, isAdmin, profilePictureURL)
 VALUES ('admin', 'administrator', 'admin@gmail.com', '123', 1, 'https://picsum.photos/id/237/1024'),
        ('john', 'John Doe', 'john@gmail.com', '123', 0, 'https://picsum.photos/id/237/1024'),
@@ -19,3 +22,6 @@ VALUES (1, 3, 1743439908, 'pending');
 INSERT INTO Message (senderId, receiverId, serviceId, content, date)
 VALUES (3, 2, 1, 'Please give me a discount.', 1743439970),
        (2, 3, 1, 'No.', 1743439993);
+
+INSERT INTO Feedback (purchaseId, rating, review, date)
+VALUES (1, 2.1, 'Very good', 1743439998);

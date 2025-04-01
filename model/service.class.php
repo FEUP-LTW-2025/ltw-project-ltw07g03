@@ -11,9 +11,10 @@ class Service
     public int $deliveryTime;
     public string $description;
     public string $status;
+    public float $rating;
     public array $images;
 
-    public function __construct(int $id, int $freelancerId, string $category, string $title, float $price, int $deliveryTime, string $description, string $status, array $images)
+    public function __construct(int $id, int $freelancerId, string $category, string $title, float $price, int $deliveryTime, string $description, string $status, float $rating, array $images)
     {
         $this->id = $id;
         $this->freelancerId = $freelancerId;
@@ -23,6 +24,7 @@ class Service
         $this->deliveryTime = $deliveryTime;
         $this->description = $description;
         $this->status = $status;
+        $this->rating = $rating;
         $this->images = $images;
     }
 }

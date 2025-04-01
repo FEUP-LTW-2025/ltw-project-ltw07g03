@@ -40,12 +40,14 @@ CREATE TABLE Service
     deliveryTime INTEGER        NOT NULL,
     description  TEXT           NOT NULL,
     status       VARCHAR        NOT NULL,
+    rating       DECIMAL(2, 1)  NOT NULL DEFAULT 0,
 
     CONSTRAINT Service_PK PRIMARY KEY (serviceId),
     CONSTRAINT Service_freelancer_FK FOREIGN KEY (freelancerId) REFERENCES User (userId) ON DELETE CASCADE,
     CONSTRAINT Service_category_FK FOREIGN KEY (categoryId) REFERENCES ServiceCategory (serviceCategoryId) ON DELETE SET NULL,
     CONSTRAINT Service_deliveryTime_check CHECK ( deliveryTime > 0 ),
-    CONSTRAINT Service_status_CK CHECK ( status IN ('active', 'inactive', 'deleted') )
+    CONSTRAINT Service_status_CK CHECK ( status IN ('active', 'inactive', 'deleted') ),
+    CONSTRAINT Service_rating_CK CHECK ( rating BETWEEN 0 AND 5 )
 );
 
 CREATE TABLE ServiceMedia
@@ -90,12 +92,23 @@ CREATE TABLE Message
 CREATE TABLE Feedback
 (
     feedbackId INTEGER,
-    purchaseId INTEGER NOT NULL,
-    rating     FLOAT   NOT NULL,
+    purchaseId INTEGER       NOT NULL,
+    rating     DECIMAL(2, 1) NOT NULL DEFAULT 0,
     review     TEXT,
-    date       DATE    NOT NULL,
+    date       DATE          NOT NULL,
 
     CONSTRAINT Feedback_PK PRIMARY KEY (feedbackId),
     CONSTRAINT Feedback_purchase_FK FOREIGN KEY (purchaseId) REFERENCES Purchase (purchaseId),
-    CONSTRAINT Feedback_rating_CK CHECK ( rating BETWEEN 1 AND 5)
+    CONSTRAINT Feedback_rating_CK CHECK ( rating BETWEEN 0 AND 5 )
 );
+
+CREATE TRIGGER update_service_rating_after_rating_insert
+    AFTER INSERT
+    ON Feedback
+BEGIN
+    UPDATE Service
+    SET rating = COALESCE((SELECT AVG(rating)
+                           FROM Purchase
+                                    JOIN Feedback USING (purchaseId)), 0)
+    WHERE serviceId = NEW.feedbackId;
+END;
