@@ -9,7 +9,7 @@ class Purchase
     public int $date;
     public string $status;
 
-    function __construct(int $purchaseId, int $serviceId, int $clientId, int $date, string $status, string $username, string $email)
+    function __construct(int $purchaseId, int $serviceId, int $clientId, int $date, string $status)
     {
         $this->purchaseId = $purchaseId;
         $this->serviceId = $serviceId;
