@@ -1,7 +1,7 @@
-INSERT INTO User (name, username, email, password, isAdmin)
-VALUES ('admin', 'administrator', 'admin@gmail.com', '123', 1),
-       ('john', 'John Doe', 'john@gmail.com', '123', 0),
-       ('mary', 'Mary Joe', 'mary@gmail.com', '123', 0);
+INSERT INTO User (name, username, email, password, isAdmin, profilePictureURL)
+VALUES ('admin', 'administrator', 'admin@gmail.com', '123', 1, 'https://picsum.photos/id/237/1024'),
+       ('john', 'John Doe', 'john@gmail.com', '123', 0, 'https://picsum.photos/id/237/1024'),
+       ('mary', 'Mary Joe', 'mary@gmail.com', '123', 0, 'https://picsum.photos/id/237/1024');
 
 INSERT INTO ServiceCategory (name)
 VALUES ('Design'),

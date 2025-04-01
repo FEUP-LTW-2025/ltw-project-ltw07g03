@@ -3,21 +3,22 @@ declare(strict_types=1);
 
 class User
 {
-    public int $userId;
+    public int $id;
     public string $name;
     public string $username;
     public string $email;
     public string $password;
     public bool $isAdmin;
+    public string $profilePicture;
 
-    public function __construct(int $userId, string $name, string $username, string $email, string $password, bool $isAdmin)
+    public function __construct(int $id, string $name, string $username, string $email, string $password, bool $isAdmin, string $profilePicture)
     {
-        $this->userId = $userId;
+        $this->id = $id;
         $this->name = $name;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->isAdmin = $isAdmin;
+        $this->profilePicture = $profilePicture;
     }
-
 }

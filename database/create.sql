@@ -8,12 +8,13 @@ DROP TABLE IF EXISTS Feedback;
 
 CREATE TABLE User
 (
-    userId   INTEGER,
-    name     NVARCHAR NOT NULL,
-    username VARCHAR  NOT NULL,
-    email    VARCHAR  NOT NULL,
-    password VARCHAR  NOT NULL,
-    isAdmin  BOOLEAN  NOT NULL,
+    userId            INTEGER,
+    name              NVARCHAR NOT NULL,
+    username          VARCHAR  NOT NULL,
+    email             VARCHAR  NOT NULL,
+    password          VARCHAR  NOT NULL,
+    isAdmin           BOOLEAN  NOT NULL,
+    profilePictureURL VARCHAR,
 
     CONSTRAINT User_PK PRIMARY KEY (userId),
     CONSTRAINT User_email_unique UNIQUE (email),
