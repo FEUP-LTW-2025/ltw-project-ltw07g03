@@ -1,5 +1,4 @@
-PRAGMA
-FOREIGN_KEYS = ON;
+PRAGMA FOREIGN_KEYS = ON;
 
 INSERT INTO User (name, username, email, password, isAdmin, profilePictureURL, status)
 VALUES ('admin', 'administrator', 'admin@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 1,
