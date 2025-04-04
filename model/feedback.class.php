@@ -43,6 +43,25 @@ class Feedback
         return $this->date;
     }
 
+    public static function getFeedbackById(PDO $db, int $id): ?Feedback
+    {
+        $stmt = $db->prepare("SELECT * FROM Feedback WHERE feedbackId = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+        return new Feedback(
+            intval($data['feedbackId']),
+            intval($data['purchaseId']),
+            floatval($data['rating']),
+            $data['review'],
+            strtotime($data['date'])
+        );
+    }
+
+
     public function setPurchaseId(int $purchaseId, PDO $db): void
     {
         $stmt = $db->prepare("UPDATE Feedback SET purchaseId = :purchaseId WHERE feedbackId = :feedbackId");

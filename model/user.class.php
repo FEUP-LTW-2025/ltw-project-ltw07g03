@@ -73,6 +73,28 @@ class User
         return $this->status;
     }
 
+    public static function getUserById(PDO $db, int $id): ?User
+    {
+        $stmt = $db->prepare("SELECT * FROM User WHERE userId = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if (!$data) {
+            return null;
+        }
+        return new User(
+            intval($data['userId']),
+            $data['name'],
+            $data['username'],
+            $data['email'],
+            $data['password'],
+            boolval($data['isAdmin']),
+            $data['profilePictureURL'],
+            $data['status']
+        );
+    }
+
+
     public function setName(string $name, PDO $db): void
     {
         $stmt = $db->prepare("UPDATE User SET name = :name WHERE userId = :id");

@@ -50,6 +50,26 @@ class Message
         return $this->date;
     }
 
+    public static function getMessageById(PDO $db, int $id): ?Message
+    {
+        $stmt = $db->prepare("SELECT * FROM Message WHERE messageId = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+        return new Message(
+            intval($data['messageId']),
+            intval($data['senderId']),
+            intval($data['receiverId']),
+            intval($data['serviceId']),
+            $data['content'],
+            strtotime($data['date'])
+        );
+    }
+
+
     public function setSenderId(int $senderId, PDO $db): void
     {
         $stmt = $db->prepare("UPDATE Message SET senderId = :senderId WHERE messageId = :id");

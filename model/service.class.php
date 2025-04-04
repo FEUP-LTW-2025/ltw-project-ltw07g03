@@ -89,6 +89,36 @@ class Service
         return $this->images;
     }
 
+    public static function getServiceById(PDO $db, int $id): ?Service
+    {
+        $stmt = $db->prepare("SELECT * FROM Service WHERE serviceId = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+
+        $stmt = $db->prepare("SELECT mediaURL FROM ServiceMedia WHERE serviceId = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $images = $stmt->fetchAll();
+
+        return new Service(
+            intval($data['serviceId']),
+            intval($data['freelancerId']),
+            intval($data['categoryId']),
+            $data['title'],
+            floatval($data['price']),
+            intval($data['deliveryTime']),
+            $data['description'],
+            $data['status'],
+            floatval($data['rating']),
+            $images
+        );
+    }
+
+
     public function setTitle(string $title, PDO $db): void
     {
         $stmt = $db->prepare("UPDATE Service SET title = :title WHERE serviceId = :id");
