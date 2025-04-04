@@ -43,28 +43,39 @@ class Purchase
         return $this->status;
     }
 
-    public function setId(int $id): void
+    public function setServiceId(int $serviceId, PDO $db): void
     {
-        $this->id = $id;
-    }
-
-    public function setServiceId(int $serviceId): void
-    {
+        $stmt = $db->prepare("UPDATE Purchase SET serviceId = :serviceId WHERE purchaseId = :id");
+        $stmt->bindParam(":serviceId", $serviceId);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->serviceId = $serviceId;
     }
 
-    public function setClientId(int $clientId): void
+    public function setClientId(int $clientId, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Purchase SET clientId = :clientId WHERE purchaseId = :id");
+        $stmt->bindParam(":clientId", $clientId);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->clientId = $clientId;
     }
 
-    public function setDate(int $date): void
+    public function setDate(int $date, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Purchase SET date = :date WHERE purchaseId = :id");
+        $stmt->bindParam(":date", $date);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->date = $date;
     }
 
-    public function setStatus(string $status): void
+    public function setStatus(string $status, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Purchase SET status = :status WHERE purchaseId = :id");
+        $stmt->bindParam(":status", $status);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->status = $status;
     }
 }

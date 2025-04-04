@@ -73,43 +73,67 @@ class User
         return $this->status;
     }
 
-    public function setId(int $id): void
+    public function setName(string $name, PDO $db): void
     {
-        $this->id = $id;
-    }
-
-    public function setName(string $name): void
-    {
+        $stmt = $db->prepare("UPDATE User SET name = :name WHERE userId = :id");
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->name = $name;
     }
 
-    public function setUsername(string $username): void
+    public function setUsername(string $username, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE User SET username = :username WHERE userId = :id");
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->username = $username;
     }
 
-    public function setEmail(string $email): void
+    public function setEmail(string $email, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE User SET email = :email WHERE userId = :id");
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->email = $email;
     }
 
-    public function setPassword(string $password): void
+    public function setPassword(string $password, PDO $db): void
     {
-        $this->password = $password;
+        $hashedPassword = sha1($password);
+        $stmt = $db->prepare("UPDATE User SET password = :password WHERE userId = :id");
+        $stmt->bindParam(":password", $hashedPassword);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        $this->password = $hashedPassword;
     }
 
-    public function setIsAdmin(bool $isAdmin): void
+    public function setIsAdmin(bool $isAdmin, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE User SET isAdmin = :isAdmin WHERE userId = :id");
+        $stmt->bindParam(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->isAdmin = $isAdmin;
     }
 
-    public function setProfilePicture(string $profilePicture): void
+    public function setProfilePicture(string $profilePicture, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE User SET profilePictureURL = :profilePicture WHERE userId = :id");
+        $stmt->bindParam(":profilePicture", $profilePicture);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->profilePicture = $profilePicture;
     }
 
-    public function setStatus(string $status): void
+    public function setStatus(string $status, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE User SET status = :status WHERE userId = :id");
+        $stmt->bindParam(":status", $status);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->status = $status;
     }
 }

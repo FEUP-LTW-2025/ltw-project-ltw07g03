@@ -5,7 +5,7 @@ class Service
 {
     private int $id;
     private int $freelancerId;
-    private string $category;
+    private int $categoryId;
     private string $title;
     private float $price;
     private int $deliveryTime;
@@ -17,7 +17,7 @@ class Service
     public function __construct(
         int    $id,
         int    $freelancerId,
-        string $category,
+        int    $categoryId,
         string $title,
         float  $price,
         int    $deliveryTime,
@@ -29,7 +29,7 @@ class Service
     {
         $this->id = $id;
         $this->freelancerId = $freelancerId;
-        $this->category = $category;
+        $this->categoryId = $categoryId;
         $this->title = $title;
         $this->price = $price;
         $this->deliveryTime = $deliveryTime;
@@ -49,9 +49,9 @@ class Service
         return $this->freelancerId;
     }
 
-    public function getCategory(): string
+    public function getCategoryId(): int
     {
-        return $this->category;
+        return $this->categoryId;
     }
 
     public function getTitle(): string
@@ -89,53 +89,81 @@ class Service
         return $this->images;
     }
 
-    public function setId(int $id): void
+    public function setTitle(string $title, PDO $db): void
     {
-        $this->id = $id;
-    }
-
-    public function setFreelancerId(int $freelancerId): void
-    {
-        $this->freelancerId = $freelancerId;
-    }
-
-    public function setCategory(string $category): void
-    {
-        $this->category = $category;
-    }
-
-    public function setTitle(string $title): void
-    {
+        $stmt = $db->prepare("UPDATE Service SET title = :title WHERE serviceId = :id");
+        $stmt->bindParam(":title", $title);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->title = $title;
     }
 
-    public function setPrice(float $price): void
+    public function setPrice(float $price, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Service SET price = :price WHERE serviceId = :id");
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->price = $price;
     }
 
-    public function setDeliveryTime(int $deliveryTime): void
+    public function setDeliveryTime(int $deliveryTime, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Service SET deliveryTime = :deliveryTime WHERE serviceId = :id");
+        $stmt->bindParam(":deliveryTime", $deliveryTime);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->deliveryTime = $deliveryTime;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(string $description, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Service SET description = :description WHERE serviceId = :id");
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->description = $description;
     }
 
-    public function setStatus(string $status): void
+    public function setStatus(string $status, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Service SET status = :status WHERE serviceId = :id");
+        $stmt->bindParam(":status", $status);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->status = $status;
     }
 
-    public function setRating(float $rating): void
+    public function setCategoryId(int $categoryId, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Service SET categoryId = :categoryId WHERE serviceId = :id");
+        $stmt->bindParam(":categoryId", $categoryId);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        $this->categoryId = $categoryId;
+    }
+
+    public function setFreelancerId(int $freelancerId, PDO $db): void
+    {
+        $stmt = $db->prepare("UPDATE Service SET freelancerId = :freelancerId WHERE serviceId = :id");
+        $stmt->bindParam(":freelancerId", $freelancerId);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        $this->freelancerId = $freelancerId;
+    }
+
+    public function setRating(float $rating, PDO $db): void
+    {
+        $stmt = $db->prepare("UPDATE Service SET rating = :rating WHERE serviceId = :id");
+        $stmt->bindParam(":rating", $rating);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
         $this->rating = $rating;
     }
 
     public function setImages(array $images): void
     {
+        // TODO
         $this->images = $images;
     }
 }

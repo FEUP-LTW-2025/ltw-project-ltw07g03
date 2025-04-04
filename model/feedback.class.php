@@ -43,28 +43,39 @@ class Feedback
         return $this->date;
     }
 
-    public function setFeedbackId(int $feedbackId): void
+    public function setPurchaseId(int $purchaseId, PDO $db): void
     {
-        $this->feedbackId = $feedbackId;
-    }
-
-    public function setPurchaseId(int $purchaseId): void
-    {
+        $stmt = $db->prepare("UPDATE Feedback SET purchaseId = :purchaseId WHERE feedbackId = :feedbackId");
+        $stmt->bindParam(":purchaseId", $purchaseId);
+        $stmt->bindParam(":feedbackId", $this->feedbackId);
+        $stmt->execute();
         $this->purchaseId = $purchaseId;
     }
 
-    public function setRating(float $rating): void
+    public function setRating(float $rating, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Feedback SET rating = :rating WHERE feedbackId = :feedbackId");
+        $stmt->bindParam(":rating", $rating);
+        $stmt->bindParam(":feedbackId", $this->feedbackId);
+        $stmt->execute();
         $this->rating = $rating;
     }
 
-    public function setReview(string $review): void
+    public function setReview(string $review, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Feedback SET review = :review WHERE feedbackId = :feedbackId");
+        $stmt->bindParam(":review", $review);
+        $stmt->bindParam(":feedbackId", $this->feedbackId);
+        $stmt->execute();
         $this->review = $review;
     }
 
-    public function setDate(int $date): void
+    public function setDate(int $date, PDO $db): void
     {
+        $stmt = $db->prepare("UPDATE Feedback SET date = :date WHERE feedbackId = :feedbackId");
+        $stmt->bindParam(":date", $date);
+        $stmt->bindParam(":feedbackId", $this->feedbackId);
+        $stmt->execute();
         $this->date = $date;
     }
 }
