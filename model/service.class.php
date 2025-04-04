@@ -166,4 +166,32 @@ class Service
         // TODO
         $this->images = $images;
     }
+
+    public function upload(PDO $db): void
+    {
+        $stmt = $db->prepare(
+            "INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
+            VALUES (:freelancerId, :categoryId, :title, :price, :deliveryTime, :description, :status)"
+        );
+
+        $stmt->bindParam(":freelancerId", $this->freelancerId);
+        $stmt->bindParam(":categoryId", $this->categoryId);
+        $stmt->bindParam(":title", $this->title);
+        $stmt->bindParam(":price", $this->price);
+        $stmt->bindParam(":deliveryTime", $this->deliveryTime);
+        $stmt->bindParam(":description", $this->description);
+        $stmt->bindParam(":status", $this->status);
+
+        $stmt->execute();
+
+        $this->id = (int)$db->lastInsertId();
+
+        $stmt = $db->prepare("INSERT INTO ServiceMedia (serviceId, mediaURL) VALUES (:serviceId, :mediaURL)");
+
+        foreach ($this->images as $mediaURL) {
+            $stmt->bindParam(":serviceId", $this->id);
+            $stmt->bindParam(":mediaURL", $mediaURL);
+            $stmt->execute();
+        }
+    }
 }

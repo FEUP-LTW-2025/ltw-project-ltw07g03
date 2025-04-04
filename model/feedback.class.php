@@ -78,4 +78,19 @@ class Feedback
         $stmt->execute();
         $this->date = $date;
     }
+
+    public function upload(PDO $db): void
+    {
+        $stmt = $db->prepare(
+            "INSERT INTO Feedback (purchaseId, rating, review, date) 
+         VALUES (:purchaseId, :rating, :review, :date)"
+        );
+
+        $stmt->bindParam(":purchaseId", $this->purchaseId);
+        $stmt->bindParam(":rating", $this->rating);
+        $stmt->bindParam(":review", $this->review);
+        $stmt->bindParam(":date", $this->date);
+
+        $stmt->execute();
+    }
 }

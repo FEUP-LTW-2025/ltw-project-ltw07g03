@@ -136,4 +136,22 @@ class User
         $stmt->execute();
         $this->status = $status;
     }
+
+    public function upload(PDO $db): void
+    {
+        $stmt = $db->prepare(
+            "INSERT INTO User (name, username, email, password, isAdmin, profilePictureURL, status) 
+        VALUES (:name, :username, :email, :password, :isAdmin, :profilePictureURL, :status)"
+        );
+
+        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":username", $this->username);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":password", $this->password);
+        $stmt->bindParam(":isAdmin", $this->isAdmin);
+        $stmt->bindParam(":profilePictureURL", $this->profilePicture);
+        $stmt->bindParam(":status", $this->status);
+
+        $stmt->execute();
+    }
 }

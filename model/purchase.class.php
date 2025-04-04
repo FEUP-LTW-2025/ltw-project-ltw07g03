@@ -78,4 +78,19 @@ class Purchase
         $stmt->execute();
         $this->status = $status;
     }
+
+    public function upload(PDO $db): void
+    {
+        $stmt = $db->prepare(
+            "INSERT INTO Purchase (serviceId, clientId, date, status) 
+         VALUES (:serviceId, :clientId, :date, :status)"
+        );
+
+        $stmt->bindParam(":serviceId", $this->serviceId);
+        $stmt->bindParam(":clientId", $this->clientId);
+        $stmt->bindParam(":date", $this->date);
+        $stmt->bindParam(":status", $this->status);
+
+        $stmt->execute();
+    }
 }

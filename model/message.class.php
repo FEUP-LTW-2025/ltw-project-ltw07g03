@@ -94,4 +94,20 @@ class Message
         $stmt->execute();
         $this->date = $date;
     }
+
+    public function upload(PDO $db): void
+    {
+        $stmt = $db->prepare(
+            "INSERT INTO Message (senderId, receiverId, serviceId, content, date) 
+         VALUES (:senderId, :receiverId, :serviceId, :content, :date)"
+        );
+
+        $stmt->bindParam(":senderId", $this->senderId);
+        $stmt->bindParam(":receiverId", $this->receiverId);
+        $stmt->bindParam(":serviceId", $this->serviceId);
+        $stmt->bindParam(":content", $this->content);
+        $stmt->bindParam(":date", $this->date);
+
+        $stmt->execute();
+    }
 }
