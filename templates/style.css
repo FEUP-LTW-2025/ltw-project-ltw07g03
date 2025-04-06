@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Imperial+Script&family=Ruda&display=swap');
+
+/* base styles */
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* header */
+
+.site-header {
+    background: #000;
+    padding: 0.5rem 0;
+}
+
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    gap: 1rem;
+}
+
+.logo-img-big {
+    height: auto;
+    max-height: 80px;
+    margin-top: 0;
+    width: auto;
+    max-width: 240px;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.nav-menu li a:hover {
+    color: #ff3c00;
+}
+
+/* hero section */
+
+.hero-with-bg {
+    position: relative;
+    background: url('images/hero-bg.jpg') center center / cover no-repeat;
+    height: 80vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    width: 100%;
+    max-width: 1200%;
+}
+
+.hero-text {
+    color: #ffffff;
+    max-width: 600%;
+    min-width: 300%;
+    flex: 1;
+    text-align: left;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+
+.highlight {
+    color: #ff3c00;
+}
+
+.hero-btn {
+    padding: 0.9rem 2rem;
+    background-color: #ff3c00;
+    color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.hero-btn:hover {
+    background-color: #e83500;
+}
+
+.hero-img {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+}
+
+/* categories section */
+
+.section {
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.category-row {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 1rem;
+    scroll-behavior: smooth;
+}
+
+.category-row::-webkit-scrollbar {
+    display: none;
+}
+
+.category-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+    text-decoration: none;
+    color: #333;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* search bar style */
+
+.search-section {
+    background: #f9f9f9;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 1rem auto 0;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+}
+
+.search-btn {
+    padding: 0.75rem 1.5rem;
+    background: #ff4500;
+    color: #fff;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background: #e23e00;
+}
+
+/* footer */
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+
