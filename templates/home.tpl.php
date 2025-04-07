@@ -23,7 +23,7 @@ require_once(__DIR__ . '/../utils/session.php');
     <section class="search-section">
         <div class="container">
             <h2 class="section-title">What service are you looking for?</h2>
-            <form action="../templates/search.php" method="GET" class="search-form">
+            <form action="../pages/search.php" method="GET" class="search-form">
                 <input
                         type="text"
                         name="query"
