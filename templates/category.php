@@ -20,11 +20,11 @@ $selectedServices = $services[$category] ?? [];
 <head>
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($category); ?> Services</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/templates/style.css">
 </head>
 <body>
 
-<?php require_once 'includes/header.php'; ?>
+<?php require_once __DIR__ . '/../includes/header.php'; ?>
 
 <section class="section">
     <div class="container">
@@ -41,6 +41,6 @@ $selectedServices = $services[$category] ?? [];
     </div>
 </section>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
 </body>
 </html>
