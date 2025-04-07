@@ -36,3 +36,20 @@ require_once(__DIR__ . '/../utils/session.php');
         </div>
     </section>
 <?php } ?>
+
+<?php function drawHomeCategories(array $categories)
+{ ?>
+    <section class="section" id="categories">
+        <div class="container">
+            <h2 class="section-title">Explore Categories</h2>
+            <div class="category-row">
+                <?php foreach ($categories as $cat): ?>
+                    <?php $encoded = urlencode($cat['name']); ?>
+                    <a href="/pages/category.php?name=<?= $encoded ?>" class="category-card">
+                        <?= $cat['icon'] ?> <?= htmlspecialchars($cat['name']) ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+<?php } ?>
