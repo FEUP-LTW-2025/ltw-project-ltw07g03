@@ -25,10 +25,7 @@ foreach ($allServices as $service) {
         $results[] = $service;
     }
 }
-?>
 
-<?php
 drawHeader("Home", $session);
 drawSearchResults($searchQuery, $results);
 drawFooter();
-?>

@@ -5,9 +5,6 @@ class Session
     public function __construct()
     {
         session_start();
-
-        $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
-        unset($_SESSION['messages']);
     }
 
     public function isLoggedIn(): bool
@@ -22,12 +19,12 @@ class Session
 
     public function getId(): ?int
     {
-        return isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        return $_SESSION['id'] ?? null;
     }
 
     public function getName(): ?string
     {
-        return isset($_SESSION['name']) ? $_SESSION['name'] : null;
+        return $_SESSION['name'] ?? null;
     }
 
     public function setId(int $id)

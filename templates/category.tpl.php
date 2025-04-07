@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
 ?>
 
-<?php function drawCategoryResults(string $category, array $services)
+<?php function drawCategoryResults(string $category, array $services): void
 { ?>
     <section class="section">
         <div class="container">

@@ -3,7 +3,8 @@ declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
 ?>
 
-<?php function drawHeader(string $title, Session $session) { ?>
+<?php function drawHeader(string $title, Session $session): void
+{ ?>
     <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -36,11 +37,12 @@ require_once(__DIR__ . '/../utils/session.php');
 <main>
     <?php } ?>
 
-    <?php function drawFooter() { ?>
+    <?php function drawFooter(): void
+    { ?>
 </main>
 <footer class="site-footer">
     <div class="container">
-        <p>&copy; 2025 FLEXA. All rights reserved.</p>
+        <p>&copy 2025 FLEXA. All rights reserved.</p>
     </div>
 </footer>
 </body>

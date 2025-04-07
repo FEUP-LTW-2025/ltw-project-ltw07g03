@@ -19,10 +19,7 @@ $services = [
 ];
 
 $selectedServices = $services[$category] ?? [];
-?>
 
-<?php
 drawHeader("Category", $session);
 drawCategoryResults($category, $selectedServices);
 drawFooter();
-?>

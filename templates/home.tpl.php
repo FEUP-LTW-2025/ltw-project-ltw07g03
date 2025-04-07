@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
-require_once(__DIR__ . '/../utils/session.php');
 ?>
 
-<?php function drawHomeHeading()
+<?php function drawHomeHeading(): void
 { ?>
     <section class="hero hero-with-bg">
         <div class="hero-overlay">
@@ -18,26 +17,28 @@ require_once(__DIR__ . '/../utils/session.php');
     </section>
 <?php } ?>
 
-<?php function drawHomeSearch()
+<?php function drawHomeSearch(): void
 { ?>
     <section class="search-section">
         <div class="container">
             <h2 class="section-title">What service are you looking for?</h2>
-            <form action="../pages/search.php" method="GET" class="search-form">
-                <input
-                        type="text"
-                        name="query"
-                        placeholder="Try 'logo design', 'web developer'..."
-                        class="search-input"
-                        required
-                />
+            <form action="/pages/search.php" method="GET" class="search-form">
+                <label>
+                    <input
+                            type="text"
+                            name="query"
+                            placeholder="Try 'logo design', 'web developer'..."
+                            class="search-input"
+                            required
+                    />
+                </label>
                 <button type="submit" class="search-btn">Search</button>
             </form>
         </div>
     </section>
 <?php } ?>
 
-<?php function drawHomeCategories(array $categories)
+<?php function drawHomeCategories(array $categories): void
 { ?>
     <section class="section" id="categories">
         <div class="container">
