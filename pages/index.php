@@ -29,7 +29,7 @@ $categories = [
         <div class="category-row">
             <?php foreach ($categories as $cat): ?>
                 <?php $encoded = urlencode($cat['name']); ?>
-                <a href="../templates/category.php?name=<?= $encoded ?>" class="category-card">
+                <a href="category.php?name=<?= $encoded ?>" class="category-card">
                     <?= $cat['icon'] ?> <?= htmlspecialchars($cat['name']) ?>
                 </a>
             <?php endforeach; ?>
