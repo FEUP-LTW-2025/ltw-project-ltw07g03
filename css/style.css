@@ -231,6 +231,39 @@ a {
     background: #e23e00;
 }
 
+
+
+/* login */
+
+.login{
+    background-color: blue;
+    padding: 10px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 100px auto;
+    opacity: 0.8;
+}
+
+
+.login label,
+.login input{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+
+
+}
+
+.login label{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.login input{
+    margin-top: 5px;
+}
+
 /* footer */
 
 footer {

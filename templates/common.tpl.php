@@ -28,7 +28,7 @@ require_once(__DIR__ . '/../utils/session.php');
             <ul class="nav-menu">
                 <li><a href="/pages/index.php">Home</a></li>
                 <li><a href="#">Services</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="/pages/login.php">Login</a></li>
                 <li><a href="#">Register</a></li>
             </ul>
         </nav>
