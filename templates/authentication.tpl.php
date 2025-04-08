@@ -2,7 +2,7 @@
 
 <?php function draw_loginForm():void
     {?>
-        <form action="#" method="POST" class="login">
+        <form action="/actions/action_login.php" method="POST" class="login">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="username">
 

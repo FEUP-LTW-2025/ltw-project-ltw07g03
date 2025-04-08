@@ -73,6 +73,32 @@ class User
         return $this->status;
     }
 
+    public static function getUserByPassword(PDO $db, string $username, $password): ?User //for login. it sees if the row exists in the DB, if it does, return a user object
+    {
+        $stmt = $db->prepare("SELECT * FROM User WHERE username = :username AND password = :password");
+        $stmt->bindParam(":username",$username);
+        $stmt->bindParam(":password",$password);
+        $stmt->execute();
+        $data = $stmt->fetch();
+
+        if(!$data){
+            return Null;
+        } 
+        return new User(
+            intval($data['userId']),
+            $data['name'],
+            $data['username'],
+            $data['email'],
+            $data['password'],
+            boolval($data['isAdmin']),
+            $data['profilePictureURL'],
+            $data['status'],
+        );
+        
+    }
+
+
+
     public static function getUserById(PDO $db, int $id): ?User
     {
         $stmt = $db->prepare("SELECT * FROM User WHERE userId = :id");
@@ -93,6 +119,7 @@ class User
             $data['status']
         );
     }
+
 
 
     public function setName(string $name, PDO $db): void

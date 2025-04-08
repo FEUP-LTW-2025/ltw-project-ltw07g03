@@ -2,6 +2,9 @@
 
 class Session
 {
+    private array $messages;
+
+
     public function __construct()
     {
         session_start();
@@ -36,4 +39,12 @@ class Session
     {
         $_SESSION['name'] = $name;
     }
+
+    public function addMessage(string $type, string $text) {
+        $_SESSION['messages'][] = array('type' => $type, 'text' => $text);
+      }
+  
+      public function getMessages() {
+        return $_SESSION['messages'];
+      }
 }
