@@ -23,6 +23,10 @@ $user = User::getUserByPassword($db,$username,$password);
 if($user){
     $session->setId($user->getId());
     $session->setName($user->getName());
+    echo $session->getId();
+    echo '<br>';
+    echo $session->getName();
+    echo '<br>';
     echo "LOGIN SUCCEFULLY";
 } else{
     $session->addMessage('error', 'Credenciais incorretas.');
