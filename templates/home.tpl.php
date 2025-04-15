@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once(__DIR__ . '/../model/category.class.php');
 ?>
 
 <?php function drawHomeHeading(): void
@@ -45,9 +46,9 @@ declare(strict_types=1);
             <h2 class="section-title">Explore Categories</h2>
             <div class="category-row">
                 <?php foreach ($categories as $cat): ?>
-                    <?php $encoded = urlencode($cat['name']); ?>
+                    <?php $encoded = urlencode($cat->getName()); ?>
                     <a href="/pages/category.php?name=<?= $encoded ?>" class="category-card">
-                        <?= $cat['icon'] ?> <?= htmlspecialchars($cat['name']) ?>
+                        <?= $cat->getIcon() ?> <?= htmlspecialchars($cat->getName()) ?>
                     </a>
                 <?php endforeach; ?>
             </div>
