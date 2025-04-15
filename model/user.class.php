@@ -18,7 +18,7 @@ class User
         string $username,
         string $email,
         string $password,
-        bool   $isAdmin,
+        bool $isAdmin,
         string $profilePicture,
         string $status
     )
@@ -73,11 +73,10 @@ class User
         return $this->status;
     }
 
-    public static function getUserByPassword(PDO $db, string $username, $password): ?User //for login. it sees if the row exists in the DB, if it does, return a user object
+    public static function getUserByUsername(PDO $db, string $username): ?User //for login. it sees if the row exists in the DB, if it does, return a user object
     {
-        $stmt = $db->prepare("SELECT * FROM User WHERE username = :username AND password = :password");
+        $stmt = $db->prepare("SELECT * FROM User WHERE username = :username");
         $stmt->bindParam(":username",$username);
-        $stmt->bindParam(":password",$password);
         $stmt->execute();
         $data = $stmt->fetch();
 
@@ -96,6 +95,35 @@ class User
         );
         
     }
+
+
+
+
+    public static function getUserByEmail(PDO $db, string $email): ?User //for login. it sees if the row exists in the DB, if it does, return a user object
+    {
+        $stmt = $db->prepare("SELECT * FROM User WHERE email = :email");
+        $stmt->bindParam(":email",$email);
+        $stmt->execute();
+        $data = $stmt->fetch();
+
+        if(!$data){
+            return Null;
+        } 
+        return new User(
+            intval($data['userId']),
+            $data['name'],
+            $data['username'],
+            $data['email'],
+            $data['password'],
+            boolval($data['isAdmin']),
+            $data['profilePictureURL'],
+            $data['status'],
+        );
+        
+    }
+
+
+   
 
 
 
@@ -197,7 +225,10 @@ class User
         $stmt->bindParam(":username", $this->username);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":password", $this->password);
-        $stmt->bindParam(":isAdmin", $this->isAdmin);
+
+        $isAdmin = (int)$this->isAdmin;
+        $stmt->bindParam(":isAdmin", $isAdmin);
+
         $stmt->bindParam(":profilePictureURL", $this->profilePicture);
         $stmt->bindParam(":status", $this->status);
 

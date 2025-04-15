@@ -29,7 +29,7 @@ require_once(__DIR__ . '/../utils/session.php');
                 <li><a href="/pages/index.php">Home</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="/pages/login.php">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="/pages/signUp.php">Register</a></li>
             </ul>
         </nav>
     </div>

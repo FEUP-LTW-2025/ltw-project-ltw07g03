@@ -12,43 +12,23 @@ $password = $_POST['password'];
 
 if(empty($username) || empty($password)){
 
-    echo "Pleast type something!!";
+    $sessin->addMessage("error","The fields can not be empty");
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
 
 }
 
 $db = getDatabaseConnection();
+$user = User::getUserByUsername($db,$username);
 
-$user = User::getUserByPassword($db,$username,$password);
-
-if($user){
+if($user && password_verify($password, $user->getPassword())){
     $session->setId($user->getId());
     $session->setName($user->getName());
-    echo $session->getId();
-    echo '<br>';
-    echo $session->getName();
-    echo '<br>';
-    echo "LOGIN SUCCEFULLY";
+    $session->addMessage('success', 'Login successful!');
+
 } else{
-    $session->addMessage('error', 'Credenciais incorretas.');
-
-    $messages = $session->getMessages();
-
-    foreach ($messages as $message) {
-        echo "Tipo: " . $message['type'] . "<br>";
-        echo "Texto: " . $message['text'] . "<br><br>";
-    }
-
-
-
-
+    $session->addMessage('error', 'Login Failed');
 }
-
-
-
-
-
-
-
-
-
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    
 ?>
