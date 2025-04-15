@@ -1,2 +1,11 @@
-.vscode/
+### PhpStorm ###
+out/
 .idea/
+.idea_modules/
+
+### VisualStudioCode ###
+.vscode/*
+.history/
+
+# Other files
+*.html
