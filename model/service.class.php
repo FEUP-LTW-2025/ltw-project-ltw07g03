@@ -214,7 +214,7 @@ class Service
 
         $stmt->execute();
 
-        $this->id = (int)$db->lastInsertId();
+        $this->id = intval($db->lastInsertId());
 
         $stmt = $db->prepare("INSERT INTO ServiceMedia (serviceId, mediaURL) VALUES (:serviceId, :mediaURL)");
 
