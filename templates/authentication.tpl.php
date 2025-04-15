@@ -1,8 +1,6 @@
-
-
-<?php function draw_loginForm():void
-    {?>
-        <form action="/actions/action_login.php" method="POST" class="login">
+<?php function drawLoginForm(): void
+{ ?>
+    <form action="/actions/action_login.php" method="POST" class="login">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="username">
 
@@ -11,13 +9,10 @@
 
         <input type="submit" value="Login">
     </form>
-
 <?php } ?>
 
-
-
-<?php 
-function draw_registerForm(): void { ?>
+<?php function drawRegisterForm(): void
+{ ?>
     <form action="/actions/action_register.php" method="POST" enctype="multipart/form-data" class="login">
 
         <label for="name">Name</label>
@@ -38,9 +33,3 @@ function draw_registerForm(): void { ?>
         <input type="submit" value="Register">
     </form>
 <?php } ?>
-
-
-
-
-
-

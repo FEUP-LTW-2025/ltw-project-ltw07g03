@@ -7,10 +7,6 @@ require_once(__DIR__ . '/../templates/authentication.tpl.php');
 
 $session = new Session();
 
-
 drawHeader("Login", $session);
-draw_loginForm();
+drawLoginForm();
 drawFooter();
-
-
-?>

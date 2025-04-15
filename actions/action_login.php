@@ -6,29 +6,26 @@ require_once(__DIR__ . '/../model/user.class.php');
 
 $session = new Session();
 
-
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-if(empty($username) || empty($password)){
+if (empty($username) || empty($password)) {
 
-    $sessin->addMessage("error","The fields can not be empty");
+    $session->addMessage("error", "The fields can not be empty");
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
-
 }
 
 $db = getDatabaseConnection();
-$user = User::getUserByUsername($db,$username);
+$user = User::getUserByUsername($db, $username);
 
-if($user && password_verify($password, $user->getPassword())){
+if ($user && password_verify($password, $user->getPassword())) {
     $session->setId($user->getId());
     $session->setName($user->getName());
     $session->addMessage('success', 'Login successful!');
 
-} else{
+} else {
     $session->addMessage('error', 'Login Failed');
 }
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    
-?>
+
+header('Location: ' . $_SERVER['HTTP_REFERER']);

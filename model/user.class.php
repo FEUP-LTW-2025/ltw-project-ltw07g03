@@ -18,7 +18,7 @@ class User
         string $username,
         string $email,
         string $password,
-        bool $isAdmin,
+        bool   $isAdmin,
         string $profilePicture,
         string $status
     )
@@ -73,16 +73,16 @@ class User
         return $this->status;
     }
 
-    public static function getUserByUsername(PDO $db, string $username): ?User //for login. it sees if the row exists in the DB, if it does, return a user object
+    public static function getUserByUsername(PDO $db, string $username): ?User
     {
         $stmt = $db->prepare("SELECT * FROM User WHERE username = :username");
-        $stmt->bindParam(":username",$username);
+        $stmt->bindParam(":username", $username);
         $stmt->execute();
         $data = $stmt->fetch();
 
-        if(!$data){
+        if (!$data) {
             return Null;
-        } 
+        }
         return new User(
             intval($data['userId']),
             $data['name'],
@@ -93,22 +93,19 @@ class User
             $data['profilePictureURL'],
             $data['status'],
         );
-        
+
     }
 
-
-
-
-    public static function getUserByEmail(PDO $db, string $email): ?User //for login. it sees if the row exists in the DB, if it does, return a user object
+    public static function getUserByEmail(PDO $db, string $email): ?User
     {
         $stmt = $db->prepare("SELECT * FROM User WHERE email = :email");
-        $stmt->bindParam(":email",$email);
+        $stmt->bindParam(":email", $email);
         $stmt->execute();
         $data = $stmt->fetch();
 
-        if(!$data){
+        if (!$data) {
             return Null;
-        } 
+        }
         return new User(
             intval($data['userId']),
             $data['name'],
@@ -119,13 +116,8 @@ class User
             $data['profilePictureURL'],
             $data['status'],
         );
-        
+
     }
-
-
-   
-
-
 
     public static function getUserById(PDO $db, int $id): ?User
     {
@@ -147,7 +139,6 @@ class User
             $data['status']
         );
     }
-
 
 
     public function setName(string $name, PDO $db): void
@@ -221,14 +212,13 @@ class User
         VALUES (:name, :username, :email, :password, :isAdmin, :profilePictureURL, :status)"
         );
 
+        $isAdmin = intval($this->isAdmin);
+
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":username", $this->username);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":password", $this->password);
-
-        $isAdmin = (int)$this->isAdmin;
         $stmt->bindParam(":isAdmin", $isAdmin);
-
         $stmt->bindParam(":profilePictureURL", $this->profilePicture);
         $stmt->bindParam(":status", $this->status);
 

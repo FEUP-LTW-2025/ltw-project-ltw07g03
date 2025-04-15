@@ -9,7 +9,7 @@ $session = new Session();
 
 
 drawHeader("Regist", $session);
-draw_registerForm();
+drawRegisterForm();
 drawFooter();
 
 
