@@ -22,13 +22,13 @@ VALUES ('admin', 'administrator', 'admin@gmail.com', 'cbfdac6008f9cab4083784cbd1
        ('Grace Hopper', 'GraceH', 'grace@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
         'https://picsum.photos/id/107/1024', 'inactive');
 
-INSERT INTO ServiceCategory (name)
-VALUES ('Design'),
-       ('Web Development'),
-       ('Digital Marketing'),
-       ('Writing & Translation'),
-       ('Photography'),
-       ('Video Editing');
+INSERT INTO ServiceCategory (name, icon)
+VALUES ('Programming & Tech', '&#x1F4BB'),
+       ('Graphics and Design', '&#x1F3A8'),
+       ('Digital Marketing', '&#x1F4C8'),
+       ('Video & Animation', '&#x1F3AC'),
+       ('Music & Audio', '&#x1F3A7'),
+       ('Business', '&#x1F4BC');
 
 INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
 VALUES (2, 2, 'Dynamic webpages using PHP', 150, 2, 'Contact me!', 'active'),

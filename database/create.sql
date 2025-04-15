@@ -34,9 +34,11 @@ CREATE TABLE ServiceCategory
 (
     serviceCategoryId INTEGER,
     name              VARCHAR(255),
+    icon              VARCHAR(15),
 
     CONSTRAINT ServiceCategory_PK PRIMARY KEY (serviceCategoryId),
-    CONSTRAINT ServiceCategory_name_NN CHECK (name IS NOT NULL)
+    CONSTRAINT ServiceCategory_name_NN CHECK (name IS NOT NULL),
+    CONSTRAINT ServiceCategory_icon_NN CHECK (icon IS NOT NULL)
 );
 
 CREATE TABLE Service
