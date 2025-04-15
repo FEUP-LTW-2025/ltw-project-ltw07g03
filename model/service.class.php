@@ -118,6 +118,41 @@ class Service
         );
     }
 
+    
+    public static function getServicesByCategoryId(PDO $db, int $cat_id): array
+{
+    $stmt = $db->prepare("SELECT * FROM Service WHERE categoryId = :cat_id");
+    $stmt->bindParam(":cat_id", $cat_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $services = [];
+
+    while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $serviceId = intval($data['serviceId']);
+
+        $mediaStmt = $db->prepare("SELECT mediaURL FROM ServiceMedia WHERE serviceId = :id");
+        $mediaStmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
+        $mediaStmt->execute();
+        $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
+
+        $services[] = new Service(
+            $serviceId,
+            intval($data['freelancerId']),
+            intval($data['categoryId']),
+            $data['title'],
+            floatval($data['price']),
+            intval($data['deliveryTime']),
+            $data['description'],
+            $data['status'],
+            floatval($data['rating']),
+            $images
+        );
+    }
+
+    return $services;
+}
+
+
 
     public function setTitle(string $title, PDO $db): void
     {

@@ -40,6 +40,21 @@ class Category
         return new Category(intval($data['serviceCategoryId']), $data['name'], $data['icon']);
     }
 
+    
+
+    public static function getCategoryByName(PDO $db, string $name): ?Category
+    {
+        $stmt = $db->prepare("SELECT * FROM ServiceCategory WHERE name = ?");
+        $stmt->execute([$name]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$data) return null;
+
+        return new Category(intval($data['serviceCategoryId']), $data['name'], $data['icon']);
+    }
+
+
+
     public static function getAllCategories(PDO $db): array
     {
         $stmt = $db->query("SELECT * FROM ServiceCategory");
