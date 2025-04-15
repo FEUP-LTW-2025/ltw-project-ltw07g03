@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../model/user.class.php');
 
-$uploadDir = __DIR__ . '/../assets/images/profilePictures';
+$uploadDir = __DIR__ . '/../assets/images/pfps';
 $defaultProfilePicture = 'default.jpeg';
 
 $session = new Session();
@@ -57,7 +57,7 @@ function handlePicture(string $uploadDir, string $default, Session $session): st
     $targetPath = $uploadDir . '/' . $filename;
 
     if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-        return 'assets/images/profilePictures/' . $filename;
+        return 'assets/images/pfps/' . $filename;
     } else {
         $session->addMessage('error', 'Failed to upload image. Default picture used.');
         return $default;
