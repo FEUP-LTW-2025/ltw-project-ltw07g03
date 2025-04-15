@@ -28,8 +28,14 @@ require_once(__DIR__ . '/../utils/session.php');
             <ul class="nav-menu">
                 <li><a href="/pages/index.php">Home</a></li>
                 <li><a href="#">Services</a></li>
-                <li><a href="/pages/login.php">Login</a></li>
-                <li><a href="/pages/signup.php">Register</a></li>
+                <?php
+                if($session->isLoggedIn()){
+                    echo '<li><a href="/actions/action_logout.php">Logout</a></li>';
+                } else {
+                    echo '<li><a href="/pages/login.php">Login</a></li>';
+                    echo '<li><a href="/pages/signup.php">Register</a></li>';
+                }
+                ?>
             </ul>
         </nav>
     </div>

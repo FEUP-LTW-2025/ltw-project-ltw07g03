@@ -74,11 +74,14 @@ if (!isEmptyInput($name, $username, $email, $password)) {
         $session->setId($user->getId());
         $session->setName($user->getName());
         $session->addMessage('success', 'SignUp successful!');
+        header('Location: /');
     } else {
         $session->addMessage('error', 'Username or Email already used, try again');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 } else {
     $session->addMessage('error', 'Failed to SignUp due to missing fields');
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
-header('Location: ' . $_SERVER['HTTP_REFERER']);
-exit();
+
+

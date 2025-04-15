@@ -23,9 +23,10 @@ if ($user && password_verify($password, $user->getPassword())) {
     $session->setId($user->getId());
     $session->setName($user->getName());
     $session->addMessage('success', 'Login successful!');
+    header('Location: /');
+    exit();
 
 } else {
     $session->addMessage('error', 'Login Failed');
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
-
-header('Location: ' . $_SERVER['HTTP_REFERER']);
