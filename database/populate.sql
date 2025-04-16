@@ -1,25 +1,27 @@
 PRAGMA FOREIGN_KEYS = ON;
 
 INSERT INTO User (name, username, email, password, isAdmin, profilePictureURL, status)
-VALUES ('admin', 'administrator', 'admin@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 1,
+VALUES ('admin', 'administrator', 'admin@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 1,
         'https://picsum.photos/id/98/1024', 'active'),
-       ('John Doe', 'JohnDoe', 'john@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('John Doe', 'JohnDoe', 'john@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/99/1024', 'active'),
-       ('Mary Joe', 'MaryJoe', 'mary@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('Mary Joe', 'MaryJoe', 'mary@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/100/1024', 'active'),
-       ('Alice Wonder', 'AliceWonder', 'alice@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('Alice Wonder', 'AliceWonder', 'alice@gmail.com',
+        '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/101/1024', 'active'),
-       ('Bob Smith', 'Bobby', 'bob@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('Bob Smith', 'Bobby', 'bob@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/102/1024', 'inactive'),
-       ('Charlie Brown', 'CharlieB', 'charlie@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('Charlie Brown', 'CharlieB', 'charlie@gmail.com',
+        '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/103/1024', 'active'),
-       ('David Miller', 'DavidM', 'david@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('David Miller', 'DavidM', 'david@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/104/1024', 'active'),
-       ('Eve Adams', 'EveA', 'eve@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('Eve Adams', 'EveA', 'eve@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/106/1024', 'active'),
-       ('Frank White', 'FrankW', 'frank@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('Frank White', 'FrankW', 'frank@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/107/1024', 'inactive'),
-       ('Grace Hopper', 'GraceH', 'grace@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
+       ('Grace Hopper', 'GraceH', 'grace@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/108/1024', 'inactive');
 
 INSERT INTO ServiceCategory (name, icon)

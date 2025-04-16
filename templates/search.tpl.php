@@ -6,11 +6,11 @@ declare(strict_types=1);
 { ?>
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Search Results for: <?= htmlspecialchars($search) ?></h2>
+            <h2 class="section-title">Search Results for: <?= $search ?></h2>
             <?php if (!empty($results)): ?>
                 <ul class="category-grid">
                     <?php foreach ($results as $result): ?>
-                        <li class="category-card"><?= htmlspecialchars($result) ?></li>
+                        <li class="category-card"><?= $result ?></li>
                     <?php endforeach; ?>
                 </ul>
             <?php else: ?>

@@ -17,19 +17,22 @@ require_once(__DIR__ . '/../utils/session.php');
 <header class="site-header dark-header">
     <div class="container header-flex">
         <div class="logo">
-            <img
-                    src="/assets/images/flexa-logo@2x.png"
-                    srcset="/assets/images/flexa-logo@2x.png 2x"
-                    alt="FLEXA logo"
-                    class="logo-img-big"
-            />
+            <a href="/pages/index.php">
+                <img
+                        src="/assets/images/flexa-logo@2x.png"
+                        srcset="/assets/images/flexa-logo@2x.png 2x"
+                        alt="FLEXA logo"
+                        class="logo-img-big"
+                />
+            </a>
         </div>
         <nav>
             <ul class="nav-menu">
                 <li><a href="/pages/index.php">Home</a></li>
                 <li><a href="/pages/services.php">Services</a></li>
                 <?php
-                if($session->isLoggedIn()){
+                if ($session->isLoggedIn()) {
+                    echo '<li><a href="/pages/user.php?id=' . $session->getId() . '">Profile</a></li>';
                     echo '<li><a href="/actions/action_logout.php">Logout</a></li>';
                 } else {
                     echo '<li><a href="/pages/login.php">Login</a></li>';

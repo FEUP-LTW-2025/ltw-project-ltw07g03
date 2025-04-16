@@ -223,5 +223,6 @@ class User
         $stmt->bindParam(":status", $this->status);
 
         $stmt->execute();
+        $this->id = intval($db->lastInsertId());
     }
 }

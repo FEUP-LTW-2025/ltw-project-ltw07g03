@@ -232,11 +232,38 @@ a {
     background: #e23e00;
 }
 
+/* user page */
 
+.profile-section {
+    padding: 2rem 0;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.profile-details p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
 
 /* login */
 
-.login{
+.login {
     background-color: blue;
     padding: 10px;
     border-radius: 10px;
@@ -247,7 +274,7 @@ a {
 
 
 .login label,
-.login input{
+.login input {
     display: block;
     margin: 0 auto;
     text-align: center;
@@ -255,13 +282,13 @@ a {
 
 }
 
-.login label{
+.login label {
     margin-top: 10px;
     margin-bottom: 5px;
     color: white;
 }
 
-.login input{
+.login input {
     margin-top: 5px;
 }
 
