@@ -48,7 +48,7 @@ require_once(__DIR__ . '/../model/category.class.php');
                 <?php foreach ($categories as $cat): ?>
                     <?php $encoded = urlencode($cat->getName()); ?>
                     <a href="/pages/category.php?name=<?= $encoded ?>" class="category-card">
-                        <?= $cat->getIcon() ?> <?= htmlspecialchars($cat->getName()) ?>
+                        <?= $cat->getIcon() ?> <?= $cat->getName() ?>
                     </a>
                 <?php endforeach; ?>
             </div>
