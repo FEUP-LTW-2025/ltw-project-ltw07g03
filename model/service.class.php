@@ -213,7 +213,6 @@ class Service
         $stmt->bindParam(":status", $this->status);
 
         $stmt->execute();
-
         $this->id = intval($db->lastInsertId());
 
         $stmt = $db->prepare("INSERT INTO ServiceMedia (serviceId, mediaURL) VALUES (:serviceId, :mediaURL)");

@@ -29,8 +29,8 @@ require_once(__DIR__ . '/../utils/session.php');
                 <li><a href="/pages/index.php">Home</a></li>
                 <li><a href="#">Services</a></li>
                 <?php
-                if($session->isLoggedIn()){
-                    echo '<li><a href="/actions/action_logout.php">Logout</a></li>';
+                if ($session->isLoggedIn()) {
+                    echo '<li><a href="/pages/user.php?id=' . $session->getId() . '">Profile</a></li>';
                 } else {
                     echo '<li><a href="/pages/login.php">Login</a></li>';
                     echo '<li><a href="/pages/signup.php">Register</a></li>';

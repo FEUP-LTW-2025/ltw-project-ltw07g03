@@ -59,8 +59,7 @@ class Category
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":icon", $this->icon);
 
-        $this->id = intval($db->lastInsertId());
-
         $stmt->execute();
+        $this->id = intval($db->lastInsertId());
     }
 }
