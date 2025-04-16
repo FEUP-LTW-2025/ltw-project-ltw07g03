@@ -345,3 +345,28 @@ footer {
     color: #555;
 }
 
+.freelancer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.freelancer-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.freelancer-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.service-rating {
+    font-size: 0.9rem;
+    color: #f39c12;
+    margin-top: 0.5rem;
+}
