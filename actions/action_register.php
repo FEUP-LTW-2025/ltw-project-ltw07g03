@@ -4,8 +4,8 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../model/user.class.php');
 
-$uploadDir = __DIR__ . '/assets/images/pfps';
-$defaultProfilePicture = '/assets/images/pfps/default.jpeg';
+$uploadDir = __DIR__ . '/../assets/images/pfps/';
+$defaultProfilePicture = $uploadDir . 'default.jpeg';
 
 $session = new Session();
 
@@ -54,10 +54,10 @@ function handlePicture(string $uploadDir, string $default, Session $session): st
 
     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     $filename = uniqid('profile_', true) . '.' . $ext;
-    $targetPath = $uploadDir . '/' . $filename;
+    $targetPath = $uploadDir . $filename;
 
     if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-        return 'assets/images/pfps/' . $filename;
+        return '/assets/images/pfps/' . $filename;
     } else {
         $session->addMessage('error', 'Failed to upload image. Default picture used.');
         return $default;
@@ -83,5 +83,3 @@ if (!isEmptyInput($name, $username, $email, $password)) {
     $session->addMessage('error', 'Failed to SignUp due to missing fields');
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
-
-
