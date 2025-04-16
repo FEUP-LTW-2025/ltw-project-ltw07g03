@@ -22,7 +22,7 @@ if ($searchQuery) {
     $services_info = getFreelancersForServices($db, $relatedServices);
 
     drawHeader("Search", $session);
-    drawCategoryResults($searchQuery, $services_info); //usa-se o mesmo display para a escolha dos serviços com base nas categorias
+    drawCategoryResults("_" . $searchQuery, $services_info); //usa-se o mesmo display para a escolha dos serviços com base nas categorias
     drawFooter();
 
 } else {

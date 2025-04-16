@@ -12,7 +12,17 @@ require_once(__DIR__ . '/../model/service.class.php');
 <?php function drawCategoryResults(string $category, array $services): void { ?>
   <section class="category-section">
     <div class="category-container">
-      <h2 class="section-category-title"><?= htmlspecialchars(ucfirst($category)) ?> related Services</h2>
+
+    <?php
+          if (strtolower($category) === 'serviços') {
+            echo '<h2 class="section-category-title">Services</h2>';
+          } elseif (str_starts_with($category, '_')) {
+            echo '<h2 class="section-category-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
+          } else {
+              echo '<h2 class="section-category-title">' . $category . '</h2>';
+          }
+        ?>
+
 
       <?php if (empty($services)): ?>
         <p>No services found in this category.</p>

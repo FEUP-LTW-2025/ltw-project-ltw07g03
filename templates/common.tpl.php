@@ -27,7 +27,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <nav>
             <ul class="nav-menu">
                 <li><a href="/pages/index.php">Home</a></li>
-                <li><a href="#">Services</a></li>
+                <li><a href="/pages/services.php">Services</a></li>
                 <?php
                 if($session->isLoggedIn()){
                     echo '<li><a href="/actions/action_logout.php">Logout</a></li>';
