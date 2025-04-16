@@ -2,11 +2,11 @@ PRAGMA FOREIGN_KEYS = ON;
 
 INSERT INTO User (name, username, email, password, isAdmin, profilePictureURL, status)
 VALUES ('admin', 'administrator', 'admin@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 1,
-        'https://picsum.photos/id/237/1024', 'active'),
+        'https://picsum.photos/id/98/1024', 'active'),
        ('John Doe', 'JohnDoe', 'john@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
-        'https://picsum.photos/id/237/1024', 'active'),
+        'https://picsum.photos/id/99/1024', 'active'),
        ('Mary Joe', 'MaryJoe', 'mary@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
-        'https://picsum.photos/id/237/1024', 'active'),
+        'https://picsum.photos/id/100/1024', 'active'),
        ('Alice Wonder', 'AliceWonder', 'alice@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
         'https://picsum.photos/id/101/1024', 'active'),
        ('Bob Smith', 'Bobby', 'bob@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
@@ -16,11 +16,11 @@ VALUES ('admin', 'administrator', 'admin@gmail.com', 'cbfdac6008f9cab4083784cbd1
        ('David Miller', 'DavidM', 'david@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
         'https://picsum.photos/id/104/1024', 'active'),
        ('Eve Adams', 'EveA', 'eve@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
-        'https://picsum.photos/id/105/1024', 'active'),
+        'https://picsum.photos/id/106/1024', 'active'),
        ('Frank White', 'FrankW', 'frank@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
-        'https://picsum.photos/id/106/1024', 'inactive'),
+        'https://picsum.photos/id/107/1024', 'inactive'),
        ('Grace Hopper', 'GraceH', 'grace@gmail.com', 'cbfdac6008f9cab4083784cbd1874f76618d2a97', 0,
-        'https://picsum.photos/id/107/1024', 'inactive');
+        'https://picsum.photos/id/108/1024', 'inactive');
 
 INSERT INTO ServiceCategory (name, icon)
 VALUES ('Programming & Tech', '&#x1F4BB'),
@@ -31,26 +31,38 @@ VALUES ('Programming & Tech', '&#x1F4BB'),
        ('Business', '&#x1F4BC');
 
 INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
-VALUES (2, 2, 'Dynamic webpages using PHP', 150, 2, 'Contact me!', 'active'),
-       (4, 1, 'Logo Design', 50, 1, 'Professional logo design service', 'active'),
-       (5, 3, 'SEO Optimization', 200, 3, 'Boost your search rankings', 'active'),
-       (2, 4, 'Article Writing', 75, 2, 'Quality articles for your blog', 'active'),
-       (6, 1, 'Illustration Design', 80, 3, 'Custom illustrations for your projects', 'active'),
-       (7, 2, 'Responsive Web Design', 120, 2, 'Modern and responsive website design', 'active'),
-       (8, 5, 'Portrait Photography', 200, 4, 'Professional portrait photography service', 'active'),
-       (9, 6, 'Video Editing Service', 250, 5, 'High quality video editing for your content', 'active'),
-       (10, 3, 'Social Media Marketing', 100, 1, 'Boost your online presence with targeted ads', 'active');
+VALUES (2, 1, 'Dynamic Webpages with PHP', 150, 2, 'I will build dynamic PHP-based websites tailored to your needs.',
+        'active'),
+       (4, 2, 'Logo Design', 50, 1, 'Unique and professional logo designs delivered fast.', 'active'),
+       (5, 3, 'SEO Optimization', 200, 3, 'Increase your visibility on search engines with my SEO services.', 'active'),
+       (2, 6, 'Article Writing', 75, 2, 'High-quality blog or website articles written just for you.', 'active'),
+       (6, 2, 'Illustration Design', 80, 3, 'Beautiful hand-drawn or digital illustrations for any project.', 'active'),
+       (7, 1, 'Responsive Web Design', 120, 2, 'Clean and modern web design that works on any device.', 'active'),
+       (8, 4, 'Portrait Photography', 200, 4, 'Studio-quality portrait photography at your convenience.', 'active'),
+       (9, 4, 'Video Editing Service', 250, 5, 'Professional editing with transitions, effects, and audio sync.',
+        'active'),
+       (10, 6, 'Social Media Marketing', 100, 1, 'Grow your audience with strategic ad campaigns.', 'active'),
+       (1, 5, 'Podcast Editing', 180, 3, 'Clean, edit, and mix your podcast for publishing.', 'active'),
+       (2, 5, 'Voice Over in English', 90, 2, 'Professional male voice over for your video or ad.', 'active'),
+       (3, 1, 'Full Stack Development', 300, 5, 'Complete web app built with React and Node.js.', 'active'),
+       (4, 2, 'Business Card Design', 45, 1, 'Custom business card with print-ready files.', 'active'),
+       (5, 3, 'Email Marketing Campaigns', 130, 2, 'Reach your clients with beautiful emails and strategy.', 'active');
 
 INSERT INTO ServiceMedia (serviceId, mediaURL)
-VALUES (1, 'https://picsum.photos/id/237/1024'),
-       (2, 'https://picsum.photos/id/238/1024'),
-       (3, 'https://picsum.photos/id/239/1024'),
-       (4, 'https://picsum.photos/id/240/1024'),
-       (5, 'https://picsum.photos/id/241/1024'),
-       (6, 'https://picsum.photos/id/242/1024'),
-       (7, 'https://picsum.photos/id/243/1024'),
-       (8, 'https://picsum.photos/id/244/1024'),
-       (9, 'https://picsum.photos/id/245/1024');
+VALUES (1, 'https://picsum.photos/id/1011/1024'),
+       (2, 'https://picsum.photos/id/1012/1024'),
+       (3, 'https://picsum.photos/id/1013/1024'),
+       (4, 'https://picsum.photos/id/1014/1024'),
+       (5, 'https://picsum.photos/id/1015/1024'),
+       (6, 'https://picsum.photos/id/1016/1024'),
+       (7, 'https://picsum.photos/id/1025/1024'),
+       (8, 'https://picsum.photos/id/1018/1024'),
+       (9, 'https://picsum.photos/id/1019/1024'),
+       (10, 'https://picsum.photos/id/1020/1024'),
+       (11, 'https://picsum.photos/id/1021/1024'),
+       (12, 'https://picsum.photos/id/1022/1024'),
+       (13, 'https://picsum.photos/id/1023/1024'),
+       (14, 'https://picsum.photos/id/1024/1024');
 
 INSERT INTO Purchase (serviceId, clientId, date, status)
 VALUES (1, 3, '2025-03-31 12:34:56', 'pending'),
@@ -62,7 +74,12 @@ VALUES (1, 3, '2025-03-31 12:34:56', 'pending'),
        (7, 8, '2025-04-01 10:30:00', 'pending'),
        (8, 2, '2025-04-01 10:45:00', 'closed'),
        (9, 7, '2025-04-01 11:00:00', 'pending'),
-       (9, 6, '2025-04-01 11:15:00', 'closed');
+       (10, 6, '2025-04-01 11:15:00', 'closed'),
+       (11, 9, '2025-04-01 11:30:00', 'pending'),
+       (12, 4, '2025-04-01 11:45:00', 'closed'),
+       (13, 1, '2025-04-01 12:00:00', 'pending'),
+       (14, 10, '2025-04-01 12:15:00', 'closed'),
+       (5, 8, '2025-04-01 12:30:00', 'pending');
 
 INSERT INTO Message (senderId, receiverId, serviceId, content, date)
 VALUES (3, 2, 1, 'Please give me a discount.', '2025-03-31 12:35:00'),
@@ -94,4 +111,10 @@ VALUES (1, 2.1, 'Very good', '2025-03-31 12:40:00'),
        (7, 5.0, 'Amazing portrait photography!', '2025-04-01 10:40:00'),
        (8, 4.7, 'Video editing was top-notch.', '2025-04-01 10:55:00'),
        (9, 3.5, 'Social media marketing showed good results.', '2025-04-01 11:10:00'),
-       (9, 4.0, 'Service was professional and prompt.', '2025-04-01 11:20:00');
+       (9, 4.0, 'Service was professional and prompt.', '2025-04-01 11:20:00'),
+       (10, 4.0, 'Podcast editing was clear and concise.', '2025-04-01 11:20:00'),
+       (11, 4.3, 'Voice over was professional and engaging.', '2025-04-01 11:30:00'),
+       (12, 4.8, 'Full stack development exceeded expectations.', '2025-04-01 11:40:00'),
+       (13, 3.9, 'Business card design was neat and creative.', '2025-04-01 11:50:00'),
+       (14, 4.2, 'The email campaign delivered excellent ROI.', '2025-04-01 12:00:00'),
+       (15, 4.5, 'The article writing provided insightful content.', '2025-04-01 12:10:00');

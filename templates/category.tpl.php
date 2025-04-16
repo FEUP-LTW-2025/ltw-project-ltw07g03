@@ -42,7 +42,7 @@ require_once(__DIR__ . '/../model/service.class.php');
                                 </div>
                                 <?php if (isset($service['avgRating'])): ?>
                                     <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?>
-                                        /5</p>
+                                        / 5</p>
                                 <?php else: ?>
                                     <p class="service-rating">⭐ No ratings yet</p>
                                 <?php endif; ?>
