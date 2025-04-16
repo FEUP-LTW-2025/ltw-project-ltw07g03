@@ -12,7 +12,7 @@ require_once(__DIR__ . '/../model/service.class.php');
 <?php function drawCategoryResults(string $category, array $services): void { ?>
   <section class="category-section">
     <div class="category-container">
-      <h2 class="section-category-title"><?= htmlspecialchars($category) ?> Services</h2>
+      <h2 class="section-category-title"><?= htmlspecialchars(ucfirst($category)) ?> related Services</h2>
 
       <?php if (empty($services)): ?>
         <p>No services found in this category.</p>
@@ -20,7 +20,7 @@ require_once(__DIR__ . '/../model/service.class.php');
         <div class="service-grid">
           <?php foreach ($services as $service): ?>
             <article class="service-display">
-              <img src="<?= htmlspecialchars($service['images'][0] ?? 'default.jpg') ?>" alt="Service image" class="service-image">
+              <img src="<?= htmlspecialchars($service['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>" alt="Service image" class="service-image">
 
               <div class="service-info">
                 <h3 class="service-title"><?= htmlspecialchars($service['title']) ?></h3>

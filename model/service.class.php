@@ -154,6 +154,49 @@ class Service
 
 
 
+
+public static function getAllServices(PDO $db): array
+{
+    $stmt = $db->prepare("SELECT * FROM Service");
+    $stmt->execute();
+
+    $services = [];
+
+    while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $serviceId = intval($data['serviceId']);
+        $freelancerId = intval($data['freelancerId']); 
+        $categoryId = intval($data['categoryId']); 
+        $title = $data['title'];
+        $price = floatval($data['price']); 
+        $deliveryTime = intval($data['deliveryTime']);
+        $description = $data['description'];
+        $status = $data['status'];
+        $rating = floatval($data['rating']);
+
+        $mediaStmt = $db->prepare("SELECT mediaURL FROM ServiceMedia WHERE serviceId = :id");
+        $mediaStmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
+        $mediaStmt->execute();
+        $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
+
+        $services[] = new Service(
+            $serviceId,
+            $freelancerId,
+            $categoryId,
+            $title,
+            $price,
+            $deliveryTime,
+            $description,
+            $status,
+            $rating,
+            $images 
+        );
+    }
+
+    return $services;
+}
+
+
+
     public function setTitle(string $title, PDO $db): void
     {
         $stmt = $db->prepare("UPDATE Service SET title = :title WHERE serviceId = :id");
