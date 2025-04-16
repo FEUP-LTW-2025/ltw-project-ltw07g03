@@ -9,24 +9,28 @@ require_once(__DIR__ . '/../model/category.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
 ?>
 
-<?php function drawCategoryResults(string $category, array $services): void
-{ ?>
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title"><?php echo htmlspecialchars($category); ?> Services</h2>
-            <div class="category-grid">
-                <?php if (empty($services)): ?>
-                    <p>No services found for this category.</p>
-                <?php else: ?>
-                    <?php foreach ($services as $service): ?>
-                        <div class="category-card">
-                        <h3><?= htmlspecialchars($service->getTitle()) ?></h3>
-                        <p><strong>Price:</strong> <?= htmlspecialchars((string)$service->getPrice()) ?> €</p>
-                        <p><?= htmlspecialchars($service->getDescription()) ?></p>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+<?php function drawCategoryResults(string $category, array $services): void { ?>
+  <section class="category-section">
+    <div class="category-container">
+      <h2 class="section-category-title"><?= htmlspecialchars($category) ?> Services</h2>
+
+      <?php if (empty($services)): ?>
+        <p>No services found in this category.</p>
+      <?php else: ?>
+        <div class="service-grid">
+          <?php foreach ($services as $service): ?>
+            <article class="service-display">
+              <img src="<?= htmlspecialchars($service->getImages()[0] ?? 'default.jpg') ?>" alt="Service image" class="service-image">
+
+              <div class="service-info">
+                <h3 class="service-title"><?= htmlspecialchars($service->getTitle()) ?></h3>
+                <p class="service-price"><?= htmlspecialchars((string)$service->getPrice()) ?> €</p>
+                <p class="service-description"><?= htmlspecialchars($service->getDescription()) ?></p>
+              </div>
+            </article>
+          <?php endforeach; ?>
         </div>
-    </section>
+      <?php endif; ?>
+    </div>
+  </section>
 <?php } ?>
