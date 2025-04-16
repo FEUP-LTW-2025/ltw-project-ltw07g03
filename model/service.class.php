@@ -118,84 +118,78 @@ class Service
         );
     }
 
-    
     public static function getServicesByCategoryId(PDO $db, int $cat_id): array
-{
-    $stmt = $db->prepare("SELECT * FROM Service WHERE categoryId = :cat_id");
-    $stmt->bindParam(":cat_id", $cat_id, PDO::PARAM_INT);
-    $stmt->execute();
+    {
+        $stmt = $db->prepare("SELECT * FROM Service WHERE categoryId = :cat_id");
+        $stmt->bindParam(":cat_id", $cat_id, PDO::PARAM_INT);
+        $stmt->execute();
 
-    $services = [];
+        $services = [];
 
-    while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $serviceId = intval($data['serviceId']);
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $serviceId = intval($data['serviceId']);
 
-        $mediaStmt = $db->prepare("SELECT mediaURL FROM ServiceMedia WHERE serviceId = :id");
-        $mediaStmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
-        $mediaStmt->execute();
-        $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
+            $mediaStmt = $db->prepare("SELECT mediaURL FROM ServiceMedia WHERE serviceId = :id");
+            $mediaStmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
+            $mediaStmt->execute();
+            $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
 
-        $services[] = new Service(
-            $serviceId,
-            intval($data['freelancerId']),
-            intval($data['categoryId']),
-            $data['title'],
-            floatval($data['price']),
-            intval($data['deliveryTime']),
-            $data['description'],
-            $data['status'],
-            floatval($data['rating']),
-            $images
-        );
+            $services[] = new Service(
+                $serviceId,
+                intval($data['freelancerId']),
+                intval($data['categoryId']),
+                $data['title'],
+                floatval($data['price']),
+                intval($data['deliveryTime']),
+                $data['description'],
+                $data['status'],
+                floatval($data['rating']),
+                $images
+            );
+        }
+
+        return $services;
     }
 
-    return $services;
-}
+    public static function getAllServices(PDO $db): array
+    {
+        $stmt = $db->prepare("SELECT * FROM Service");
+        $stmt->execute();
 
+        $services = [];
 
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $serviceId = intval($data['serviceId']);
+            $freelancerId = intval($data['freelancerId']);
+            $categoryId = intval($data['categoryId']);
+            $title = $data['title'];
+            $price = floatval($data['price']);
+            $deliveryTime = intval($data['deliveryTime']);
+            $description = $data['description'];
+            $status = $data['status'];
+            $rating = floatval($data['rating']);
 
+            $mediaStmt = $db->prepare("SELECT mediaURL FROM ServiceMedia WHERE serviceId = :id");
+            $mediaStmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
+            $mediaStmt->execute();
+            $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
 
-public static function getAllServices(PDO $db): array
-{
-    $stmt = $db->prepare("SELECT * FROM Service");
-    $stmt->execute();
+            $services[] = new Service(
+                $serviceId,
+                $freelancerId,
+                $categoryId,
+                $title,
+                $price,
+                $deliveryTime,
+                $description,
+                $status,
+                $rating,
+                $images
+            );
+        }
 
-    $services = [];
-
-    while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $serviceId = intval($data['serviceId']);
-        $freelancerId = intval($data['freelancerId']); 
-        $categoryId = intval($data['categoryId']); 
-        $title = $data['title'];
-        $price = floatval($data['price']); 
-        $deliveryTime = intval($data['deliveryTime']);
-        $description = $data['description'];
-        $status = $data['status'];
-        $rating = floatval($data['rating']);
-
-        $mediaStmt = $db->prepare("SELECT mediaURL FROM ServiceMedia WHERE serviceId = :id");
-        $mediaStmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
-        $mediaStmt->execute();
-        $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
-
-        $services[] = new Service(
-            $serviceId,
-            $freelancerId,
-            $categoryId,
-            $title,
-            $price,
-            $deliveryTime,
-            $description,
-            $status,
-            $rating,
-            $images 
-        );
+        return $services;
     }
-
-    return $services;
-}
-
-
 
     public function setTitle(string $title, PDO $db): void
     {

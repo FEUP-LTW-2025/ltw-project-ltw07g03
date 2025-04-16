@@ -40,8 +40,6 @@ class Category
         return new Category(intval($data['serviceCategoryId']), $data['name'], $data['icon']);
     }
 
-    
-
     public static function getCategoryByName(PDO $db, string $name): ?Category
     {
         $stmt = $db->prepare("SELECT * FROM ServiceCategory WHERE name = ?");
@@ -52,8 +50,6 @@ class Category
 
         return new Category(intval($data['serviceCategoryId']), $data['name'], $data['icon']);
     }
-
-
 
     public static function getAllCategories(PDO $db): array
     {

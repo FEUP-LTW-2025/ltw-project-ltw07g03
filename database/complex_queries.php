@@ -2,8 +2,8 @@
 declare(strict_types=1);
 require_once(__DIR__ . '/../database/connection.db.php');
 
-
-function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array {
+function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
+{
     $stmt = $db->prepare("
          SELECT 
             S.serviceId,
@@ -57,16 +57,12 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array {
     return array_values($services);
 }
 
+function getFreelancersForServices(PDO $db, array $services): array
+{
 
-
-
-
-
-function getFreelancersForServices(PDO $db, array $services): array {
-    
     $serviceIds = [];
-    foreach($services as $service) {
-        $serviceIds[] = $service->getId();  
+    foreach ($services as $service) {
+        $serviceIds[] = $service->getId();
     }
 
     if (empty($serviceIds)) {
@@ -99,7 +95,7 @@ function getFreelancersForServices(PDO $db, array $services): array {
     ");
 
     foreach ($serviceIds as $index => $id) {
-        $stmt->bindValue($index + 1, $id, PDO::PARAM_INT); 
+        $stmt->bindValue($index + 1, $id, PDO::PARAM_INT);
     }
 
     $stmt->execute();
@@ -128,8 +124,5 @@ function getFreelancersForServices(PDO $db, array $services): array {
         $servicesWithDetails[$id]['images'][] = $row['mediaURL'];
     }
 
-    return array_values($servicesWithDetails); 
+    return array_values($servicesWithDetails);
 }
-
-
-?>

@@ -10,13 +10,10 @@ require_once(__DIR__ . '/../model/category.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
 require_once(__DIR__ . '/../database/complex_queries.php');
 
-
-
 $session = new Session();
 
 $category = $_GET['name'] ?? 'Unknown';
 $category = urldecode($category);
-
 
 $db = getDatabaseConnection();
 
@@ -24,8 +21,6 @@ $categoryId = Category::getCategoryByName($db, $category);
 $categoryId = $categoryId->getId();
 
 $relatedServices = getServices_FreelancersByCategoryId($db, $categoryId);
-
-
 
 drawHeader("Category", $session);
 drawCategoryResults($category, $relatedServices);

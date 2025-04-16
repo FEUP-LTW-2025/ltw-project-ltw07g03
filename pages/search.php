@@ -11,30 +11,25 @@ require_once(__DIR__ . '/../database/complex_queries.php');
 $session = new Session();
 $db = getDatabaseConnection();
 
-
 $searchQuery = $_GET['query'] ?? '';
 
 if ($searchQuery) {
-
     $single_word = explode(" ", $searchQuery);
 
     $relatedServices = getRelatedServices($db, $single_word);
     $services_info = getFreelancersForServices($db, $relatedServices);
 
     drawHeader("Search", $session);
-    drawCategoryResults("_" . $searchQuery, $services_info); //usa-se o mesmo display para a escolha dos serviços com base nas categorias
+    drawCategoryResults("_" . $searchQuery, $services_info);
     drawFooter();
-
 } else {
-    //nunca vai entrar aqui porque é obrigatório preencher o campo
     $session->addMessage('error', 'Missing input');
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit; 
+    exit;
 }
 
-
-
-function getRelatedServices(PDO $db, array $words): array {
+function getRelatedServices(PDO $db, array $words): array
+{
     $service_info = Service::getAllServices($db);
     $results = [];
 
@@ -48,4 +43,3 @@ function getRelatedServices(PDO $db, array $words): array {
 
     return $results;
 }
-?>
