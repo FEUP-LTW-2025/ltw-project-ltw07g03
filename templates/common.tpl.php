@@ -17,12 +17,14 @@ require_once(__DIR__ . '/../utils/session.php');
 <header class="site-header dark-header">
     <div class="container header-flex">
         <div class="logo">
-            <img
-                    src="/assets/images/flexa-logo@2x.png"
-                    srcset="/assets/images/flexa-logo@2x.png 2x"
-                    alt="FLEXA logo"
-                    class="logo-img-big"
-            />
+            <a href="/pages/index.php">
+                <img
+                        src="/assets/images/flexa-logo@2x.png"
+                        srcset="/assets/images/flexa-logo@2x.png 2x"
+                        alt="FLEXA logo"
+                        class="logo-img-big"
+                />
+            </a>
         </div>
         <nav>
             <ul class="nav-menu">
