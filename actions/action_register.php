@@ -5,14 +5,15 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../model/user.class.php');
 
 $uploadDir = __DIR__ . '/../assets/images/pfps/';
-$defaultProfilePicture = $uploadDir . 'default.jpeg';
+$uploadUrl = '/assets/images/pfps/';
+$defaultProfilePicture = $uploadUrl . 'default.jpeg';
 
 $session = new Session();
 
-$name = $_POST['name'];
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+$name = $_POST['name'] ?? '';
+$username = $_POST['username'] ?? '';
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
 
 $mockId = 0;
 $isAdmin = false;
@@ -35,7 +36,7 @@ function isEmailUnique(PDO $db, string $email): bool
     return User::getUserByEmail($db, $email) === null;
 }
 
-function handlePicture(string $uploadDir, string $default, Session $session): string
+function handlePicture(string $uploadDir, string $uploadUrl, string $default, Session $session): string
 {
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
@@ -54,10 +55,11 @@ function handlePicture(string $uploadDir, string $default, Session $session): st
 
     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     $filename = uniqid('profile_', true) . '.' . $ext;
+
     $targetPath = $uploadDir . $filename;
 
     if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-        return '/assets/images/pfps/' . $filename;
+        return $uploadUrl . $filename;
     } else {
         $session->addMessage('error', 'Failed to upload image. Default picture used.');
         return $default;
@@ -67,14 +69,14 @@ function handlePicture(string $uploadDir, string $default, Session $session): st
 if (!isEmptyInput($name, $username, $email, $password)) {
     if (isUsernameUnique($db, $username) && isEmailUnique($db, $email)) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $profilePictureURL = handlePicture($uploadDir, $defaultProfilePicture, $session);
+        $profilePictureURL = handlePicture($uploadDir, $uploadUrl, $defaultProfilePicture, $session);
         $user = new User($mockId, $name, $username, $email, $hashedPassword, $isAdmin, $profilePictureURL, $status);
         $user->upload($db);
 
         $session->setId($user->getId());
         $session->setName($user->getName());
         $session->addMessage('success', 'SignUp successful!');
-        header('Location: /');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
         $session->addMessage('error', 'Username or Email already used, try again');
         header('Location: ' . $_SERVER['HTTP_REFERER']);

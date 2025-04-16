@@ -23,7 +23,7 @@ if ($user && password_verify($password, $user->getPassword())) {
     $session->setId($user->getId());
     $session->setName($user->getName());
     $session->addMessage('success', 'Login successful!');
-    header('Location: /');
+    header('Location: ' . '/pages/index.php');
     exit();
 
 } else {

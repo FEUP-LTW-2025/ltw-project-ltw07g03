@@ -7,7 +7,4 @@ require_once(__DIR__ . '/../model/user.class.php');
 $session = new Session();
 
 $session->Logout();
-header('Location: ' . $_SERVER['HTTP_REFERER']);
-
-
-?>
+header('Location: ' . '/pages/index.php');
