@@ -33,6 +33,7 @@ require_once(__DIR__ . '/../utils/session.php');
                 <?php
                 if ($session->isLoggedIn()) {
                     echo '<li><a href="/pages/user.php?id=' . $session->getId() . '">Profile</a></li>';
+                    echo '<li><a href="/actions/action_logout.php">Logout</a></li>';
                 } else {
                     echo '<li><a href="/pages/login.php">Login</a></li>';
                     echo '<li><a href="/pages/signup.php">Register</a></li>';
