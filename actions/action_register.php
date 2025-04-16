@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../model/user.class.php');
 
 $uploadDir = __DIR__ . '/../assets/images/pfps';
-$defaultProfilePicture = 'default.jpeg';
+$defaultProfilePicture = '/assets/images/pfps/default.jpeg';
 
 $session = new Session();
 

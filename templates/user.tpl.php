@@ -8,7 +8,7 @@ function drawUserProfile(User $user): void
         <div class="container">
             <h2 class="section-title"><?= htmlspecialchars($user->getName()) ?>'s Profile</h2>
             <div class="profile-card">
-                <img src="/<?= htmlspecialchars($user->getProfilePicture()) ?>" alt="Profile Picture"
+                <img src="<?= htmlspecialchars($user->getProfilePicture()) ?>" alt="Profile Picture"
                      class="profile-picture">
                 <div class="profile-details">
                     <p><strong>Username:</strong> <?= htmlspecialchars($user->getUsername()) ?></p>
