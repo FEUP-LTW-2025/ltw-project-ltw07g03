@@ -25,7 +25,6 @@ require_once(__DIR__ . '/../model/service.class.php');
                         <p><?= htmlspecialchars($service->getDescription()) ?></p>
                         </div>
                     <?php endforeach; ?>
-
                 <?php endif; ?>
             </div>
         </div>
