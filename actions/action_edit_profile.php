@@ -54,8 +54,8 @@ if ($existing !== null && $existing->getId() !== $profileId) {
     exit;
 }
 
-$uploadDir = __DIR__ . '/../assets/images/pfps/';  // ← fixed
-$uploadUrl = '/assets/images/pfps/';              // same as register
+$uploadDir = __DIR__ . '/../assets/images/pfps/';
+$uploadUrl = '/assets/images/pfps/';
 
 function handlePicture(string $uploadDir, string $uploadUrl, string $default, Session $session): string
 {
@@ -83,7 +83,6 @@ function handlePicture(string $uploadDir, string $uploadUrl, string $default, Se
 }
 
 $currentPic = $user->getProfilePicture();
-file_put_contents(__DIR__ . '/../log.txt', print_r($_FILES, true));
 $newPic = handlePicture($uploadDir, $uploadUrl, $currentPic, $session);
 
 if ($name !== $user->getName()) {

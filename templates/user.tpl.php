@@ -34,7 +34,6 @@ function drawUserProfile(User $user): void
                   enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $user->getId() ?>">
                 <div class="form-group center">
-                    <label for="profilePicture">Profile Picture</label><br>
                     <img src="<?= $user->getProfilePicture() ?>" class="profile-picture-large">
                     <input type="file" name="profilePicture" id="profilePicture" accept="image/*">
                 </div>
