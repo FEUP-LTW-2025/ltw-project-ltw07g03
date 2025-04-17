@@ -24,3 +24,41 @@ function drawUserProfile(User $user): void
         </div>
     </section>
 <?php } ?>
+
+<?php function drawEditableUserProfile(User $user): void
+{ ?>
+    <section class="section profile-section">
+        <div class="container">
+            <h2>Edit Your Profile</h2>
+            <form action="/actions/action_edit_profile.php" method="post" class="profile-card">
+                <input type="hidden" name="id" value="<?= $user->getId() ?>">
+                <div class="form-group center">
+                    <label for="profilePicture">Profile Picture</label><br>
+                    <img src="<?= $user->getProfilePicture() ?>" class="profile-picture-large">
+                    <input type="file" name="profilePicture" id="profilePicture" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" value="<?= $user->getName() ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" value="<?= $user->getUsername() ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value="<?= $user->getEmail() ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status">
+                        <option value="active" <?= $user->getStatus() === 'active' ? 'selected' : '' ?>>Active</option>
+                        <option value="inactive" <?= $user->getStatus() === 'inactive' ? 'selected' : '' ?>>Inactive
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </section>
+<?php } ?>
