@@ -87,6 +87,7 @@ $newPic = handlePicture($uploadDir, $uploadUrl, $currentPic, $session);
 
 if ($name !== $user->getName()) {
     $user->setName($name, $db);
+    $session->setName($name);
 }
 if ($username !== $user->getUsername()) {
     $user->setUsername($username, $db);
