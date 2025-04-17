@@ -5,17 +5,21 @@ require_once(__DIR__ . '/../model/user.class.php');
 function drawUserProfile(User $user): void
 { ?>
     <section class="section profile-section">
+        <div class="profile-header">
+            <img src="<?= $user->getProfilePicture() ?>" alt="Profile Picture"
+                 class="profile-picture-large">
+            <h2><?= $user->getName() ?></h2>
+            <p class="profile-username">@<?= $user->getUsername() ?></p>
+        </div>
+
         <div class="container">
-            <h2 class="section-title"><?= $user->getName() ?>'s Profile</h2>
             <div class="profile-card">
-                <img src="<?= $user->getProfilePicture() ?>" alt="Profile Picture"
-                     class="profile-picture">
-                <div class="profile-details">
-                    <p><strong>Username:</strong> <?= $user->getUsername() ?></p>
-                    <p><strong>Email:</strong> <?= $user->getEmail() ?></p>
-                    <p><strong>Status:</strong> <?= ucfirst($user->getStatus()) ?></p>
-                    <p><strong>Role:</strong> <?= $user->isAdmin() ? 'Admin' : 'User' ?></p>
-                </div>
+                <h3 class="card-title">User Information</h3>
+                <ul class="profile-info">
+                    <li><span>Email:</span> <?= $user->getEmail() ?></li>
+                    <li><span>Status:</span> <?= ucfirst($user->getStatus()) ?></li>
+                    <li><span>Role:</span> <?= $user->isAdmin() ? 'Admin' : 'User' ?></li>
+                </ul>
             </div>
         </div>
     </section>
