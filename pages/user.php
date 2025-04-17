@@ -11,7 +11,12 @@ $session = new Session();
 $id = intval($_GET['id']);
 $db = getDatabaseConnection();
 $user = User::getUserById($db, $id);
+$isOwner = $session->isLoggedIn() && $session->getId() === $user->getId();
 
 drawHeader($user->getName(), $session);
-drawUserProfile($user);
+if ($isOwner) {
+    drawEditableUserProfile($user);
+} else {
+    drawUserProfile($user);
+}
 drawFooter();

@@ -30,7 +30,8 @@ function drawUserProfile(User $user): void
     <section class="section profile-section">
         <div class="container">
             <h2>Edit Your Profile</h2>
-            <form action="/actions/action_edit_profile.php" method="post" class="profile-card">
+            <form action="/actions/action_edit_profile.php" method="post" class="profile-card"
+                  enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $user->getId() ?>">
                 <div class="form-group center">
                     <label for="profilePicture">Profile Picture</label><br>
