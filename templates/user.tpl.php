@@ -59,6 +59,11 @@ function drawUserProfile(User $user): void
                 </div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
             </form>
+
+            <form action="/pages/service_creation.php" method="POST">
+                <input type="hidden" name="userId" value="<?= $user->getId() ?>">
+                <button type="submit" class="btn-primary">Create new Service</button>
+            </form>
         </div>
     </section>
 <?php } ?>
