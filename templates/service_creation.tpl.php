@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 
 <?php function drawServiceCreationForm(array $possible_categories, int $userId): void { ?>
-  <form action="../actions/action_create_service.php" method="post" enctype="multipart/form-data" class="service-form">
+  <form action="/actions/action_create_service.php" method="post" enctype="multipart/form-data" class="service-form">
 
     <!-- Hidden field for the user ID -->
     <input type="hidden" name="userId" value="<?= htmlspecialchars((string)$userId) ?>">
@@ -44,8 +44,12 @@ declare(strict_types=1);
     </select>
 
     <!-- Upload Images -->
-    <label for="images">Upload Images:</label>
-    <input type="file" id="images" name="images[]" accept="image/*" multiple>
+    <div class="image-upload-wrapper">
+        <label for="images" class="custom-file-upload">
+            Upload Images
+        </label>
+        <input type="file" id="images" name="image" accept="image/*" multiple required>
+    </div>
 
     <!-- Submit Button -->
     <button type="submit" class="btn-primary">Create Service</button>

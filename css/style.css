@@ -543,3 +543,31 @@ footer {
   .service-form textarea {
     resize: vertical;
   }
+
+
+/*Upload buttoms*/
+.image-upload-wrapper {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .custom-file-upload {
+    display: inline-block;
+    padding: 0.9rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Esconde o input original */
+  .image-upload-wrapper input[type="file"] {
+    display: none;
+  }
+  
