@@ -73,6 +73,18 @@ class User
         return $this->status;
     }
 
+    public function getRating(PDO $db): float {
+        $stmt = $db->prepare("SELECT AVG(S.rating) AS avg_rating FROM Service S WHERE S.freelancerId = :userId AND S.rating != 0");
+        $stmt->bindParam(":userId", $this->id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        
+        // Arredondando o rating a 1 casa decimal
+        $rating = round((float)$result['avg_rating'], 1);
+        
+        return $rating !== null ? (float) $rating : 0.0;
+    }
+
     public static function getUserByUsername(PDO $db, string $username): ?User
     {
         $stmt = $db->prepare("SELECT * FROM User WHERE username = :username");
