@@ -10,13 +10,10 @@ require_once(__DIR__ . '/../model/category.class.php');
 $session = new Session();
 $db = getDatabaseConnection();
 
-$userId = (int)$_POST['userId']; //a princípio deve bastar isto, como create service apenas vai aparecer no perfil, no template do edit, apenas o user dono do perfil pode criar o serviço
+$userId = (int)$_POST['userId'];
 
 $allCategories = Category::getAllCategories($db);
 
 drawHeader("Create Service", $session);
 drawServiceCreationForm($allCategories, $userId);
 drawFooter();
-
-
-?>

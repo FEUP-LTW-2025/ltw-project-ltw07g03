@@ -96,7 +96,6 @@ function getFreelancersForServices(PDO $db, array $services): array
 
     $stmt->execute();
 
-
     $servicesWithDetails = [];
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $id = $row['serviceId'];

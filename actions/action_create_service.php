@@ -13,17 +13,15 @@ $defaultServicePicture = $uploadUrl . 'default.jpeg';
 
 $db = getDatabaseConnection();
 
-$freelancerId = (int) $_POST['userId'];
-$categoryId = (int) $_POST['categoryId'];
+$freelancerId = (int)$_POST['userId'];
+$categoryId = (int)$_POST['categoryId'];
 
 $title = htmlspecialchars(trim($_POST['title']));
-$price = (float) $_POST['price'];
-$deliveryTime = (int) $_POST['deliveryTime'];
+$price = (float)$_POST['price'];
+$deliveryTime = (int)$_POST['deliveryTime'];
 $description = htmlspecialchars(trim($_POST['description']));
 
 $status = $_POST['status'];
-//todos os campos são required por isso nenhum campo é nulo
-
 
 function handlePicture(string $uploadDir, string $uploadUrl, string $default, Session $session): string
 {
@@ -64,17 +62,5 @@ $mediaURL = handlePicture($uploadDir, $uploadUrl, $defaultServicePicture, $sessi
 $newService = new Service($mockId, $freelancerId, $categoryId, $title, $price, $deliveryTime, $description, $status, $mockRating, array($mediaURL));
 $newService->upload($db);
 
-$session->addMessage('success','Service created successfully');
+$session->addMessage('success', 'Service created successfully');
 header('Location: /pages/user.php?id=' . $freelancerId);
-
-
-?>
-
-
-
-
-
-
-
-
-

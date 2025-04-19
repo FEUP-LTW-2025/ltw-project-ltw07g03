@@ -508,22 +508,22 @@ footer {
     padding: 2rem;
     background-color: #f8f8f8;
     border-radius: 1rem;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-  }
-  
-  .service-form label {
+}
+
+.service-form label {
     display: block;
     margin-top: 1.2rem;
     font-weight: bold;
     color: #333;
-  }
-  
-  .service-form input[type="text"],
-  .service-form input[type="number"],
-  .service-form input[type="file"],
-  .service-form textarea,
-  .service-form select {
+}
+
+.service-form input[type="text"],
+.service-form input[type="number"],
+.service-form input[type="file"],
+.service-form textarea,
+.service-form select {
     width: 100%;
     padding: 0.8rem;
     margin-top: 0.3rem;
@@ -531,27 +531,27 @@ footer {
     border-radius: 0.5rem;
     font-size: 1rem;
     transition: border-color 0.3s ease;
-  }
-  
-  .service-form input:focus,
-  .service-form textarea:focus,
-  .service-form select:focus {
+}
+
+.service-form input:focus,
+.service-form textarea:focus,
+.service-form select:focus {
     border-color: #007bff;
     outline: none;
-  }
-  
-  .service-form textarea {
+}
+
+.service-form textarea {
     resize: vertical;
-  }
+}
 
 
 /*Upload buttoms*/
 .image-upload-wrapper {
     margin-top: 1rem;
     text-align: center;
-  }
-  
-  .custom-file-upload {
+}
+
+.custom-file-upload {
     display: inline-block;
     padding: 0.9rem 1.5rem;
     background-color: #007bff;
@@ -560,14 +560,13 @@ footer {
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .custom-file-upload:hover {
+}
+
+.custom-file-upload:hover {
     background-color: #0056b3;
-  }
-  
-  /* Esconde o input original */
-  .image-upload-wrapper input[type="file"] {
+}
+
+/* Esconde o input original */
+.image-upload-wrapper input[type="file"] {
     display: none;
-  }
-  
+}
