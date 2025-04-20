@@ -32,23 +32,188 @@ VALUES ('Programming & Tech', '&#x1F4BB'),
        ('Music & Audio', '&#x1F3A7'),
        ('Business', '&#x1F4BC');
 
-INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
-VALUES (2, 1, 'Dynamic Webpages with PHP', 150, 2, 'I will build dynamic PHP-based websites tailored to your needs.',
-        'active'),
-       (4, 2, 'Logo Design', 50, 1, 'Unique and professional logo designs delivered fast.', 'active'),
-       (5, 3, 'SEO Optimization', 200, 3, 'Increase your visibility on search engines with my SEO services.', 'active'),
-       (2, 6, 'Article Writing', 75, 2, 'High-quality blog or website articles written just for you.', 'active'),
-       (6, 2, 'Illustration Design', 80, 3, 'Beautiful hand-drawn or digital illustrations for any project.', 'active'),
-       (7, 1, 'Responsive Web Design', 120, 2, 'Clean and modern web design that works on any device.', 'active'),
-       (8, 4, 'Portrait Photography', 200, 4, 'Studio-quality portrait photography at your convenience.', 'active'),
-       (9, 4, 'Video Editing Service', 250, 5, 'Professional editing with transitions, effects, and audio sync.',
-        'active'),
-       (10, 6, 'Social Media Marketing', 100, 1, 'Grow your audience with strategic ad campaigns.', 'active'),
-       (1, 5, 'Podcast Editing', 180, 3, 'Clean, edit, and mix your podcast for publishing.', 'active'),
-       (2, 5, 'Voice Over in English', 90, 2, 'Professional male voice over for your video or ad.', 'active'),
-       (3, 1, 'Full Stack Development', 300, 5, 'Complete web app built with React and Node.js.', 'active'),
-       (4, 2, 'Business Card Design', 45, 1, 'Custom business card with print-ready files.', 'active'),
-       (5, 3, 'Email Marketing Campaigns', 130, 2, 'Reach your clients with beautiful emails and strategy.', 'active');
+INSERT INTO Service (serviceId, freelancerId, categoryId, title, price, deliveryTime, description, status)
+VALUES (1, 2, 1, 'Dynamic Webpages with PHP', 150, 2, 'I will build dynamic PHP-based websites tailored to your needs.','active')
+       (2, 4, 2, 'Logo Design', 50, 1, 'Unique and professional logo designs delivered fast.', 'active')
+       (3, 5, 3, 'SEO Optimization', 200, 3, 'Increase your visibility on search engines with my SEO services.', 'active')
+       (4, 2, 6, 'Article Writing', 75, 2, 'High-quality blog or website articles written just for you.', 'active')
+       (5, 6, 2, 'Illustration Design', 80, 3, 'Beautiful hand-drawn or digital illustrations for any project.', 'active')
+       (6, 7, 1, 'Responsive Web Design', 120, 2, 'Clean and modern web design that works on any device.', 'active')
+       (7, 8, 4, 'Portrait Photography', 200, 4, 'Studio-quality portrait photography at your convenience.', 'active')
+       (8, 9, 4, 'Video Editing Service', 250, 5, 'Professional editing with transitions, effects, and audio sync.','active')
+       (9, 10, 6, 'Social Media Marketing', 100, 1, 'Grow your audience with strategic ad campaigns.', 'active')
+       (10, 1, 5, 'Podcast Editing', 180, 3, 'Clean, edit, and mix your podcast for publishing.', 'active')
+       (11, 2, 5, 'Voice Over in English', 90, 2, 'Professional male voice over for your video or ad.', 'active')
+       (12, 3, 1, 'Full Stack Development', 300, 5, 'Complete web app built with React and Node.js.', 'active')
+       (13, 4, 2, 'Business Card Design', 45, 1, 'Custom business card with print-ready files.', 'active')
+       (14, 5, 3, 'Email Marketing Campaigns', 130, 2, 'Reach your clients with beautiful emails and strategy.', 'active')
+
+UPDATE Service SET about = 
+'If you looking for someone to build a custom dynamic PHP website with critical functionality and responsive design to support your business operations effectively, you are in the right place. I ensure that the final product is secure, easy to use, and scalable.
+
+What you''ll get:
+
+• Responsive and attractive frontend.
+• Fully dynamic and custom CMS backend.
+• No 3rd party frameworks, Only raw coding.
+• Quality and Security ensured.
+• Easy to maintain from admin panel.
+• Unlimited Revision.
+• Anytime customer support.
+• Free installation.
+• 1 month free maintenance support (After delivery).' WHERE serviceId = 1;
+
+UPDATE Service SET about = 
+'Need a unique and professional logo? I offer minimalist logo design that helps you stand out. Modern, clean and tailored to your brand identity.
+
+What you''ll get:
+
+• High-resolution files.
+• Reliable and Quick communication.
+• Multiple design concepts.
+• Fast delivery.
+• Printable and HQ File size.
+• Minimalist Logo and Flat Logo Expert.
+• Unlimited revisions.
+• E-commerce functionality.' WHERE serviceId = 2;
+
+UPDATE Service SET about = 
+'Boost your search engine rankings with optimized content, improved metadata, and strategic keyword use. I will help you grow your online presence.
+
+What you''ll get:
+
+• Website Progressive Deeply Analysis.
+• Perfecting Keyword Research and Targeting.
+• Meta Tags Optimization with profitable keywords and Brand.
+• Fast delivery.
+• Fixing 404 Errors and Dead Links.
+• Performance Reports.' WHERE serviceId = 3;
+
+UPDATE Service SET about = 
+'Need high-quality articles tailored to your audiance? I provide original content that is well-researched, engaging, and optimized for SEO.
+
+What you''ll get:
+  
+• Internal and external links.
+• Original, plagiarism-free content.
+• Topic search.
+• SEO best practices.
+• Revisions included.' WHERE serviceId = 4;
+
+UPDATE Service SET about = 
+'Custom illustrations for your brand, book, or campaign. I offer vibrant, detailed visuals that match your vision and style.
+
+What you''ll get:
+  
+• Unique Hand drawing illustration.
+• Source File on .ai, .eps, .pdf, .psd.
+• Preview in JPEG/PNG high resolution.
+• Get Full ownership of the artwork.
+• Awesome Illustration and professional work.
+• Personal and commercial use.' WHERE serviceId = 5; 
+
+UPDATE Service SET about = 
+'I will design a moder, responsive website that looks great on all devices. Clean code and attention to UX/UI garanteed.
+
+What you''ll get:
+  
+• Complete Control panel.
+• WordPress Installation and Setup.
+• SEO, Speed, Security Optimization.
+• Redesign Existing Site.
+• Free Premium theme and plugins.
+• Unlimited revisions.' WHERE serviceId = 6; 
+
+UPDATE Service SET about = 
+'Capture your best self with professional portrait photography. Ideal for business profiles, personal branding, or creative use.
+
+What you''ll get:
+  
+• High-resolution images.
+• Editing and retouching.
+• Flexible packages.
+• Fast delivery.
+• Studio or on-location shoots.' WHERE serviceId = 7; 
+
+UPDATE Service SET about = 
+'Transform your raw footage into professional content with effect, transitions, music, and more. Perfect for Youtube, events, and ads.
+
+What you''ll get:
+  
+• Sync with audio/music.
+• Transitions and text overlays.
+• Export in any format.
+• Color correction and grading.
+• Attention to detail.
+• Fast turnaround.' WHERE serviceId = 8; 
+
+UPDATE Service SET about = 
+'I will help you grow your business through targeted social media marketing, ads, and strategic content planning.
+
+What you''ll get:
+  
+• Scheduled Posts tailored to your audience.
+• Help with creating and managing ad campaigns.
+• Creation and Optimization of your Social Media Profiles.
+• Analytics and reporting.' WHERE serviceId = 9; 
+
+UPDATE Service SET about = 
+'Polish your podcast with professional editing, noise reduction, and mastering. Your voice, clearer and cleaner than ever.
+
+What you''ll get:
+  
+• Professional editing & color grading.
+• Custom graphics & motion elements.
+• Mastering.
+• Smart content editing.
+• Engaging teaser/hook.
+• Perfect audio-visual sync.' WHERE serviceId = 10; 
+
+UPDATE Service SET about = 
+'Need a voice for your project? I will deliver clear, professional audio recordings for videos, ads and more.
+
+What you''ll get:
+  
+• Commercial rights.
+• Different tones/styles available.
+• Multiple revisions.
+• Fast delivery.
+• high-quality WAV/MP3.' WHERE serviceId = 11; 
+
+UPDATE Service SET about = 
+'End-to-end development of web applications using the latest tech stack. I build scalable, secure, and well-documented systems.
+
+What you''ll get:
+  
+• Frontend and backend development.
+• Complex Problem Solving.
+• Custom Web Applications.
+• REST API support.
+• Authentication and security.
+• Dtabase integration' WHERE serviceId = 12; 
+
+UPDATE Service SET about = 
+'I will create a sleek, printable business card that captures your brand identity and makes a lasting impression.
+
+What you''ll get:
+  
+• Print-ready files.
+• High-res PDF and PNG.
+• Source file.
+• Custom double-sided design.
+• Compliment Slip.' WHERE serviceId = 13; 
+
+UPDATE Service SET about = 
+'Launch successful email marketing campaigns with custom designs and proven strategy to engage your audiance and increase conversions.
+
+What you''ll get:
+  
+• Custom HTML email templates.
+• A/B testing strategy.
+• Analytics and reporting .
+• Responsive design.
+• Mailchimp or platform setup.' WHERE serviceId = 14; 
+
 
 INSERT INTO ServiceMedia (serviceId, mediaURL)
 VALUES (1, 'https://picsum.photos/id/1011/1024'),

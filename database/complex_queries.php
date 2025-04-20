@@ -38,6 +38,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
 
         if (!isset($services[$id])) {
             $services[$id] = [
+                'id' => $id,
                 'title' => $row['title'],
                 'price' => $row['price'],
                 'deliveryTime' => $row['deliveryTime'],
@@ -124,3 +125,23 @@ function getFreelancersForServices(PDO $db, array $services): array
 
     return array_values($servicesWithDetails);
 }
+
+function getReviewsByServiceId(PDO $db, int $serviceId): array {
+    $stmt = $db->prepare("
+        SELECT 
+            F.review,
+            F.rating, 
+            F.date, 
+            U.name AS clientName 
+        FROM Feedback F
+        JOIN Purchase P ON F.purchaseId = P.purchaseId
+        JOIN User U ON P.clientId = U.userId
+        WHERE P.serviceId = :serviceId
+        ORDER BY F.date DESC
+    ");
+
+    $stmt->bindParam(":serviceId", $serviceId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+} 
