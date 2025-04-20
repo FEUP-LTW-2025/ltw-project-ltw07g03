@@ -50,6 +50,7 @@ CREATE TABLE Service
     price        DECIMAL(10, 2),
     deliveryTime INTEGER,
     description  TEXT,
+    about        TEXT,
     status       VARCHAR(15),
     rating       DECIMAL(2, 1) DEFAULT 0,
 

@@ -27,30 +27,30 @@ require_once(__DIR__ . '/../model/service.class.php');
             <?php else: ?>
                 <div class="service-grid">
                     <?php foreach ($services as $service): ?>
-                        <article class="service-display">
-                            <img src="<?= htmlspecialchars($service['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>"
-                                 alt="Service image" class="service-image">
+                        <a href="/pages/service_detail.php?id=<?= htmlspecialchars((string)$service['id']) ?>" class="service-link">  
+                            <article class="service-display">
+                                <img src="<?= htmlspecialchars($service['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>"
+                                    alt="Service image" class="service-image">
 
-                            <div class="service-info">
-                                <h3 class="service-title"><?= htmlspecialchars($service['title']) ?></h3>
-                                <p class="service-price"><?= htmlspecialchars((string)$service['price']) ?> €</p>
-                                <p class="service-description"><?= htmlspecialchars($service['description']) ?></p>
-                                <div class="freelancer-info">
-                                    <img src="<?= htmlspecialchars($service['freelancer']['profilePictureURL']) ?>"
-                                         alt="Freelancer profile" class="freelancer-pic">
-                                    <span class="freelancer-name"><?= htmlspecialchars($service['freelancer']['name']) ?></span>
+                                <div class="service-info">
+                                    <h3 class="service-title"><?= htmlspecialchars($service['title']) ?></h3>
+                                    <p class="service-price"><?= htmlspecialchars((string)$service['price']) ?> €</p>
+                                    <p class="service-description"><?= htmlspecialchars($service['description']) ?></p>
+                                    <div class="freelancer-info">
+                                        <img src="<?= htmlspecialchars($service['freelancer']['profilePictureURL']) ?>"
+                                            alt="Freelancer profile" class="freelancer-pic">
+                                        <span class="freelancer-name"><?= htmlspecialchars($service['freelancer']['name']) ?></span>
+                                    </div>
+                                    <?php if (isset($service['avgRating'])): ?>
+                                        <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?> / 5</p>
+                                    <?php else: ?>
+                                        <p class="service-rating">⭐ No ratings yet</p>
+                                    <?php endif; ?>
                                 </div>
-                                <?php if (isset($service['avgRating'])): ?>
-                                    <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?>
-                                        / 5</p>
-                                <?php else: ?>
-                                    <p class="service-rating">⭐ No ratings yet</p>
-                                <?php endif; ?>
-                            </div>
-                        </article>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-        </div>
-    </section>
-<?php } ?>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </section>
+    <?php } ?>

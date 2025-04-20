@@ -13,6 +13,8 @@ class Service
     private string $status;
     private float $rating;
     private array $images;
+    private string $about;
+    private string $freelancerName;
 
     public function __construct(
         int    $id,
@@ -24,7 +26,9 @@ class Service
         string $description,
         string $status,
         float  $rating,
-        array  $images
+        array  $images,
+        string $about,
+        string $freelancerName 
     )
     {
         $this->id = $id;
@@ -37,6 +41,8 @@ class Service
         $this->status = $status;
         $this->rating = $rating;
         $this->images = $images;
+        $this->about = $about;
+        $this->freelancerName = $freelancerName;
     }
 
     public function getId(): int
@@ -89,9 +95,25 @@ class Service
         return $this->images;
     }
 
+    public function getAbout(): string
+    {
+        return $this->about;
+    }
+
+    public function getFreelancerName(): string
+    {
+        return $this->freelancerName;
+    }
+
     public static function getServiceById(PDO $db, int $id): ?Service
     {
-        $stmt = $db->prepare("SELECT * FROM Service WHERE serviceId = :id");
+        $stmt = $db->prepare("
+            SELECT s.*, u.name AS freelancerName
+            FROM service s
+            JOIN User u ON s.freelancerId = u.userId
+            WHERE s.serviceId = :id
+        ");
+
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -114,7 +136,9 @@ class Service
             $data['description'],
             $data['status'],
             floatval($data['rating']),
-            $images
+            $images,
+            $data['about'] ?? '',
+            $data['freelancerName'] ?? ''
         );
     }
 
