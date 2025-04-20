@@ -1,11 +1,15 @@
 <?php
 declare(strict_types=1);
 require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../model/user.class.php');
+
+$db = getDatabaseConnection();
 
 function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
 {
     $stmt = $db->prepare("
          SELECT 
+            S.freelancerId,
             S.serviceId,
             S.title,
             S.price,
@@ -14,13 +18,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
             S.status,
             U.name AS freelancerName,
             U.profilePictureURL,
-            SM.mediaURL,
-            (
-                SELECT AVG(F.rating)
-                FROM Purchase P
-                JOIN Feedback F ON P.purchaseId = F.purchaseId
-                WHERE P.serviceId = S.serviceId
-            ) AS avgRating
+            SM.mediaURL
         FROM Service S
         JOIN User U ON S.freelancerId = U.userId
         JOIN ServiceMedia SM ON S.serviceId = SM.serviceId
@@ -35,6 +33,9 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $id = $row['serviceId'];
 
+        $freelancer = User::getUserById($db, $row['freelancerId']);
+        $rating = $freelancer->getRating($db);
+
         if (!isset($services[$id])) {
             $services[$id] = [
                 'id' => $id,
@@ -43,7 +44,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
                 'deliveryTime' => $row['deliveryTime'],
                 'description' => $row['description'],
                 'status' => $row['status'],
-                'avgRating' => round((float)$row['avgRating'], 1),
+                'avgRating' => $rating,
                 'freelancer' => [
                     'name' => $row['freelancerName'],
                     'profilePictureURL' => $row['profilePictureURL']
@@ -74,6 +75,7 @@ function getFreelancersForServices(PDO $db, array $services): array
 
     $stmt = $db->prepare("
         SELECT 
+            S.freelancerId,
             S.serviceId,
             S.title,
             S.price,
@@ -82,13 +84,7 @@ function getFreelancersForServices(PDO $db, array $services): array
             S.status,
             U.name AS freelancerName,
             U.profilePictureURL,
-            SM.mediaURL,
-            (
-                SELECT AVG(F.rating)
-                FROM Purchase P
-                JOIN Feedback F ON P.purchaseId = F.purchaseId
-                WHERE P.serviceId = S.serviceId
-            ) AS avgRating
+            SM.mediaURL
         FROM Service S
         JOIN User U ON S.freelancerId = U.userId
         JOIN ServiceMedia SM ON S.serviceId = SM.serviceId
@@ -101,10 +97,12 @@ function getFreelancersForServices(PDO $db, array $services): array
 
     $stmt->execute();
 
-
     $servicesWithDetails = [];
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $id = $row['serviceId'];
+
+        $freelancer = User::getUserById($db, $row['freelancerId']);
+        $rating = $freelancer->getRating($db);
 
         if (!isset($servicesWithDetails[$id])) {
             $servicesWithDetails[$id] = [
@@ -113,7 +111,7 @@ function getFreelancersForServices(PDO $db, array $services): array
                 'deliveryTime' => $row['deliveryTime'],
                 'description' => $row['description'],
                 'status' => $row['status'],
-                'avgRating' => round((float)$row['avgRating'], 1),
+                'avgRating' => $rating,
                 'freelancer' => [
                     'name' => $row['freelancerName'],
                     'profilePictureURL' => $row['profilePictureURL']

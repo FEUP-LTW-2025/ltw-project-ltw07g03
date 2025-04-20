@@ -41,16 +41,18 @@ require_once(__DIR__ . '/../model/service.class.php');
                                             alt="Freelancer profile" class="freelancer-pic">
                                         <span class="freelancer-name"><?= htmlspecialchars($service['freelancer']['name']) ?></span>
                                     </div>
-                                    <?php if (isset($service['avgRating'])): ?>
-                                        <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?> / 5</p>
-                                    <?php else: ?>
-                                        <p class="service-rating">⭐ No ratings yet</p>
-                                    <?php endif; ?>
                                 </div>
-                            </article>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </section>
-    <?php } ?>
+                                <?php if ($service['avgRating'] != 0): ?>
+                                    <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?>
+                                        / 5</p>
+                                <?php else: ?>
+                                    <p class="service-rating">⭐ No ratings yet</p>
+                                <?php endif; ?>
+                            </div>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+<?php } ?>
