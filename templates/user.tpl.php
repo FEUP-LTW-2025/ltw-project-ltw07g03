@@ -67,9 +67,10 @@ function drawUserProfile(User $user): void
     </section>
 <?php } ?>
 
-<?php function drawUserServices(array $services): void
+<?php function drawUserServices(User $user, array $services): void
 { ?>
     <section class="user-services">
+        <h3><?= $user->getName() ?>'s services</h3>
         <?php foreach ($services as $service): ?>
             <div class="service-card">
                 <div class="service-image">

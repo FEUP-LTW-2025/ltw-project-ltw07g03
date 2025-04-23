@@ -21,5 +21,7 @@ if ($isOwner) {
 } else {
     drawUserProfile($user);
 }
-drawUserServices($services);
+if ($services != []) {
+    drawUserServices($user, $services);
+}
 drawFooter();
