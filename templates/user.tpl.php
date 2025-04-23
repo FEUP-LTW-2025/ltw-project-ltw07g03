@@ -66,3 +66,20 @@ function drawUserProfile(User $user): void
         </div>
     </section>
 <?php } ?>
+
+<?php
+function drawAdminStatusBar(User $user): void
+{ ?>
+    <div class="admin-status-bar">
+        <h2>Admin Status</h2>
+        <p>This user is currently: <strong><?= $user->isAdmin() ? 'Admin' : 'Regular User' ?></strong></p>
+
+        <form method="post" action="/actions/action_toggle_admin.php">
+            <input type="hidden" name="userId" value="<?= $user->getId() ?>">
+            <input type="hidden" name="isAdmin" value="<?= $user->isAdmin() ? '0' : '1' ?>">
+            <button type="submit" class="admin-toggle-btn">
+                <?= $user->isAdmin() ? 'Revoke admin privileges' : 'Elevate this user to admin' ?>
+            </button>
+        </form>
+    </div>
+<?php } ?>

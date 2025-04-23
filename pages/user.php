@@ -11,9 +11,20 @@ $session = new Session();
 $id = intval($_GET['id']);
 $db = getDatabaseConnection();
 $user = User::getUserById($db, $id);
-$isOwner = $session->isLoggedIn() && $session->getId() === $user->getId();
+
+$isOwner = false;
+$account = null;
+
+if ($session->isLoggedIn()) {
+    $sessionId = $session->getId();
+    $account = User::getUserById($db, $sessionId);
+    $isOwner = $sessionId === $user->getId();
+}
 
 drawHeader($user->getName(), $session);
+if ($account !== null && $account->isAdmin() && $account->getId() !== $user->getId() && !$user->isAdmin()) {
+    drawAdminStatusBar($user);
+}
 if ($isOwner) {
     drawEditableUserProfile($user);
 } else {
