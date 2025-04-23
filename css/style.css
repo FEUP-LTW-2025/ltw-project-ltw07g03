@@ -365,6 +365,59 @@ a {
     background-color: #0056b3;
 }
 
+.user-services {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    align-items: center;
+}
+
+.service-card {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1rem;
+    max-width: 800px;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    background: #fff;
+}
+
+.service-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+}
+
+.service-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.service-info p {
+    margin: 0.25rem 0;
+    color: #555;
+    line-height: 1.4;
+}
+
+.service-info .description {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: #333;
+    word-wrap: break-word;
+}
+
 /* login */
 
 .login {
