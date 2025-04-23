@@ -66,3 +66,27 @@ function drawUserProfile(User $user): void
         </div>
     </section>
 <?php } ?>
+
+<?php function drawUserServices(array $services): void
+{ ?>
+    <section class="user-services">
+        <?php foreach ($services as $service): ?>
+            <div class="service-card">
+                <div class="service-image">
+                    <img
+                            src="<?= $service->getImages()[0] ?? '/assets/images/default.jpeg' ?>"
+                            alt="Service Image"
+                    >
+                </div>
+                <div class="service-info">
+                    <h3><?= $service->getTitle() ?></h3>
+                    <p><strong>Price:</strong> <?= $service->getPrice() ?> €</p>
+                    <p><strong>Delivery Time:</strong> <?= $service->getDeliveryTime() ?> days</p>
+                    <p><strong>Rating:</strong> <?= $service->getRating() ?> / 5</p>
+                    <p class="description"><?= $service->getDescription() ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </section>
+<?php } ?>
+
