@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once(__DIR__ . '/../model/user.class.php');
+require_once(__DIR__ . '/../model/service.class.php');
 
 function drawUserProfile(User $user): void
 { ?>
@@ -74,13 +75,16 @@ function drawUserProfile(User $user): void
         <?php foreach ($services as $service): ?>
             <div class="service-card">
                 <div class="service-image">
-                    <img
-                            src="<?= $service->getImages()[0] ?? '/assets/images/default.jpeg' ?>"
-                            alt="Service Image"
-                    >
+                    <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
+                        <img
+                                src="<?= $service->getImages()[0] ?? '/assets/images/default.jpeg' ?>"
+                                alt="Service Image"
+                        > </a>
                 </div>
                 <div class="service-info">
-                    <h3><?= $service->getTitle() ?></h3>
+                    <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
+                        <h3><?= $service->getTitle() ?></h3>
+                    </a>
                     <p><strong>Price:</strong> <?= $service->getPrice() ?> €</p>
                     <p><strong>Delivery Time:</strong> <?= $service->getDeliveryTime() ?> days</p>
                     <p><strong>Rating:</strong> <?= $service->getRating() ?> / 5</p>
