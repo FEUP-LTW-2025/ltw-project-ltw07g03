@@ -1,4 +1,4 @@
-<?php function drawCheckoutForm($service_freelancer): void { ?>
+<?php function drawCheckoutForm($service_freelancer, $userId): void { ?>
   <section class="checkout-section">
 
   <div class="checkout-summary">
@@ -24,6 +24,10 @@
 </div>
 
     <form class="payment-info" action="/actions/action_purchase.php" method="post">
+
+      <input type="hidden" name="clientId" value="<?= htmlspecialchars((string)$userId) ?>">
+
+      <input type="hidden" name="serviceId" value="<?= htmlspecialchars((string)$service_freelancer['serviceId']) ?>">>
 
       <label for="Card_number">Card Number</label>
       <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required autocomplete="cc-number">

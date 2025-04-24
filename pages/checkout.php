@@ -32,7 +32,7 @@ $service_freelancer = getFreelancersForServices($db, array($service));
 
 
 drawHeader("Service Detail", $session);
-drawCheckoutForm($service_freelancer[0]);
+drawCheckoutForm($service_freelancer[0], $session->getId());
 drawFooter();
 ?>
 
