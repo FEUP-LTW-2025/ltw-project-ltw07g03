@@ -20,8 +20,7 @@ if ($serviceId === 0) {
     exit();
 }
 
-// 1. Obtém o serviço com o ID fornecido
-$service = Service::getServiceById($db, $serviceId);  // Aqui deve haver uma função que recupere o serviço pelo ID.
+$service = Service::getServiceById($db, $serviceId);
 
 if (!$service) {
     $session->addMessage('error', 'Service not found.');
@@ -29,12 +28,9 @@ if (!$service) {
     exit();
 }
 
-// 2. Obtém os freelancers para os serviços encontrados
-$service_freelancer = getFreelancersForServices($db, array($service));  // Agora $service já está inicializado
-
-// 3. Obtém os feedbacks para o serviço
+$service_freelancer = getFreelancersForServices($db, array($service));
 $feedbacks_author = Feedback::getFeedback_AuthorByServiceId($db, $serviceId);
 
 drawHeader("Service Detail", $session);
-drawServiceDetail($service_freelancer[0], $feedbacks_author);  // Aqui passo o primeiro serviço (pois é um array)
+drawServiceDetail($service_freelancer[0], $feedbacks_author);
 drawFooter();
