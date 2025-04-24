@@ -27,7 +27,7 @@
 
       <input type="hidden" name="clientId" value="<?= htmlspecialchars((string)$userId) ?>">
 
-      <input type="hidden" name="serviceId" value="<?= htmlspecialchars((string)$service_freelancer['serviceId']) ?>">>
+      <input type="hidden" name="serviceId" value="<?= htmlspecialchars((string)$service_freelancer['serviceId']) ?>">
 
       <label for="Card_number">Card Number</label>
       <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required autocomplete="cc-number">
