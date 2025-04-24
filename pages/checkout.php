@@ -30,6 +30,12 @@ if (!$service) {
 
 $service_freelancer = getFreelancersForServices($db, array($service));
 
+if(!$session->getId()){
+    $session->addMessage('error', 'Login to buy services');
+    header('Location: /pages/login.php');
+    exit();
+}
+
 
 drawHeader("Service Detail", $session);
 drawCheckoutForm($service_freelancer[0], $session->getId());
