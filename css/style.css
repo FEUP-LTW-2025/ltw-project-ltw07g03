@@ -365,6 +365,8 @@ a {
     background-color: #0056b3;
 }
 
+/* admin dashboard */
+
 .admin-status-bar {
     margin: 2rem auto;
     padding: 1.5rem;
@@ -398,6 +400,64 @@ a {
 
 .admin-toggle-btn:hover {
     background-color: #005fa3;
+}
+
+.category-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 55vw;
+    margin: 2rem auto;
+}
+
+.category-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: #f1f1f1;
+    border-radius: 12px;
+    padding: 1rem;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.2s;
+}
+
+.category-box:hover {
+    background-color: #e0e0e0;
+}
+
+.add-category-box:hover {
+    background-color: #c6dfff;
+}
+
+.add-category-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.add-category-form input[type="text"] {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.add-category-form input[type="submit"] {
+    background-color: #7b9cff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.add-category-form input[type="submit"]:hover {
+    background-color: #5c84ff;
 }
 
 /* login */
