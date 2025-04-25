@@ -25,7 +25,7 @@ function drawUserProfile(User $user): void
     </section>
 <?php } ?>
 
-<?php function drawEditableUserProfile(User $user): void
+<?php function drawEditableUserProfile(User $user, $purchasesWithDetails): void
 { ?>
     <section class="section profile-section">
         <div class="container">
@@ -64,5 +64,20 @@ function drawUserProfile(User $user): void
                 <button type="submit" class="btn-primary">Create new Service</button>
             </form>
         </div>
+
+        <div class="right-column">
+                <h3>Your Purchases</h3>
+                <?php if(!empty($purchasesWithDetails)): ?>
+                    <?php foreach ($purchasesWithDetails as $item): ?>
+                        <div class="purchase-card">
+                            <p><strong>Service:</strong> <?= htmlspecialchars($item['service']['title']) ?></p>
+                            <p><strong>Freelancer:</strong> <?= htmlspecialchars($item['service']['freelancer']['name']) ?></p>
+                            <p><strong>Status:</strong> <?= htmlspecialchars($item['purchase']->getStatus()) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>You haven't made any purchases yet.</p>
+                <?php endif; ?>
+            </div>
     </section>
 <?php } ?>

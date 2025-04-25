@@ -61,6 +61,27 @@ class Purchase
         );
     }
 
+    public static function getPurchaseByClientId(PDO $db, int $client_id): ?array
+    {
+        $purchases = [];
+
+        $stmt = $db->prepare("SELECT * FROM Purchase WHERE clientId = :client_id");
+        $stmt->bindParam(":client_id", $client_id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $purchases[] = new Purchase(
+                intval($data['purchaseId']),
+                intval($data['serviceId']),
+                intval($data['clientId']),
+                strtotime($data['date']),
+                $data['status']
+            );
+        }
+
+        return $purchases;
+    }
+
 
     public function setServiceId(int $serviceId, PDO $db): void
     {
