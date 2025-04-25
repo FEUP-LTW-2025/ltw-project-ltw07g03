@@ -21,7 +21,7 @@ if(isset($_POST['serviceId']) && isset($_POST['clientId'])){
 
 $mockId = 0;
 $status = 'pending';
-$date = time();
+$date = time(); 
 
 
 $purchase = new Purchase($mockId, $serviceId, $clientId, $date, $status);

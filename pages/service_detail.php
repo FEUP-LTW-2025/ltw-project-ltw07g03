@@ -32,5 +32,5 @@ $service_freelancer = getFreelancersForServices($db, array($service));
 $feedbacks_author = Feedback::getFeedback_AuthorByServiceId($db, $serviceId);
 
 drawHeader("Service Detail", $session);
-drawServiceDetail($service_freelancer[0], $feedbacks_author);
+drawServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
 drawFooter();

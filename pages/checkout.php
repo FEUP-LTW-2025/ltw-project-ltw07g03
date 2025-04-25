@@ -38,7 +38,7 @@ if(!$session->isLoggedIn()){
 
 
 drawHeader("Service Detail", $session);
-drawCheckoutForm($service_freelancer[0], $session->getId());
+drawCheckoutForm($service_freelancer[$serviceId], $session->getId());
 drawFooter();
 ?>
 
