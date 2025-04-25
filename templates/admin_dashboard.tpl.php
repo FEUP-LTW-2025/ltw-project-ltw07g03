@@ -7,7 +7,7 @@ function drawAdminDashboard(array $categories): void
     <section class="category-dashboard">
         <h3>Create a new category</h3>
         <?php foreach ($categories as $cat): ?>
-            <?php $encoded = $cat->getName(); ?>
+            <?php $encoded = urlencode($cat->getName()); ?>
             <a class="category-box" href="/pages/category.php?name=<?= $encoded ?>">
                 <span class="category-icon"><?= $cat->getIcon() ?></span>
                 <span class="category-name"><?= $cat->getName() ?></span>
