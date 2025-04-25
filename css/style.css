@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Imperial+Script&family=Ruda&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
 /* base styles */
 
@@ -592,6 +593,7 @@ footer {
   }
   
   .payment-info input[type="text"],
+  .payment-info input[type="number"],
   .payment-info input[type="submit"] {
     width: 100%;
     padding: 0.75rem;
@@ -608,7 +610,14 @@ footer {
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
   }
-  
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
   .payment-info input[type="submit"]:hover {
     background-color: #218838;
   }
@@ -660,3 +669,23 @@ footer {
     border-radius: 0.75rem;
     margin-bottom: 1rem;
   }
+
+  .payment-info .input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .payment-info .input-group i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 1rem;
+    pointer-events: none;
+  }
+  
+  .payment-info .input-group input {
+    padding-left: 2.5rem; /* espaço para o ícone */
+  }
+  

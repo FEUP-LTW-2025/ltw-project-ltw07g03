@@ -30,7 +30,7 @@ if (!$service) {
 
 $service_freelancer = getFreelancersForServices($db, array($service));
 
-if(!$session->getId()){
+if(!$session->isLoggedIn()){
     $session->addMessage('error', 'Login to buy services');
     header('Location: /pages/login.php');
     exit();

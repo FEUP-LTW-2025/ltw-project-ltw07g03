@@ -23,25 +23,37 @@
     <p><strong>Price:</strong> <?= htmlspecialchars((string)$service_freelancer['price']) ?> €</p>
 </div>
 
-    <form class="payment-info" action="/actions/action_purchase.php" method="post">
+<form class="payment-info" action="/actions/action_purchase.php" method="post">
 
-      <input type="hidden" name="clientId" value="<?= htmlspecialchars((string)$userId) ?>">
+  <input type="hidden" name="clientId" value="<?= htmlspecialchars((string)$userId) ?>">
+  <input type="hidden" name="serviceId" value="<?= htmlspecialchars((string)$service_freelancer['serviceId']) ?>">
 
-      <input type="hidden" name="serviceId" value="<?= htmlspecialchars((string)$service_freelancer['serviceId']) ?>">
+  <div class="input-group">
+    <label for="card_number">Card Number</label>
+    <i class="fa-solid fa-credit-card"></i>
+    <input type="number" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+  </div>
 
-      <label for="Card_number">Card Number</label>
-      <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required autocomplete="cc-number">
+  <div class="input-group">
+    <label for="exp_date">Expiration Date</label>
+    <i class="fa-solid fa-calendar-days"></i>
+    <input type="number" id="exp_date" name="exp_date" placeholder="MM/AA" required>
+  </div>
 
-      <label for="exp_date">Expiration Date</label>
-      <input type="text" id="exp_date" name="exp_date" placeholder="MM/AA" required autocomplete="cc-exp">
+  <div class="input-group">
+    <label for="sec_code">Security Code (CVV)</label>
+    <i class="fa-solid fa-lock"></i>
+    <input type="number" id="sec_code" name="sec_code" placeholder="123" maxlength="3" required>
+  </div>
 
-      <label for="sec_code">Security Code(CVV)</label>
-      <input type="text" id="sec_code" name="sec_code" placeholder="123" required autocomplete="cc-csc">
+  <div class="input-group">
+    <label for="cardholder_name">Cardholder´s name</label>
+    <i class="fa-solid fa-user"></i>
+    <input type="text" id="cardholder_name" name="cardholder_name" placeholder="John Silva" required>
+  </div>
 
-      <label for="cardholder_name">Cardholder´s name</label>
-      <input type="text" id="cardholder_name" name="cardholder_name" placeholder="John Silva" required autocomplete="cc-name">
+  <input type="submit" value="Buy">
+</form>
 
-      <input type="submit" value="Buy">
-    </form>
   </section>
 <?php } ?>
