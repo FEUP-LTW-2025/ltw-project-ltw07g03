@@ -19,7 +19,7 @@ if ($searchQuery) {
     $relatedServices = getRelatedServices($db, $single_word);
     $services_info = getFreelancersForServices($db, $relatedServices);
 
-    drawHeader("Search", $session);
+    drawHeader("Search", $db, $session);
     drawCategoryResults("_" . $searchQuery, $services_info);
     drawFooter();
 } else {

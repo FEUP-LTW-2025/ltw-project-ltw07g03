@@ -21,7 +21,7 @@ if ($session->isLoggedIn()) {
     $isOwner = $sessionId === $user->getId();
 }
 
-drawHeader($user->getName(), $session);
+drawHeader($user->getName(), $db, $session);
 if ($account !== null && $account->isAdmin() && $account->getId() !== $user->getId() && !$user->isAdmin()) {
     drawAdminStatusBar($user);
 }

@@ -13,6 +13,6 @@ $db = getDatabaseConnection();
 $services = Service::getAllServices($db);
 $services_freelancers = getFreelancersForServices($db, $services);
 
-drawHeader("Services", $session);
+drawHeader("Services", $db, $session);
 drawCategoryResults("Services", $services_freelancers);
 drawFooter();

@@ -14,6 +14,6 @@ $userId = (int)$_POST['userId'];
 
 $allCategories = Category::getAllCategories($db);
 
-drawHeader("Create Service", $session);
+drawHeader("Create Service", $db, $session);
 drawServiceCreationForm($allCategories, $userId);
 drawFooter();

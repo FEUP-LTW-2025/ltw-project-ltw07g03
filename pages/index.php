@@ -11,7 +11,7 @@ $session = new Session();
 
 $categories = Category::getAllCategories($db);
 
-drawHeader("Home", $session);
+drawHeader("Home", $db, $session);
 drawHomeHeading();
 drawHomeSearch();
 drawHomeCategories($categories);

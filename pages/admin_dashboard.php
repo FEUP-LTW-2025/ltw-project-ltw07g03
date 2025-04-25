@@ -21,6 +21,6 @@ if (!$user->isAdmin()) {
 
 $categories = Category::getAllCategories($db);
 
-drawHeader("Admin Dashboard", $session);
+drawHeader("Admin Dashboard", $db, $session);
 drawAdminDashboard($categories);
 drawFooter();
