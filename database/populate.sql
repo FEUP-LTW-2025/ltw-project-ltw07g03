@@ -81,7 +81,7 @@ VALUES (1, 3, '2025-03-31 12:34:56', 'pending'),
        (12, 4, '2025-04-01 11:45:00', 'closed'),
        (13, 1, '2025-04-01 12:00:00', 'pending'),
        (14, 10, '2025-04-01 12:15:00', 'closed'),
-       (5, 8, '2025-04-01 12:30:00', 'pending');
+       (4, 8, '2025-04-01 12:30:00', 'pending');
 
 INSERT INTO Message (senderId, receiverId, serviceId, content, date)
 VALUES (3, 2, 1, 'Please give me a discount.', '2025-03-31 12:35:00'),

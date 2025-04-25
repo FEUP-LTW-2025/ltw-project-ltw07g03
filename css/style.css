@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Imperial+Script&family=Ruda&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
 /* base styles */
 
@@ -365,6 +366,59 @@ a {
     background-color: #0056b3;
 }
 
+.user-services {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    align-items: center;
+}
+
+.service-card {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1rem;
+    max-width: 800px;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    background: #fff;
+}
+
+.service-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+}
+
+.service-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.service-info p {
+    margin: 0.25rem 0;
+    color: #555;
+    line-height: 1.4;
+}
+
+.service-info .description {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: #333;
+    word-wrap: break-word;
+}
+
 /* admin dashboard */
 
 .admin-status-bar {
@@ -661,7 +715,124 @@ footer {
     background-color: #0056b3;
 }
 
-/* Esconde o input original */
+
 .image-upload-wrapper input[type="file"] {
     display: none;
 }
+
+
+
+
+/*checkou form*/
+
+.checkout-section {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .payment-info label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .payment-info input[type="text"],
+  .payment-info input[type="number"],
+  .payment-info input[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .payment-info input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+  .payment-info input[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  .checkout-summary {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .checkout-summary h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+  }
+
+  .checkout-summary p {
+    font-size: 1rem;
+    color: #444;
+    margin: 0.5rem 0;
+  }
+
+  .checkout-summary strong {
+    color: #111;
+  }
+
+  .checkout-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    margin: 0.5rem 0;
+  }
+  .checkout-link:hover {
+    text-decoration: underline;
+  }
+
+  .checkout-summary-img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .payment-info .input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .payment-info .input-group i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  .payment-info .input-group input {
+    padding-left: 2.5rem; /* espaço para o ícone */
+  }

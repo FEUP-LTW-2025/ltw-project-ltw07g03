@@ -5,12 +5,14 @@ require_once(__DIR__ . '/../templates/common.tpl.php');
 require_once(__DIR__ . '/../templates/user.tpl.php');
 require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../model/user.class.php');
+require_once(__DIR__ . '/../model/service.class.php');
 
 $session = new Session();
 
 $id = intval($_GET['id']);
 $db = getDatabaseConnection();
 $user = User::getUserById($db, $id);
+$services = Service::getServicesByUserId($db, $id);
 
 $isOwner = false;
 $account = null;
@@ -29,5 +31,8 @@ if ($isOwner) {
     drawEditableUserProfile($user);
 } else {
     drawUserProfile($user);
+}
+if ($services != []) {
+    drawUserServices($user, $services);
 }
 drawFooter();

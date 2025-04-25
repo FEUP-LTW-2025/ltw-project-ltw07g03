@@ -38,6 +38,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
 
         if (!isset($services[$id])) {
             $services[$id] = [
+                'serviceId' => $row['serviceId'],
                 'title' => $row['title'],
                 'price' => $row['price'],
                 'deliveryTime' => $row['deliveryTime'],
@@ -45,6 +46,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
                 'status' => $row['status'],
                 'avgRating' => $rating,
                 'freelancer' => [
+                    'id' => $row['freelancerId'],
                     'name' => $row['freelancerName'],
                     'profilePictureURL' => $row['profilePictureURL']
                 ],
@@ -105,6 +107,7 @@ function getFreelancersForServices(PDO $db, array $services): array
 
         if (!isset($servicesWithDetails[$id])) {
             $servicesWithDetails[$id] = [
+                'serviceId' => $row['serviceId'],
                 'title' => $row['title'],
                 'price' => $row['price'],
                 'deliveryTime' => $row['deliveryTime'],
@@ -112,6 +115,7 @@ function getFreelancersForServices(PDO $db, array $services): array
                 'status' => $row['status'],
                 'avgRating' => $rating,
                 'freelancer' => [
+                    'id' => $row['freelancerId'],
                     'name' => $row['freelancerName'],
                     'profilePictureURL' => $row['profilePictureURL']
                 ],
@@ -122,5 +126,5 @@ function getFreelancersForServices(PDO $db, array $services): array
         $servicesWithDetails[$id]['images'][] = $row['mediaURL'];
     }
 
-    return array_values($servicesWithDetails);
+    return $servicesWithDetails;
 }
