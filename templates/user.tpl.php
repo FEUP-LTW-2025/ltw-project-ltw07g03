@@ -29,6 +29,7 @@ function drawUserProfile(User $user): void
 <?php function drawEditableUserProfile(User $user): void
 { ?>
     <section class="section profile-section">
+        <a href="/pages/purchase_history.php?id= <?= $user->getId() ?>">Check your purchase history</a>
         <div class="container">
             <h2>Edit Your Profile</h2>
             <form action="/actions/action_edit_profile.php" method="post" class="profile-card"
