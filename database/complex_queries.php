@@ -15,6 +15,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
             S.price,
             S.deliveryTime,
             S.description,
+            S.about,
             S.status,
             U.name AS freelancerName,
             U.profilePictureURL,
@@ -43,6 +44,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
                 'price' => $row['price'],
                 'deliveryTime' => $row['deliveryTime'],
                 'description' => $row['description'],
+                'about' => $row['about'],
                 'status' => $row['status'],
                 'avgRating' => $rating,
                 'freelancer' => [
@@ -82,6 +84,7 @@ function getFreelancersForServices(PDO $db, array $services): array
             S.price,
             S.deliveryTime,
             S.description,
+            S.about,
             S.status,
             U.name AS freelancerName,
             U.profilePictureURL,
@@ -114,6 +117,7 @@ function getFreelancersForServices(PDO $db, array $services): array
                 'description' => $row['description'],
                 'status' => $row['status'],
                 'avgRating' => $rating,
+                'about' => $row['about'],
                 'freelancer' => [
                     'id' => $row['freelancerId'],
                     'name' => $row['freelancerName'],

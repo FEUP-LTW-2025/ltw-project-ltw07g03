@@ -19,6 +19,7 @@ $title = htmlspecialchars(trim($_POST['title']));
 $price = floatval($_POST['price']);
 $deliveryTime = intval($_POST['deliveryTime']);
 $description = htmlspecialchars(trim($_POST['description']));
+$about = htmlspecialchars(trim($_POST['about']));  
 $status = $_POST['status'];
 
 $mockId = 0;
@@ -26,7 +27,7 @@ $mockRating = 0.0;
 $mediaURL = handleImageUpload('image', $uploadDir, $uploadUrl, $defaultServicePicture, $session);
 
 
-$newService = new Service($mockId, $freelancerId, $categoryId, $title, $price, $deliveryTime, $description, $status, $mockRating, array($mediaURL));
+$newService = new Service($mockId, $freelancerId, $categoryId, $title, $price, $deliveryTime, $description, $about, $status, $mockRating, array($mediaURL));
 $newService->upload($db);
 
 $session->addMessage('success', 'Service created successfully');

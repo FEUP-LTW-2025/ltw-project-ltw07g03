@@ -22,6 +22,8 @@ declare(strict_types=1);
         <input type="number" id="deliveryTime" name="deliveryTime" min="1" required>
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4" maxlength="1000" required></textarea>
+        <label for="about">About this gig:</label>
+        <textarea id="about" name="about" rows="20" maxlength="3000" required></textarea>
         <label for="status">Status:</label>
         <select name="status" id="status" required>
             <option value="active">Active</option>

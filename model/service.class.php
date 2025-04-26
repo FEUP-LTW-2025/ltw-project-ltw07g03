@@ -10,6 +10,7 @@ class Service
     private float $price;
     private int $deliveryTime;
     private string $description;
+    private string $about;
     private string $status;
     private float $rating;
     private array $images;
@@ -22,6 +23,7 @@ class Service
         float  $price,
         int    $deliveryTime,
         string $description,
+        string $about,
         string $status,
         float  $rating,
         array  $images
@@ -34,6 +36,7 @@ class Service
         $this->price = $price;
         $this->deliveryTime = $deliveryTime;
         $this->description = $description;
+        $this->about = $about;
         $this->status = $status;
         $this->rating = $rating;
         $this->images = $images;
@@ -74,6 +77,11 @@ class Service
         return $this->description;
     }
 
+    public function getAbout(): string
+    {
+        return $this->about;
+    }
+
     public function getStatus(): string
     {
         return $this->status;
@@ -112,6 +120,7 @@ class Service
             floatval($data['price']),
             intval($data['deliveryTime']),
             $data['description'],
+            $data['about'],
             $data['status'],
             floatval($data['rating']),
             $images
@@ -142,6 +151,7 @@ class Service
                 floatval($data['price']),
                 intval($data['deliveryTime']),
                 $data['description'],
+                $data['about'],
                 $data['status'],
                 floatval($data['rating']),
                 $images
@@ -166,6 +176,7 @@ class Service
             $price = floatval($data['price']);
             $deliveryTime = intval($data['deliveryTime']);
             $description = $data['description'];
+            $about = $data['about'];
             $status = $data['status'];
             $rating = floatval($data['rating']);
 
@@ -182,6 +193,7 @@ class Service
                 $price,
                 $deliveryTime,
                 $description,
+                $about,
                 $status,
                 $rating,
                 $images
@@ -225,6 +237,15 @@ class Service
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
         $this->description = $description;
+    }
+
+    public function setAbout(string $about, PDO $db): void
+    {
+        $stmt = $db->prepare("UPDATE Service SET about = :about WHERE serviceId = :id");
+        $stmt->bindParam(":about", $about);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        $this->about = $about;
     }
 
     public function setStatus(string $status, PDO $db): void
@@ -272,8 +293,8 @@ class Service
     public function upload(PDO $db): void
     {
         $stmt = $db->prepare(
-            "INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
-            VALUES (:freelancerId, :categoryId, :title, :price, :deliveryTime, :description, :status)"
+            "INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, about, status)
+            VALUES (:freelancerId, :categoryId, :title, :price, :deliveryTime, :description, :about, :status)"
         );
 
         $stmt->bindParam(":freelancerId", $this->freelancerId);
@@ -282,6 +303,7 @@ class Service
         $stmt->bindParam(":price", $this->price);
         $stmt->bindParam(":deliveryTime", $this->deliveryTime);
         $stmt->bindParam(":description", $this->description);
+        $stmt->bindParam(":about", $this->about);
         $stmt->bindParam(":status", $this->status);
 
         $stmt->execute();

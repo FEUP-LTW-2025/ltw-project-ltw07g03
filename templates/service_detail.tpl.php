@@ -8,11 +8,17 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
             <div class="service-detail-grid">
                 <div class="service-detail-left">
                     <p class="freelancer-name-detail">By
-                        <strong><?= htmlspecialchars($service_freelancer['freelancer']['name']) ?></strong></p>
+                        <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong></p>
                     <img src="<?= htmlspecialchars($service_freelancer['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>"
                          alt="Service image" class="service-detail-img">
                     <h2 class="service-detail-title"><?= htmlspecialchars($service_freelancer['title']) ?></h2>
                     <p class="service-detail-description"><?= htmlspecialchars($service_freelancer['description']) ?></p>
+                    <?php if (!empty($service_freelancer['about'])): ?>
+                        <section class="about-section">
+                            <h3>About this gig</h3>
+                            <p><?= nl2br(htmlspecialchars($service_freelancer['about'])) ?></p>
+                        </section>
+                    <?php endif; ?>
                     <p class="service-detail-delivery">
                         <strong>Delivery Time:</strong> <?= $service_freelancer['deliveryTime'] ?> days
                     </p>

@@ -50,6 +50,7 @@ CREATE TABLE Service
     price        DECIMAL(10, 2),
     deliveryTime INTEGER,
     description  TEXT,
+    about        TEXT,
     status       VARCHAR(15),
     rating       DECIMAL(2, 1) DEFAULT 0,
 
@@ -59,6 +60,7 @@ CREATE TABLE Service
     CONSTRAINT Service_price_NN CHECK (price IS NOT NULL),
     CONSTRAINT Service_deliveryTime_NN CHECK (deliveryTime IS NOT NULL),
     CONSTRAINT Service_description_NN CHECK (description IS NOT NULL),
+    CONSTRAINT Service_about_NN CHECK (about IS NOT NULL),
     CONSTRAINT Service_status_NN CHECK (status IS NOT NULL),
     CONSTRAINT Service_rating_NN CHECK (rating IS NOT NULL),
     CONSTRAINT Service_freelancer_FK FOREIGN KEY (freelancerId) REFERENCES User (userId) ON UPDATE CASCADE,
