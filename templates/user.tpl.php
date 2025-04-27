@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once(__DIR__ . '/../model/user.class.php');
+require_once(__DIR__ . '/../model/service.class.php');
 
 function drawUserProfile(User $user): void
 { ?>
@@ -28,6 +29,7 @@ function drawUserProfile(User $user): void
 <?php function drawEditableUserProfile(User $user): void
 { ?>
     <section class="section profile-section">
+        <a href="/pages/purchase_history.php?id= <?= $user->getId() ?>">Check your purchase history</a>
         <div class="container">
             <h2>Edit Your Profile</h2>
             <form action="/actions/action_edit_profile.php" method="post" class="profile-card"
@@ -64,5 +66,49 @@ function drawUserProfile(User $user): void
                 <button type="submit" class="btn-primary">Create new Service</button>
             </form>
         </div>
+    </section>
+<?php } ?>
+
+<?php
+function drawAdminStatusBar(User $user): void
+{ ?>
+    <div class="admin-status-bar">
+        <h2>Admin Status</h2>
+        <p>This user is currently: <strong><?= $user->isAdmin() ? 'Admin' : 'Regular User' ?></strong></p>
+
+        <form method="post" action="/actions/action_toggle_admin.php">
+            <input type="hidden" name="userId" value="<?= $user->getId() ?>">
+            <input type="hidden" name="isAdmin" value="<?= $user->isAdmin() ? '0' : '1' ?>">
+            <button type="submit" class="admin-toggle-btn">
+                <?= $user->isAdmin() ? 'Revoke admin privileges' : 'Elevate this user to admin' ?>
+            </button>
+        </form>
+    </div>
+<?php } ?>
+
+<?php function drawUserServices(User $user, array $services): void
+{ ?>
+    <section class="user-services">
+        <h3><?= $user->getName() ?>'s services</h3>
+        <?php foreach ($services as $service): ?>
+            <div class="service-card">
+                <div class="service-image">
+                    <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
+                        <img
+                                src="<?= $service->getImages()[0] ?? '/assets/images/default.jpeg' ?>"
+                                alt="Service Image"
+                        > </a>
+                </div>
+                <div class="service-info">
+                    <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
+                        <h3><?= $service->getTitle() ?></h3>
+                    </a>
+                    <p><strong>Price:</strong> <?= $service->getPrice() ?> €</p>
+                    <p><strong>Delivery Time:</strong> <?= $service->getDeliveryTime() ?> days</p>
+                    <p><strong>Rating:</strong> <?= $service->getRating() ?> / 5</p>
+                    <p class="description"><?= $service->getDescription() ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </section>
 <?php } ?>

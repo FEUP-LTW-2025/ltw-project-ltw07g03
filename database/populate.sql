@@ -192,12 +192,12 @@ What you''ll get:
 • Mailchimp or platform setup.' WHERE serviceId = 14;
 
 INSERT INTO ServiceCategory (name, icon)
-VALUES ('Programming & Tech', '&#x1F4BB'),
-       ('Graphics and Design', '&#x1F3A8'),
-       ('Digital Marketing', '&#x1F4C8'),
-       ('Video & Animation', '&#x1F3AC'),
-       ('Music & Audio', '&#x1F3A7'),
-       ('Business', '&#x1F4BC');
+VALUES ('Programming & Tech', '🖥️'),
+       ('Graphics and Design', '🎨'),
+       ('Digital Marketing', '📈'),
+       ('Video & Animation', '🎬'),
+       ('Music & Audio', '🎧'),
+       ('Business', '💼');
 
 INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
 VALUES (2, 1, 'Dynamic Webpages with PHP', 150, 2, 'I will build dynamic PHP-based websites tailored to your needs.',

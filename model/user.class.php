@@ -194,7 +194,7 @@ class User
         $stmt->bindParam(":isAdmin", $isAdmin, PDO::PARAM_BOOL);
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
-        $this->isAdmin = $isAdmin;
+        $this->isAdmin = boolval($isAdmin);
     }
 
     public function setProfilePicture(string $profilePicture, PDO $db): void

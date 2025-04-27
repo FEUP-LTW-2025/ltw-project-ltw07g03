@@ -52,7 +52,7 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                         <p class="service-detail-price">
                             <?= $service_freelancer['price'] ?> €
                         </p>
-                        <a href="/actions/action_purchase.php?serviceId=<?= $service_freelancer['serviceId'] ?>"
+                        <a href="/pages/checkout.php?serviceId=<?= $service_freelancer['serviceId'] ?>"
                            class="purchase-btn">
                             Purchase
                         </a>

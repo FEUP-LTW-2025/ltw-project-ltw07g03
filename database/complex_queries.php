@@ -130,5 +130,5 @@ function getFreelancersForServices(PDO $db, array $services): array
         $servicesWithDetails[$id]['images'][] = $row['mediaURL'];
     }
 
-    return array_values($servicesWithDetails);
+    return $servicesWithDetails;
 }

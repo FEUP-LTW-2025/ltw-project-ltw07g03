@@ -1,18 +1,17 @@
 <?php
 declare(strict_types=1);
-require_once(__DIR__ . '/../utils/session.php');
-require_once(__DIR__ . '/../templates/common.tpl.php');
-require_once(__DIR__ . '/../templates/service_detail.tpl.php');
 require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../templates/home.tpl.php');
+require_once(__DIR__ . '/../templates/checkout.tpl.php');
+require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/complex_queries.php');
 require_once(__DIR__ . '/../model/service.class.php');
-require_once(__DIR__ . '/../model/feedback.class.php');
-require_once(__DIR__ . '/../database/complex_queries.php');
 
-$session = new Session();
 $db = getDatabaseConnection();
+$session = new Session();
 
-$serviceId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$serviceId = isset($_GET['serviceId']) ? intval($_GET['serviceId']) : 0;
 
 if ($serviceId === 0) {
     $session->addMessage('error', 'Invalid service ID.');
@@ -29,8 +28,16 @@ if (!$service) {
 }
 
 $service_freelancer = getFreelancersForServices($db, array($service));
-$feedbacks_author = Feedback::getFeedback_AuthorByServiceId($db, $serviceId);
+
+if(!$session->isLoggedIn()){
+    $session->addMessage('error', 'Login to buy services');
+    header('Location: /pages/login.php');
+    exit();
+}
+
 
 drawHeader("Service Detail", $db, $session);
-drawServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
+drawCheckoutForm($service_freelancer[$serviceId], $session->getId());
 drawFooter();
+
+

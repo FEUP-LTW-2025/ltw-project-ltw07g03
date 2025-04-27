@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
-?>
+require_once(__DIR__ . '/../model/user.class.php');
 
-<?php function drawHeader(string $title, Session $session): void
+function drawHeader(string $title, PDO $db, Session $session): void
 { ?>
     <!DOCTYPE html>
 <html lang="en-US">
@@ -28,12 +28,15 @@ require_once(__DIR__ . '/../utils/session.php');
         </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="/pages/index.php">Home</a></li>
                 <li><a href="/pages/services.php">Services</a></li>
                 <?php
                 if ($session->isLoggedIn()) {
                     echo '<li><a href="/pages/user.php?id=' . $session->getId() . '">Profile</a></li>';
                     echo '<li><a href="/actions/action_logout.php">Logout</a></li>';
+                    $user = User::getUserById($db, $session->getId());
+                    if ($user->isAdmin()) {
+                        echo '<li><a href="/pages/admin_dashboard.php">Admin Dashboard</a></li>';
+                    }
                 } else {
                     echo '<li><a href="/pages/login.php">Login</a></li>';
                     echo '<li><a href="/pages/signup.php">Register</a></li>';
