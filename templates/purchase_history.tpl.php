@@ -13,6 +13,12 @@ function drawPurchaseHistory(array $purchasesWithDetails): void
                     <p><strong>Freelancer:</strong> <?= $item['service']['freelancer']['name'] ?></p>
                     <p><strong>Status:</strong> <?= $item['purchase']->getStatus() ?></p>
                     <p><strong>Date:</strong> <?= gmdate("Y-m-d | H:i:s", $item['purchase']->getDate()) ?></p>
+
+                    <?php
+                        if($item['purchase']->getStatus() === 'closed'){
+                            echo '<a href="review_form.php?purchase_id=' .$item['purchase']->getId() . '" class="review-button">Leave a review</a>';
+                        }
+                    ?>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
