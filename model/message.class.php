@@ -69,6 +69,31 @@ class Message
         );
     }
 
+    public static function getMessagesByParticipantsId(PDO $db, int $user1_id, int $user2_id): array {
+        $stmt = $db->prepare("SELECT * FROM Message WHERE (senderId = :user1_id AND receiverId = :user2_id) OR (senderId = :user2_id AND receiverId = :user1_id) ORDER BY date ASC");
+        
+        $stmt->bindParam(':user1_id', $user1_id, PDO::PARAM_INT);
+        $stmt->bindParam(':user2_id', $user2_id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $messagesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        $messages = [];
+        foreach ($messagesData as $data) {
+            $messages[] = new Message(
+                intval($data['messageId']),
+                intval($data['senderId']),
+                intval($data['receiverId']),
+                intval($data['serviceId']),
+                $data['content'],
+                is_numeric($data['date']) ? intval($data['date']) : strtotime($data['date']),
+            );
+        }
+    
+        return $messages;
+    }
+    
+
 
     public function setSenderId(int $senderId, PDO $db): void
     {

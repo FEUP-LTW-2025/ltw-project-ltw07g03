@@ -56,7 +56,7 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                            class="purchase-btn">
                             Purchase
                         </a>
-                        <a href="/pages/user.php?id=<?= $service_freelancer['freelancer']['id'] ?>"
+                        <a href="/pages/chat.php?freelancer_id=<?= $service_freelancer['freelancer']['id'] ?>"
                            class="service-contact-btn">
                             Contact Me
                         </a>
