@@ -31,9 +31,9 @@ function drawChat(User $client, User $freelancer, array $history): void
                 <?php endif; ?>
             </div>
 
-            <form id="chat-form" method="post" action="/actions/send_message.php">
-                <input type="hidden" name="receiver_id" value="<?= $freelancer->getId() ?>">
-                <textarea name="message" rows="3" placeholder="Type your message..." required></textarea>
+            <form id="chat-form">
+                <input type="hidden" id="receiver-id" value="<?= $freelancer->getId() ?>">
+                <textarea id="message-content" rows="3" placeholder="Type your message..." required></textarea>
                 <button type="submit">Send</button>
             </form>
         </div>

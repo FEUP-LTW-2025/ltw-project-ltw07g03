@@ -92,6 +92,15 @@ class Message
     
         return $messages;
     }
+
+    public static function getLastInsertedId(PDO $db): ?int {
+        $stmt = $db->prepare("SELECT MAX(messageId) AS last_id FROM Message");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $result ? (int)$result['last_id'] : null;
+    }
+    
     
 
 
