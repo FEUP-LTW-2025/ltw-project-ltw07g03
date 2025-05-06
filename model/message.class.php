@@ -111,13 +111,34 @@ class Message
         return $messages;
     }
 
-    public static function getLastInsertedId(PDO $db): ?int {
-        $stmt = $db->prepare("SELECT MAX(messageId) AS last_id FROM Message");
+    public static function getMessagesSince(PDO $db, int $user1, int $user2, int $since): array {
+        $stmt = $db->prepare("
+            SELECT messageId, senderId, receiverId, content, date
+            FROM Message
+            WHERE (
+        (senderId = :user1 AND receiverId = :user2) OR
+        (senderId = :user2 AND receiverId = :user1)
+    )
+    AND CAST(date AS INTEGER) > :since
+    ORDER BY CAST(date AS INTEGER) ASC
+");
+        $stmt->bindValue(':user1', $user1, PDO::PARAM_INT);
+        $stmt->bindValue(':user2', $user2, PDO::PARAM_INT);
+        $stmt->bindValue(':since', $since, PDO::PARAM_INT);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
-        return $result ? (int)$result['last_id'] : null;
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($row) => new Message(
+            (int)$row['messageId'],
+            (int)$row['senderId'],
+            (int)$row['receiverId'],
+            0,
+            $row['content'],
+            (int)$row['date']
+        ), $rows);
     }
+    
+
     
     
 

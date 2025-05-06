@@ -12,7 +12,8 @@ function drawHeader(string $title, PDO $db, Session $session): void
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= "FLEXA :: " . $title ?></title>
     <link href="/css/style.css" rel="stylesheet">
-    <script src="/JavaScript/chat.js" defer></script>
+    <script src="/JavaScript/request_messages.js" defer></script>
+    <script src="/JavaScript/send_message.js" defer></script>
 </head>
 <body>
 <header class="site-header dark-header">

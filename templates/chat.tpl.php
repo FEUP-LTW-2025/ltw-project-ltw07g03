@@ -7,6 +7,12 @@ function drawChat(User $user, User $otherUser, array $history): void
 {
     $currentUserId = $user->getId(); ?>
 
+    <script>
+    const currentUserId = <?= $currentUserId ?>;
+    const otherUserName = <?= json_encode($otherUser->getName()) ?>;
+    </script>
+
+
     <section class="chat-section">
         <div class="chat-container">
             <h2>Chat with <?= htmlspecialchars($otherUser->getName()) ?></h2>
@@ -32,10 +38,11 @@ function drawChat(User $user, User $otherUser, array $history): void
             </div>
 
             <form id="chat-form">
-                <input type="hidden" id="receiver-id" value="<?= $otherUser->getId() ?>">
-                <textarea id="message-content" rows="3" placeholder="Type your message..." required></textarea>
+                <input type="hidden" id="receiver-id" name="receiver_id" value="<?= $otherUser->getId() ?>">
+                <textarea id="message-content" name="msg_content" rows="3" placeholder="Type your message..." required></textarea>
                 <button type="submit">Send</button>
             </form>
+
         </div>
     </section>
 
