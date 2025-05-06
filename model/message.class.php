@@ -69,6 +69,24 @@ class Message
         );
     }
 
+    public static function getConversationUsersByUserId(PDO $db, int $userId): array {
+        $stmt = $db->prepare("
+            SELECT DISTINCT 
+                CASE 
+                    WHEN senderId = :userId THEN receiverId
+                    ELSE senderId
+                END AS other_user_id
+            FROM Message
+            WHERE senderId = :userId OR receiverId = :userId
+        ");
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($row) => (int) $row['other_user_id'], $rows);
+    }
+    
+
     public static function getMessagesByParticipantsId(PDO $db, int $user1_id, int $user2_id): array {
         $stmt = $db->prepare("SELECT * FROM Message WHERE (senderId = :user1_id AND receiverId = :user2_id) OR (senderId = :user2_id AND receiverId = :user1_id) ORDER BY date ASC");
         

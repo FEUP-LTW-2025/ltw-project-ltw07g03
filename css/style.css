@@ -1110,3 +1110,29 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #0056b3;
 }
 
+
+
+/*Profile messages*/
+
+.conversation-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.conversation-entry a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 0.5rem;
+}
+
+.profile-picture-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
