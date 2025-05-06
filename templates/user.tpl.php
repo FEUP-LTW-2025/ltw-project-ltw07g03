@@ -75,7 +75,7 @@ function drawUserProfile(User $user): void
             <?php else: ?>
                     <?php foreach ($conversationUsers as $otherUser): ?>
                         <li class="conversation-entry">
-                            <a href="/pages/chat.php?freelancer_id=<?= $user->getId() ?>&client_id=<?= $otherUser->getId() ?>">
+                        <a href="/pages/chat.php?user_id=<?= $otherUser->getId() ?>">
                                 <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>" 
                                     alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>" 
                                     class="profile-picture-small">

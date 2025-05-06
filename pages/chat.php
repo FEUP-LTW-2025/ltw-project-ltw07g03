@@ -15,22 +15,22 @@ if (!$session->isLoggedIn()) {
     exit();
 }
 
-$freelancer_id = intval($_GET['freelancer_id']);
-$client_id = $session->getId();
+$other_userId = intval($_GET['user_id']); //quem quer contactar
+$userid = $session->getId(); //quem abriu o chat
 
 $db = getDatabaseConnection();
 
-$client = User::getUserById($db, $client_id);
-$freelancer = User::getUserById($db, $freelancer_id);
+$other_user = User::getUserById($db, $other_userId);
+$user = User::getUserById($db, $userid);
 
-if (!$client || !$freelancer) {
+if (!$user || !$other_user) {
     $session->addMessage('error', 'User not found.');
     header('Location: /pages/index.php');
     exit();
 }
 
-$history = Message::getMessagesByParticipantsId($db, $client_id, $freelancer_id);
+$history = Message::getMessagesByParticipantsId($db, $userid, $other_userId);
 
 drawHeader("Chat", $db, $session);
-drawChat($client, $freelancer, $history);
+drawChat($user, $other_user, $history);
 drawFooter();
