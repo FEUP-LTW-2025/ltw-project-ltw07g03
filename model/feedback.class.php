@@ -67,7 +67,7 @@ class Feedback
             intval($data['purchaseId']),
             floatval($data['rating']),
             $data['review'],
-            strtotime($data['date'])
+            $data['date']
         );
     }
 
@@ -85,7 +85,7 @@ class Feedback
             $purchaseId = intval($data['purchaseId']);
             $rating = floatval($data['rating']);
             $review = $data['review'];
-            $date = strtotime($data['date']);
+            $date = $data['date'];
 
             $feedback = new Feedback(
                 $feedbackId,

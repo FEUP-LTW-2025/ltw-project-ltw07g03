@@ -3,7 +3,7 @@ let lastTimestamp = Math.floor(Date.now() / 1000);
 function pollForNewMessages() {
     const otherUserId = document.getElementById('receiver-id').value;
 
-    fetch(`/API/get_new_messages.php?user_id=${otherUserId}&since=${lastTimestamp}`)
+    fetch(`/api/get_new_messages.php?user_id=${otherUserId}&since=${lastTimestamp}`)
         .then(res => res.json())
         .then(messages => {
             if (Array.isArray(messages)) {

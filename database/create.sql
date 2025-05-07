@@ -86,7 +86,7 @@ CREATE TABLE Purchase
     purchaseId INTEGER,
     serviceId  INTEGER,
     clientId   INTEGER,
-    date       DATETIME,
+    date       INTEGER,
     status     VARCHAR(15),
 
     CONSTRAINT Purchase_PK PRIMARY KEY (purchaseId),
@@ -105,7 +105,7 @@ CREATE TABLE Message
     senderId   INTEGER,
     receiverId INTEGER,
     content    TEXT,
-    date       DATETIME,
+    date       INTEGER,
 
     CONSTRAINT Message_PK PRIMARY KEY (messageId),
     CONSTRAINT Message_senderId_NN CHECK (senderId IS NOT NULL),
@@ -122,7 +122,7 @@ CREATE TABLE Feedback
     purchaseId INTEGER,
     rating     DECIMAL(2, 1) DEFAULT 0,
     review     TEXT,
-    date       DATETIME,
+    date       INTEGER,
 
     CONSTRAINT Feedback_PK PRIMARY KEY (feedbackId),
     CONSTRAINT Feedback_purchaseId_NN CHECK (purchaseId IS NOT NULL),

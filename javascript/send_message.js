@@ -15,7 +15,7 @@ document.getElementById('chat-form').addEventListener('submit', function (event)
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
-    .catch(err => console.error('Error sending message:', err));
+        .catch(err => console.error('Error sending message:', err));
 
     // Limpar o campo de mensagem após o envio
     document.getElementById('message-content').value = '';

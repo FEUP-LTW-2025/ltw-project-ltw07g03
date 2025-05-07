@@ -32,7 +32,7 @@ class Message
             intval($data['senderId']),
             intval($data['receiverId']),
             $data['content'],
-            strtotime($data['date'])
+            $data['date']
         );
     }
 
@@ -71,7 +71,7 @@ class Message
                 intval($data['senderId']),
                 intval($data['receiverId']),
                 $data['content'],
-                is_numeric($data['date']) ? intval($data['date']) : strtotime($data['date']),
+                is_numeric($data['date']) ? intval($data['date']) : $data['date'],
             );
         }
 
