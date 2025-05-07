@@ -32,4 +32,4 @@ function pollForNewMessages() {
         .catch(err => console.error('Polling error:', err));
 }
 
-setInterval(pollForNewMessages, 500); // A cada 1 segundos
+setInterval(pollForNewMessages, 500); // A cada 0.5 segundos

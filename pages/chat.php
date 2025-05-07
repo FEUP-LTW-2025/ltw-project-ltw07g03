@@ -11,7 +11,7 @@ $session = new Session();
 
 if (!$session->isLoggedIn()) {
     $session->addMessage('error', 'Login to interact with the freelancer');
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: /pages/login.php');
     exit();
 }
 

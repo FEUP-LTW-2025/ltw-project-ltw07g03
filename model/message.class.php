@@ -6,16 +6,16 @@ class Message
     private int $id;
     private int $senderId;
     private int $receiverId;
-    private int $serviceId;
+    //private int $serviceId;
     private string $content;
     private int $date;
 
-    public function __construct(int $id, int $senderId, int $receiverId, int $serviceId, string $content, int $date)
+    public function __construct(int $id, int $senderId, int $receiverId, /*int $serviceId,*/ string $content, int $date)
     {
         $this->id = $id;
         $this->senderId = $senderId;
         $this->receiverId = $receiverId;
-        $this->serviceId = $serviceId;
+        //$this->serviceId = $serviceId;
         $this->content = $content;
         $this->date = $date;
     }
@@ -35,10 +35,10 @@ class Message
         return $this->receiverId;
     }
 
-    public function getServiceId(): int
+    /*public function getServiceId(): int
     {
         return $this->serviceId;
-    }
+    }*/
 
     public function getContent(): string
     {
@@ -63,7 +63,7 @@ class Message
             intval($data['messageId']),
             intval($data['senderId']),
             intval($data['receiverId']),
-            intval($data['serviceId']),
+            //intval($data['serviceId']),
             $data['content'],
             strtotime($data['date'])
         );
@@ -102,7 +102,7 @@ class Message
                 intval($data['messageId']),
                 intval($data['senderId']),
                 intval($data['receiverId']),
-                intval($data['serviceId']),
+                //intval($data['serviceId']),
                 $data['content'],
                 is_numeric($data['date']) ? intval($data['date']) : strtotime($data['date']),
             );
@@ -132,7 +132,7 @@ class Message
             (int)$row['messageId'],
             (int)$row['senderId'],
             (int)$row['receiverId'],
-            0,
+            //0,
             $row['content'],
             (int)$row['date']
         ), $rows);
@@ -161,14 +161,14 @@ class Message
         $this->receiverId = $receiverId;
     }
 
-    public function setServiceId(int $serviceId, PDO $db): void
+    /*public function setServiceId(int $serviceId, PDO $db): void
     {
         $stmt = $db->prepare("UPDATE Message SET serviceId = :serviceId WHERE messageId = :id");
         $stmt->bindParam(":serviceId", $serviceId);
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
         $this->serviceId = $serviceId;
-    }
+    }*/
 
     public function setContent(string $content, PDO $db): void
     {
@@ -195,9 +195,11 @@ class Message
          VALUES (:senderId, :receiverId, :serviceId, :content, :date)"
         );
 
+        $serviceId = '0';
+
         $stmt->bindParam(":senderId", $this->senderId);
         $stmt->bindParam(":receiverId", $this->receiverId);
-        $stmt->bindParam(":serviceId", $this->serviceId);
+        $stmt->bindParam(":serviceId", $serviceId);
         $stmt->bindParam(":content", $this->content);
         $stmt->bindParam(":date", $this->date);
 

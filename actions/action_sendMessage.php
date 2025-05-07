@@ -19,7 +19,7 @@ $senderId = $session->getId();
 $date = time();
 $mockId = 0;
 
-$message = new Message($mockId, $senderId, $receiverId, 0, $content, $date);
+$message = new Message($mockId, $senderId, $receiverId, /*0,*/ $content, $date);
 $message->upload($db);
 
 exit();
