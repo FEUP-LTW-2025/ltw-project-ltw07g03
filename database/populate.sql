@@ -24,6 +24,32 @@ VALUES ('admin', 'administrator', 'admin@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBde
        ('Grace Hopper', 'GraceH', 'grace@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/108/1024', 'inactive');
 
+INSERT INTO ServiceCategory (name, icon)
+VALUES ('Programming & Tech', '🖥️'),
+       ('Graphics and Design', '🎨'),
+       ('Digital Marketing', '📈'),
+       ('Video & Animation', '🎬'),
+       ('Music & Audio', '🎧'),
+       ('Business', '💼');
+
+INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
+VALUES (2, 1, 'Dynamic Webpages with PHP', 150, 2, 'I will build dynamic PHP-based websites tailored to your needs.',
+        'active'),
+       (4, 2, 'Logo Design', 50, 1, 'Unique and professional logo designs delivered fast.', 'active'),
+       (5, 3, 'SEO Optimization', 200, 3, 'Increase your visibility on search engines with my SEO services.', 'active'),
+       (2, 6, 'Article Writing', 75, 2, 'High-quality blog or website articles written just for you.', 'active'),
+       (6, 2, 'Illustration Design', 80, 3, 'Beautiful hand-drawn or digital illustrations for any project.', 'active'),
+       (7, 1, 'Responsive Web Design', 120, 2, 'Clean and modern web design that works on any device.', 'active'),
+       (8, 4, 'Portrait Photography', 200, 4, 'Studio-quality portrait photography at your convenience.', 'active'),
+       (9, 4, 'Video Editing Service', 250, 5, 'Professional editing with transitions, effects, and audio sync.',
+        'active'),
+       (10, 6, 'Social Media Marketing', 100, 1, 'Grow your audience with strategic ad campaigns.', 'active'),
+       (1, 5, 'Podcast Editing', 180, 3, 'Clean, edit, and mix your podcast for publishing.', 'active'),
+       (2, 5, 'Voice Over in English', 90, 2, 'Professional male voice over for your video or ad.', 'active'),
+       (3, 1, 'Full Stack Development', 300, 5, 'Complete web app built with React and Node.js.', 'active'),
+       (4, 2, 'Business Card Design', 45, 1, 'Custom business card with print-ready files.', 'active'),
+       (5, 3, 'Email Marketing Campaigns', 130, 2, 'Reach your clients with beautiful emails and strategy.', 'active');
+
 UPDATE Service
 SET about =
         'If you are looking for someone to build a custom dynamic PHP website with critical functionality and responsive design to support your business operations effectively, you are in the right place. I ensure that the final product is secure, easy to use, and scalable.
@@ -218,32 +244,6 @@ SET about =
         • Responsive design.
         • Mailchimp or platform setup.'
 WHERE serviceId = 14;
-
-INSERT INTO ServiceCategory (name, icon)
-VALUES ('Programming & Tech', '🖥️'),
-       ('Graphics and Design', '🎨'),
-       ('Digital Marketing', '📈'),
-       ('Video & Animation', '🎬'),
-       ('Music & Audio', '🎧'),
-       ('Business', '💼');
-
-INSERT INTO Service (freelancerId, categoryId, title, price, deliveryTime, description, status)
-VALUES (2, 1, 'Dynamic Webpages with PHP', 150, 2, 'I will build dynamic PHP-based websites tailored to your needs.',
-        'active'),
-       (4, 2, 'Logo Design', 50, 1, 'Unique and professional logo designs delivered fast.', 'active'),
-       (5, 3, 'SEO Optimization', 200, 3, 'Increase your visibility on search engines with my SEO services.', 'active'),
-       (2, 6, 'Article Writing', 75, 2, 'High-quality blog or website articles written just for you.', 'active'),
-       (6, 2, 'Illustration Design', 80, 3, 'Beautiful hand-drawn or digital illustrations for any project.', 'active'),
-       (7, 1, 'Responsive Web Design', 120, 2, 'Clean and modern web design that works on any device.', 'active'),
-       (8, 4, 'Portrait Photography', 200, 4, 'Studio-quality portrait photography at your convenience.', 'active'),
-       (9, 4, 'Video Editing Service', 250, 5, 'Professional editing with transitions, effects, and audio sync.',
-        'active'),
-       (10, 6, 'Social Media Marketing', 100, 1, 'Grow your audience with strategic ad campaigns.', 'active'),
-       (1, 5, 'Podcast Editing', 180, 3, 'Clean, edit, and mix your podcast for publishing.', 'active'),
-       (2, 5, 'Voice Over in English', 90, 2, 'Professional male voice over for your video or ad.', 'active'),
-       (3, 1, 'Full Stack Development', 300, 5, 'Complete web app built with React and Node.js.', 'active'),
-       (4, 2, 'Business Card Design', 45, 1, 'Custom business card with print-ready files.', 'active'),
-       (5, 3, 'Email Marketing Campaigns', 130, 2, 'Reach your clients with beautiful emails and strategy.', 'active');
 
 INSERT INTO ServiceMedia (serviceId, mediaURL)
 VALUES (1, 'https://picsum.photos/id/1011/1024'),

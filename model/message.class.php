@@ -169,15 +169,13 @@ class Message
     public function upload(PDO $db): void
     {
         $stmt = $db->prepare(
-            "INSERT INTO Message (senderId, receiverId, serviceId, content, date) 
-         VALUES (:senderId, :receiverId, :serviceId, :content, :date)"
+            "INSERT INTO Message (senderId, receiverId, content, date) 
+         VALUES (:senderId, :receiverId, :content, :date)"
         );
 
-        $serviceId = '0';
 
         $stmt->bindParam(":senderId", $this->senderId);
         $stmt->bindParam(":receiverId", $this->receiverId);
-        $stmt->bindParam(":serviceId", $serviceId);
         $stmt->bindParam(":content", $this->content);
         $stmt->bindParam(":date", $this->date);
 
