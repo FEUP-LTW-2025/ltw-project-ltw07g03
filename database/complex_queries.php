@@ -64,7 +64,6 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
 
 function getFreelancersForServices(PDO $db, array $services): array
 {
-
     $serviceIds = [];
     foreach ($services as $service) {
         $serviceIds[] = $service->getId();
@@ -131,4 +130,19 @@ function getFreelancersForServices(PDO $db, array $services): array
     }
 
     return $servicesWithDetails;
+}
+
+function getPurchasesByFreelancerId(PDO $db, int $freelancerId): array
+{
+    $stmt = $db->prepare("
+        SELECT p.purchaseId, p.serviceId, p.date, p.status
+        FROM Purchase p
+        JOIN Service s ON p.serviceId = s.serviceId
+        WHERE s.freelancerId = :freelancerId
+    ");
+
+    $stmt->bindParam(':freelancerId', $freelancerId);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
 }

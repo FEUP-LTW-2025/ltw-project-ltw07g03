@@ -439,6 +439,35 @@ a {
     border-radius: 6px;
 }
 
+/* freelancer history */
+
+.services-history {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.service-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.service-image {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.service-info p {
+    margin: 0.3rem 0;
+}
+
 /* admin dashboard */
 
 .admin-status-bar {
