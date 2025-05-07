@@ -6,6 +6,8 @@ require_once(__DIR__ . '/../templates/user.tpl.php');
 require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../model/user.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
+require_once(__DIR__ . '/../model/message.class.php');
+
 
 $session = new Session();
 
@@ -23,12 +25,24 @@ if ($session->isLoggedIn()) {
     $isOwner = $sessionId === $user->getId();
 }
 
+$relatedUserIds = Message::getConversationUsersByUserId($db, $id);
+
+$conversationUsers = [];
+foreach ($relatedUserIds as $otherUserId) {
+    $otherUser = User::getUserById($db, $otherUserId);
+    if ($otherUser !== null) {
+        $conversationUsers[] = $otherUser;
+    }
+}
+
+
+
 drawHeader($user->getName(), $db, $session);
 if ($account !== null && $account->isAdmin() && $account->getId() !== $user->getId() && !$user->isAdmin()) {
     drawAdminStatusBar($user);
 }
 if ($isOwner) {
-    drawEditableUserProfile($user);
+    drawEditableUserProfile($user, $conversationUsers);
 } else {
     drawUserProfile($user);
 }

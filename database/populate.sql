@@ -24,173 +24,6 @@ VALUES ('admin', 'administrator', 'admin@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBde
        ('Grace Hopper', 'GraceH', 'grace@gmail.com', '$2y$10$5sl/h1piBAoz7vWJBdebhetb2hRwzg0MuOrgHASyvcbFN0f/OSxRG', 0,
         'https://picsum.photos/id/108/1024', 'inactive');
 
-UPDATE Service SET about = 
-'If you are looking for someone to build a custom dynamic PHP website with critical functionality and responsive design to support your business operations effectively, you are in the right place. I ensure that the final product is secure, easy to use, and scalable.
-
-What you''ll get:
-
-• Responsive and attractive frontend.
-• Fully dynamic and custom CMS backend.
-• No 3rd party frameworks.
-• Unlimited Revision.
-• Anytime customer support.
-• Quality and Security ensured.
-• 1 month free maintenance support (After delivery).' WHERE serviceId = 1;
-
-UPDATE Service SET about = 
-'Need a unique and professional logo? I offer minimalist logo design that helps you stand out. Modern, clean and tailored to your brand identity.
-
-What you''ll get:
-
-• Reliable and Quick communication.
-• Printable and HQ File size.
-• High-resolution files.
-• Multiple design concepts.
-• Fast delivery.
-• Minimalist Logo and Flat Logo Expert.' WHERE serviceId = 2;
-
-UPDATE Service SET about = 
-'Boost your search engine rankings with optimized content, improved metadata, and strategic keyword use. I will help you grow your online presence.
-
-What you''ll get:
-
-• Fixing 404 Errors and Dead Links.
-• Website Progressive Deeply Analysis.
-• Perfecting Keyword Research and Targeting.
-• Meta Tags Optimization with profitable keywords and Brand.
-• Keywords Density Optimization.
-• Performance Reports.' WHERE serviceId = 3;
-
-
-UPDATE Service SET about = 
-'Need high quality articles tailored to your audiance? I provide original content that is well-researched, engaging, and optimized for SEO.
-
-What you''ll get:
-
-• Internal and external links.
-• Original, plagiarism-free content.
-• Topic search.
-• SEO best practices.
-• Revisions included.' WHERE serviceId = 4;
-
-
-UPDATE Service SET about = 
-'Custom illustrations for your brand, book, or campaign. I offer vibrant, detailed visuals that match your vision and style.
-
-What you''ll get:
-
-• Unique Hand drawing illustration.
-• Awesome Illustration and professional work.
-• Source File on .ai, .eps, .pdf, .psd.
-• SEO best practices.
-• Get full ownership of the artwork.
-• Personal and commercial Use' WHERE serviceId = 5;
-
-UPDATE Service SET about = 
-'I will design a moder, responsive website that looks great on all devices. Clean code and attention to UX/UI garanteed.
-
-What you''ll get:
-
-• WordPress Installation and Setup.
-• E-commerce Functionality.
-• SEO, Speed, Security Optimization.
-• Complete Control panel.
-• Fully Responsive (Mobile+Tablet+Desktop).
-• Redesign Existing Site.' WHERE serviceId = 6;
-
-UPDATE Service SET about = 
-'Capture your best self with professional portrait photography. Ideal for business profiles, personal branding, or creative use.
-
-What you''ll get:
-
-• High-resolution images.
-• Editing and retouching.
-• Flexible packages.
-• Fast delivery.
-• Studio or on-location shoots.' WHERE serviceId = 7;
-
-UPDATE Service SET about = 
-'Transform your raw footage into professional content with effect, transitions, music, and more. Perfect for Youtube, events, and adds.
-
-What you''ll get:
-
-• Sync with audio/music.
-• Professional Editing.
-• Custom Transitions & Effects.
-• Attention to Detail.
-• Color correction and grading.
-• Fast Turnaround.' WHERE serviceId = 8;
-
-
-UPDATE Service SET about = 
-'I will help you grow your business through targeted social media marketing, ads, and strategic content planning.
-
-What you''ll get:
-
-• Scheduled Posts tailored to your audience.
-• Help with creating and managing ad campaigns.
-• Creation and Optimization of your Social Media Profiles.
-• Branded posts designed to promote your project and create leads.
-• Hashtag-Optimized Text+Image Posts created by a Content Writer.' WHERE serviceId = 9;
-
-UPDATE Service SET about = 
-'Polish your podcast  with professional editing, noise reduction, and mastering. Your voice, clearer and cleaner than ever.
-
-What you''ll get:
-
-• Professional editing & color grading.
-• Custom graphics & motion elements.
-• Clean, noise-free sound.
-• Smart content editing.
-• Engaging teaser/hook.
-• Professional mixing & mastering.' WHERE serviceId = 10;
-
-UPDATE Service SET about = 
-'Need a voice for your project? I will deliver clear, professional audio recordings for videos, ads and more.
-
-What you''ll get:
-
-• Commercial rights.
-• Different tones/styles available.
-• Fast delivery.
-• High-quality WAV/MP3.
-• Multiple revisions.' WHERE serviceId = 11;
-
-UPDATE Service SET about = 
-'End-to-end development of web applications using the latest tech stack. I build scalable, secure, and well-documented systems.
-
-What you''ll get:
-
-• Front-end and back-end development.
-• Complex Problem Solving.
-• Custom Web Applications.
-• Data Security & Performance Optimization.
-• RESTful APIs: Development & seamless integration.
-• Database integration.' WHERE serviceId = 12;
-
-UPDATE Service SET about = 
-'I will create a sleek, printable business card that captures your brand identity and makes a lasting impression.
-
-What you''ll get:
-
-• High-quality business card and logo.
-• Compliment Slip.
-• Source File.
-• Vertical and horizontal design.
-• Free QR Code (If you need).
-• Envelop design.' WHERE serviceId = 13;
-
-UPDATE Service SET about = 
-'Launch successful email marketing campaigns with custom designs and proven strategy to engage your audiance and increase conversions.
-
-What you''ll get:
-
-• Custom HTML email template.
-• A/B testing strategy.
-• Analytics and reporting.
-• Responsive design.
-• Mailchimp or platform setup.' WHERE serviceId = 14;
-
 INSERT INTO ServiceCategory (name, icon)
 VALUES ('Programming & Tech', '🖥️'),
        ('Graphics and Design', '🎨'),
@@ -217,6 +50,201 @@ VALUES (2, 1, 'Dynamic Webpages with PHP', 150, 2, 'I will build dynamic PHP-bas
        (4, 2, 'Business Card Design', 45, 1, 'Custom business card with print-ready files.', 'active'),
        (5, 3, 'Email Marketing Campaigns', 130, 2, 'Reach your clients with beautiful emails and strategy.', 'active');
 
+UPDATE Service
+SET about =
+        'If you are looking for someone to build a custom dynamic PHP website with critical functionality and responsive design to support your business operations effectively, you are in the right place. I ensure that the final product is secure, easy to use, and scalable.
+
+        What you''ll get:
+
+        • Responsive and attractive frontend.
+        • Fully dynamic and custom CMS backend.
+        • No 3rd party frameworks.
+        • Unlimited Revision.
+        • Anytime customer support.
+        • Quality and Security ensured.
+        • 1 month free maintenance support (After delivery).'
+WHERE serviceId = 1;
+
+UPDATE Service
+SET about =
+        'Need a unique and professional logo? I offer minimalist logo design that helps you stand out. Modern, clean and tailored to your brand identity.
+
+        What you''ll get:
+
+        • Reliable and Quick communication.
+        • Printable and HQ File size.
+        • High-resolution files.
+        • Multiple design concepts.
+        • Fast delivery.
+        • Minimalist Logo and Flat Logo Expert.'
+WHERE serviceId = 2;
+
+UPDATE Service
+SET about =
+        'Boost your search engine rankings with optimized content, improved metadata, and strategic keyword use. I will help you grow your online presence.
+
+        What you''ll get:
+
+        • Fixing 404 Errors and Dead Links.
+        • Website Progressive Deeply Analysis.
+        • Perfecting Keyword Research and Targeting.
+        • Meta Tags Optimization with profitable keywords and Brand.
+        • Keywords Density Optimization.
+        • Performance Reports.'
+WHERE serviceId = 3;
+
+
+UPDATE Service
+SET about =
+        'Need high quality articles tailored to your audiance? I provide original content that is well-researched, engaging, and optimized for SEO.
+
+        What you''ll get:
+
+        • Internal and external links.
+        • Original, plagiarism-free content.
+        • Topic search.
+        • SEO best practices.
+        • Revisions included.'
+WHERE serviceId = 4;
+
+
+UPDATE Service
+SET about =
+        'Custom illustrations for your brand, book, or campaign. I offer vibrant, detailed visuals that match your vision and style.
+
+        What you''ll get:
+
+        • Unique Hand drawing illustration.
+        • Awesome Illustration and professional work.
+        • Source File on .ai, .eps, .pdf, .psd.
+        • SEO best practices.
+        • Get full ownership of the artwork.
+        • Personal and commercial Use'
+WHERE serviceId = 5;
+
+UPDATE Service
+SET about =
+        'I will design a moder, responsive website that looks great on all devices. Clean code and attention to UX/UI garanteed.
+
+        What you''ll get:
+
+        • WordPress Installation and Setup.
+        • E-commerce Functionality.
+        • SEO, Speed, Security Optimization.
+        • Complete Control panel.
+        • Fully Responsive (Mobile+Tablet+Desktop).
+        • Redesign Existing Site.'
+WHERE serviceId = 6;
+
+UPDATE Service
+SET about =
+        'Capture your best self with professional portrait photography. Ideal for business profiles, personal branding, or creative use.
+
+        What you''ll get:
+
+        • High-resolution images.
+        • Editing and retouching.
+        • Flexible packages.
+        • Fast delivery.
+        • Studio or on-location shoots.'
+WHERE serviceId = 7;
+
+UPDATE Service
+SET about =
+        'Transform your raw footage into professional content with effect, transitions, music, and more. Perfect for Youtube, events, and adds.
+
+        What you''ll get:
+
+        • Sync with audio/music.
+        • Professional Editing.
+        • Custom Transitions & Effects.
+        • Attention to Detail.
+        • Color correction and grading.
+        • Fast Turnaround.'
+WHERE serviceId = 8;
+
+
+UPDATE Service
+SET about =
+        'I will help you grow your business through targeted social media marketing, ads, and strategic content planning.
+
+        What you''ll get:
+
+        • Scheduled Posts tailored to your audience.
+        • Help with creating and managing ad campaigns.
+        • Creation and Optimization of your Social Media Profiles.
+        • Branded posts designed to promote your project and create leads.
+        • Hashtag-Optimized Text+Image Posts created by a Content Writer.'
+WHERE serviceId = 9;
+
+UPDATE Service
+SET about =
+        'Polish your podcast  with professional editing, noise reduction, and mastering. Your voice, clearer and cleaner than ever.
+
+        What you''ll get:
+
+        • Professional editing & color grading.
+        • Custom graphics & motion elements.
+        • Clean, noise-free sound.
+        • Smart content editing.
+        • Engaging teaser/hook.
+        • Professional mixing & mastering.'
+WHERE serviceId = 10;
+
+UPDATE Service
+SET about =
+        'Need a voice for your project? I will deliver clear, professional audio recordings for videos, ads and more.
+
+        What you''ll get:
+
+        • Commercial rights.
+        • Different tones/styles available.
+        • Fast delivery.
+        • High-quality WAV/MP3.
+        • Multiple revisions.'
+WHERE serviceId = 11;
+
+UPDATE Service
+SET about =
+        'End-to-end development of web applications using the latest tech stack. I build scalable, secure, and well-documented systems.
+
+        What you''ll get:
+
+        • Front-end and back-end development.
+        • Complex Problem Solving.
+        • Custom Web Applications.
+        • Data Security & Performance Optimization.
+        • RESTful APIs: Development & seamless integration.
+        • Database integration.'
+WHERE serviceId = 12;
+
+UPDATE Service
+SET about =
+        'I will create a sleek, printable business card that captures your brand identity and makes a lasting impression.
+
+        What you''ll get:
+
+        • High-quality business card and logo.
+        • Compliment Slip.
+        • Source File.
+        • Vertical and horizontal design.
+        • Free QR Code (If you need).
+        • Envelop design.'
+WHERE serviceId = 13;
+
+UPDATE Service
+SET about =
+        'Launch successful email marketing campaigns with custom designs and proven strategy to engage your audiance and increase conversions.
+
+        What you''ll get:
+
+        • Custom HTML email template.
+        • A/B testing strategy.
+        • Analytics and reporting.
+        • Responsive design.
+        • Mailchimp or platform setup.'
+WHERE serviceId = 14;
+
 INSERT INTO ServiceMedia (serviceId, mediaURL)
 VALUES (1, 'https://picsum.photos/id/1011/1024'),
        (2, 'https://picsum.photos/id/1012/1024'),
@@ -234,56 +262,56 @@ VALUES (1, 'https://picsum.photos/id/1011/1024'),
        (14, 'https://picsum.photos/id/1024/1024');
 
 INSERT INTO Purchase (serviceId, clientId, date, status)
-VALUES (1, 3, '2025-03-31 12:34:56', 'pending'),
-       (2, 5, '2025-03-31 13:00:00', 'closed'),
-       (3, 3, '2025-03-31 13:30:00', 'pending'),
-       (4, 4, '2025-03-31 14:00:00', 'closed'),
-       (5, 4, '2025-04-01 10:00:00', 'pending'),
-       (6, 3, '2025-04-01 10:15:00', 'closed'),
-       (7, 8, '2025-04-01 10:30:00', 'pending'),
-       (8, 2, '2025-04-01 10:45:00', 'closed'),
-       (9, 7, '2025-04-01 11:00:00', 'pending'),
-       (10, 6, '2025-04-01 11:15:00', 'closed'),
-       (11, 9, '2025-04-01 11:30:00', 'pending'),
-       (12, 4, '2025-04-01 11:45:00', 'closed'),
-       (13, 1, '2025-04-01 12:00:00', 'pending'),
-       (14, 10, '2025-04-01 12:15:00', 'closed'),
-       (4, 8, '2025-04-01 12:30:00', 'pending');
+VALUES (1, 3, 1746641342, 'pending'),
+       (2, 5, 1746641343, 'closed'),
+       (3, 3, 1746641344, 'pending'),
+       (4, 4, 1746641345, 'closed'),
+       (5, 4, 1746641346, 'pending'),
+       (6, 3, 1746641347, 'closed'),
+       (7, 8, 1746641348, 'pending'),
+       (8, 2, 1746641349, 'closed'),
+       (9, 7, 1746641350, 'pending'),
+       (10, 6, 1746641351, 'closed'),
+       (11, 9, 1746641352, 'pending'),
+       (12, 4, 1746641352, 'closed'),
+       (13, 1, 1746641353, 'pending'),
+       (14, 10, 1746641354, 'closed'),
+       (4, 8, 1746641355, 'pending');
 
-INSERT INTO Message (senderId, receiverId, serviceId, content, date)
-VALUES (3, 2, 1, 'Please give me a discount.', '2025-03-31 12:35:00'),
-       (2, 3, 1, 'No.', '2025-03-31 12:35:30'),
-       (5, 4, 2, 'I love your designs!', '2025-03-31 13:05:00'),
-       (4, 5, 2, 'Thank you!', '2025-03-31 13:05:30'),
-       (3, 5, 3, 'Can you optimize my site?', '2025-03-31 13:35:00'),
-       (5, 3, 3, 'Sure, let’s discuss details.', '2025-03-31 13:35:30'),
-       (4, 2, 4, 'Need an article on tech trends.', '2025-03-31 14:05:00'),
-       (2, 4, 4, 'I can help.', '2025-03-31 14:05:30'),
-       (4, 6, 5, 'Can you create a custom illustration?', '2025-04-01 10:05:00'),
-       (6, 4, 5, 'Sure, I will send you the draft soon.', '2025-04-01 10:06:00'),
-       (3, 7, 6, 'I need a website redesign.', '2025-04-01 10:20:00'),
-       (7, 3, 6, 'I have some ideas; let me know your requirements.', '2025-04-01 10:22:00'),
-       (8, 9, 7, 'Interested in your photography service.', '2025-04-01 10:35:00'),
-       (9, 8, 7, 'I will schedule a session soon.', '2025-04-01 10:36:00'),
-       (2, 10, 8, 'Looking for video editing, can you help?', '2025-04-01 10:50:00'),
-       (10, 2, 8, 'Yes, I can edit your video professionally.', '2025-04-01 10:52:00'),
-       (5, 7, 9, 'Do you offer social media marketing packages?', '2025-04-01 11:05:00'),
-       (7, 5, 9, 'Yes, let me send you the details.', '2025-04-01 11:06:00');
+INSERT INTO Message (senderId, receiverId, content, date)
+VALUES (3, 2, 'Please give me a discount.', 1746641342),
+       (2, 3, 'No.', 1746642342),
+       (5, 4, 'I love your designs!', 1746641342),
+       (4, 5, 'Thank you!', 1746642342),
+       (3, 5, 'Can you optimize my site?', 1746641342),
+       (5, 3, 'Sure, let’s discuss details.', 1746642342),
+       (4, 2, 'Need an article on tech trends.', 1746641342),
+       (2, 4, 'I can help.', 1746642342),
+       (4, 6, 'Can you create a custom illustration?', 1746641342),
+       (6, 4, 'Sure, I will send you the draft soon.', 1746642342),
+       (3, 7, 'I need a website redesign.', 1746641342),
+       (7, 3, 'I have some ideas; let me know your requirements.', 1746642342),
+       (8, 9, 'Interested in your photography service.', 1746641342),
+       (9, 8, 'I will schedule a session soon.', 1746642342),
+       (2, 10, 'Looking for video editing, can you help?', 1746641342),
+       (10, 2, 'Yes, I can edit your video professionally.', 1746642342),
+       (5, 7, 'Do you offer social media marketing packages?', 1746641342),
+       (7, 5, 'Yes, let me send you the details.', 1746642342);
 
 INSERT INTO Feedback (purchaseId, rating, review, date)
-VALUES (1, 2.1, 'Very good', '2025-03-31 12:40:00'),
-       (2, 4.5, 'Excellent work', '2025-03-31 13:10:00'),
-       (3, 3.0, 'Satisfactory', '2025-03-31 13:40:00'),
-       (4, 4.0, 'Great job', '2025-03-31 14:10:00'),
-       (5, 4.2, 'Very creative illustrations!', '2025-04-01 10:10:00'),
-       (6, 3.8, 'Website design met my expectations.', '2025-04-01 10:25:00'),
-       (7, 5.0, 'Amazing portrait photography!', '2025-04-01 10:40:00'),
-       (8, 4.7, 'Video editing was top-notch.', '2025-04-01 10:55:00'),
-       (9, 3.5, 'Social media marketing showed good results.', '2025-04-01 11:10:00'),
-       (9, 4.0, 'Service was professional and prompt.', '2025-04-01 11:20:00'),
-       (10, 4.0, 'Podcast editing was clear and concise.', '2025-04-01 11:20:00'),
-       (11, 4.3, 'Voice over was professional and engaging.', '2025-04-01 11:30:00'),
-       (12, 4.8, 'Full stack development exceeded expectations.', '2025-04-01 11:40:00'),
-       (13, 3.9, 'Business card design was neat and creative.', '2025-04-01 11:50:00'),
-       (14, 4.2, 'The email campaign delivered excellent ROI.', '2025-04-01 12:00:00'),
-       (15, 4.5, 'The article writing provided insightful content.', '2025-04-01 12:10:00');
+VALUES (1, 2.1, 'Very good', 1746641342),
+       (2, 4.5, 'Excellent work', 1746641342),
+       (3, 3.0, 'Satisfactory', 1746641342),
+       (4, 4.0, 'Great job', 1746641342),
+       (5, 4.2, 'Very creative illustrations!', 1746641342),
+       (6, 3.8, 'Website design met my expectations.', 1746641342),
+       (7, 5.0, 'Amazing portrait photography!', 1746641342),
+       (8, 4.7, 'Video editing was top-notch.', 1746641342),
+       (9, 3.5, 'Social media marketing showed good results.', 1746641342),
+       (9, 4.0, 'Service was professional and prompt.', 1746641342),
+       (10, 4.0, 'Podcast editing was clear and concise.', 1746641342),
+       (11, 4.3, 'Voice over was professional and engaging.', 1746641342),
+       (12, 4.8, 'Full stack development exceeded expectations.', 1746641342),
+       (13, 3.9, 'Business card design was neat and creative.', 1746641342),
+       (14, 4.2, 'The email campaign delivered excellent ROI.', 1746641342),
+       (15, 4.5, 'The article writing provided insightful content.', 1746641342);

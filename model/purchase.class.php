@@ -56,7 +56,7 @@ class Purchase
             intval($data['purchaseId']),
             intval($data['serviceId']),
             intval($data['clientId']),
-            strtotime($data['date']),
+            $data['date'],
             $data['status']
         );
     }
@@ -74,7 +74,7 @@ class Purchase
                 intval($data['purchaseId']),
                 intval($data['serviceId']),
                 intval($data['clientId']),
-                is_numeric($data['date']) ? intval($data['date']) : strtotime($data['date']),
+                is_numeric($data['date']) ? intval($data['date']) : $data['date'],
                 $data['status']
             );
         }

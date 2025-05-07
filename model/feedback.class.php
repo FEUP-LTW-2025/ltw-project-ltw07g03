@@ -21,38 +21,6 @@ class Feedback
         $this->date = $date;
     }
 
-    public function getFeedbackId(): int
-    {
-        return $this->feedbackId;
-    }
-
-    public function getPurchaseId(): int
-    {
-        return $this->purchaseId;
-    }
-
-    public function getRating(): float
-    {
-        return $this->rating;
-    }
-
-    public function getReview(): string
-    {
-        return $this->review;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
-    }
-
-    public function getAuthor(PDO $db):User
-    {
-        $purchase = Purchase::getPurchaseById($db, $this->purchaseId);
-        $author = User::getUserById($db, $purchase->getClientId());
-        return $author;
-    }
-
     public static function getFeedbackById(PDO $db, int $id): ?Feedback
     {
         $stmt = $db->prepare("SELECT * FROM Feedback WHERE feedbackId = :id");
@@ -67,17 +35,14 @@ class Feedback
             intval($data['purchaseId']),
             floatval($data['rating']),
             $data['review'],
-            strtotime($data['date'])
+            $data['date']
         );
     }
 
     public static function getFeedback_AuthorByServiceId(PDO $db, int $service_id): ?array
     {
 
-        $stmt = $db->prepare("SELECT F.feedbackId, F.purchaseId, F.rating, F.review, F.date AS feedback_date
-                            FROM Feedback F 
-                            JOIN Purchase P ON P.purchaseId = F.purchaseId  
-                            WHERE P.serviceId = :service_id");
+        $stmt = $db->prepare("SELECT * FROM Feedback F JOIN Purchase P ON P.purchaseId = F.purchaseId  WHERE P.serviceId = :service_id");
         $stmt->bindParam(":service_id", $service_id, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -88,13 +53,14 @@ class Feedback
             $purchaseId = intval($data['purchaseId']);
             $rating = floatval($data['rating']);
             $review = $data['review'];
+            $date = $data['date'];
 
             $feedback = new Feedback(
                 $feedbackId,
                 $purchaseId,
                 $rating,
                 $review,
-                is_numeric($data['feedback_date']) ? intval($data['feedback_date']) : strtotime($data['feedback_date']),
+                $date
             );
             $author = $feedback->getAuthor($db);
 
@@ -105,6 +71,22 @@ class Feedback
         return $feedbacks;
     }
 
+    public function getAuthor(PDO $db): User
+    {
+        $purchase = Purchase::getPurchaseById($db, $this->purchaseId);
+        $author = User::getUserById($db, $purchase->getClientId());
+        return $author;
+    }
+
+    public function getFeedbackId(): int
+    {
+        return $this->feedbackId;
+    }
+
+    public function getPurchaseId(): int
+    {
+        return $this->purchaseId;
+    }
 
     public function setPurchaseId(int $purchaseId, PDO $db): void
     {
@@ -113,6 +95,11 @@ class Feedback
         $stmt->bindParam(":feedbackId", $this->feedbackId);
         $stmt->execute();
         $this->purchaseId = $purchaseId;
+    }
+
+    public function getRating(): float
+    {
+        return $this->rating;
     }
 
     public function setRating(float $rating, PDO $db): void
@@ -124,6 +111,11 @@ class Feedback
         $this->rating = $rating;
     }
 
+    public function getReview(): string
+    {
+        return $this->review;
+    }
+
     public function setReview(string $review, PDO $db): void
     {
         $stmt = $db->prepare("UPDATE Feedback SET review = :review WHERE feedbackId = :feedbackId");
@@ -131,6 +123,11 @@ class Feedback
         $stmt->bindParam(":feedbackId", $this->feedbackId);
         $stmt->execute();
         $this->review = $review;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
     }
 
     public function setDate(int $date, PDO $db): void

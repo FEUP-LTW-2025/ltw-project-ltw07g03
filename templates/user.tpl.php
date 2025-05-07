@@ -26,7 +26,7 @@ function drawUserProfile(User $user): void
     </section>
 <?php } ?>
 
-<?php function drawEditableUserProfile(User $user): void
+<?php function drawEditableUserProfile(User $user, $conversationUsers): void
 { ?>
     <section class="section profile-section">
         <a href="/pages/purchase_history.php?id= <?= $user->getId() ?>">Check your purchase history</a>
@@ -67,6 +67,28 @@ function drawUserProfile(User $user): void
                 <button type="submit" class="btn-primary">Create new Service</button>
             </form>
         </div>
+
+        <div class="messages-overview">
+            <h3>Your Conversations</h3>
+            <ul>
+            <?php if (empty($conversationUsers)): ?>
+                <li>No conversations yet.</li>
+            <?php else: ?>
+                    <?php foreach ($conversationUsers as $otherUser): ?>
+                        <li class="conversation-entry">
+                        <a href="/pages/chat.php?user_id=<?= $otherUser->getId() ?>">
+                                <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>" 
+                                    alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>" 
+                                    class="profile-picture-small">
+                                <span><?= htmlspecialchars($otherUser->getName()) ?></span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </ul>
+        </div>
+
+
     </section>
 <?php } ?>
 

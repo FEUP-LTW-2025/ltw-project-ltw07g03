@@ -19,7 +19,7 @@ function drawServicesHistory(PDO $db, array $purchases): void
                         <p><strong>Title:</strong> <?= $service->getTitle() ?></p>
                         <p><strong>Price:</strong> €<?= number_format($service->getPrice(), 2) ?></p>
                         <p><strong>Status:</strong> <?= $purchase['status'] ?></p>
-                        <p><strong>Date:</strong> <?= gmdate("Y-m-d | H:i:s", strtotime($purchase['date'])) ?></p>
+                        <p><strong>Date:</strong> <?= gmdate("Y-m-d | H:i:s", $purchase['date']) ?></p>
 
                         <?php if ($purchase['status'] === 'pending'): ?>
                             <form method="post" action="/actions/action_close_purchase.php">
