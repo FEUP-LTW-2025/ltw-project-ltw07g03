@@ -74,7 +74,10 @@ class Feedback
     public static function getFeedback_AuthorByServiceId(PDO $db, int $service_id): ?array
     {
 
-        $stmt = $db->prepare("SELECT * FROM Feedback F JOIN Purchase P ON P.purchaseId = F.purchaseId  WHERE P.serviceId = :service_id");
+        $stmt = $db->prepare("SELECT F.feedbackId, F.purchaseId, F.rating, F.review, F.date AS feedback_date
+                            FROM Feedback F 
+                            JOIN Purchase P ON P.purchaseId = F.purchaseId  
+                            WHERE P.serviceId = :service_id");
         $stmt->bindParam(":service_id", $service_id, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -85,14 +88,13 @@ class Feedback
             $purchaseId = intval($data['purchaseId']);
             $rating = floatval($data['rating']);
             $review = $data['review'];
-            $date = strtotime($data['date']);
 
             $feedback = new Feedback(
                 $feedbackId,
                 $purchaseId,
                 $rating,
                 $review,
-                $date
+                is_numeric($data['feedback_date']) ? intval($data['feedback_date']) : strtotime($data['feedback_date']),
             );
             $author = $feedback->getAuthor($db);
 
