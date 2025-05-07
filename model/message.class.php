@@ -6,48 +6,16 @@ class Message
     private int $id;
     private int $senderId;
     private int $receiverId;
-    //private int $serviceId;
     private string $content;
     private int $date;
 
-    public function __construct(int $id, int $senderId, int $receiverId, /*int $serviceId,*/ string $content, int $date)
+    public function __construct(int $id, int $senderId, int $receiverId, string $content, int $date)
     {
         $this->id = $id;
         $this->senderId = $senderId;
         $this->receiverId = $receiverId;
-        //$this->serviceId = $serviceId;
         $this->content = $content;
         $this->date = $date;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getSenderId(): int
-    {
-        return $this->senderId;
-    }
-
-    public function getReceiverId(): int
-    {
-        return $this->receiverId;
-    }
-
-    /*public function getServiceId(): int
-    {
-        return $this->serviceId;
-    }*/
-
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    public function getDate(): int
-    {
-        return $this->date;
     }
 
     public static function getMessageById(PDO $db, int $id): ?Message
@@ -63,13 +31,13 @@ class Message
             intval($data['messageId']),
             intval($data['senderId']),
             intval($data['receiverId']),
-            //intval($data['serviceId']),
             $data['content'],
             strtotime($data['date'])
         );
     }
 
-    public static function getConversationUsersByUserId(PDO $db, int $userId): array {
+    public static function getConversationUsersByUserId(PDO $db, int $userId): array
+    {
         $stmt = $db->prepare("
             SELECT DISTINCT 
                 CASE 
@@ -81,37 +49,37 @@ class Message
         ");
         $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
         $stmt->execute();
-    
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return array_map(fn($row) => (int) $row['other_user_id'], $rows);
-    }
-    
 
-    public static function getMessagesByParticipantsId(PDO $db, int $user1_id, int $user2_id): array {
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($row) => (int)$row['other_user_id'], $rows);
+    }
+
+    public static function getMessagesByParticipantsId(PDO $db, int $user1_id, int $user2_id): array
+    {
         $stmt = $db->prepare("SELECT * FROM Message WHERE (senderId = :user1_id AND receiverId = :user2_id) OR (senderId = :user2_id AND receiverId = :user1_id) ORDER BY date ASC");
-        
+
         $stmt->bindParam(':user1_id', $user1_id, PDO::PARAM_INT);
         $stmt->bindParam(':user2_id', $user2_id, PDO::PARAM_INT);
         $stmt->execute();
-        
+
         $messagesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
         $messages = [];
         foreach ($messagesData as $data) {
             $messages[] = new Message(
                 intval($data['messageId']),
                 intval($data['senderId']),
                 intval($data['receiverId']),
-                //intval($data['serviceId']),
                 $data['content'],
                 is_numeric($data['date']) ? intval($data['date']) : strtotime($data['date']),
             );
         }
-    
+
         return $messages;
     }
 
-    public static function getMessagesSince(PDO $db, int $user1, int $user2, int $since): array {
+    public static function getMessagesSince(PDO $db, int $user1, int $user2, int $since): array
+    {
         $stmt = $db->prepare("
             SELECT messageId, senderId, receiverId, content, date
             FROM Message
@@ -126,22 +94,26 @@ class Message
         $stmt->bindValue(':user2', $user2, PDO::PARAM_INT);
         $stmt->bindValue(':since', $since, PDO::PARAM_INT);
         $stmt->execute();
-    
+
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return array_map(fn($row) => new Message(
             (int)$row['messageId'],
             (int)$row['senderId'],
             (int)$row['receiverId'],
-            //0,
             $row['content'],
             (int)$row['date']
         ), $rows);
     }
-    
 
-    
-    
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
+    public function getSenderId(): int
+    {
+        return $this->senderId;
+    }
 
     public function setSenderId(int $senderId, PDO $db): void
     {
@@ -150,6 +122,11 @@ class Message
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
         $this->senderId = $senderId;
+    }
+
+    public function getReceiverId(): int
+    {
+        return $this->receiverId;
     }
 
     public function setReceiverId(int $receiverId, PDO $db): void
@@ -161,14 +138,10 @@ class Message
         $this->receiverId = $receiverId;
     }
 
-    /*public function setServiceId(int $serviceId, PDO $db): void
+    public function getContent(): string
     {
-        $stmt = $db->prepare("UPDATE Message SET serviceId = :serviceId WHERE messageId = :id");
-        $stmt->bindParam(":serviceId", $serviceId);
-        $stmt->bindParam(":id", $this->id);
-        $stmt->execute();
-        $this->serviceId = $serviceId;
-    }*/
+        return $this->content;
+    }
 
     public function setContent(string $content, PDO $db): void
     {
@@ -177,6 +150,11 @@ class Message
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
         $this->content = $content;
+    }
+
+    public function getDate(): int
+    {
+        return $this->date;
     }
 
     public function setDate(int $date, PDO $db): void

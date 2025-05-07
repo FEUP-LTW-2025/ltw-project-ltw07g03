@@ -60,7 +60,6 @@ CREATE TABLE Service
     CONSTRAINT Service_price_NN CHECK (price IS NOT NULL),
     CONSTRAINT Service_deliveryTime_NN CHECK (deliveryTime IS NOT NULL),
     CONSTRAINT Service_description_NN CHECK (description IS NOT NULL),
-    CONSTRAINT Service_about_NN CHECK (about IS NOT NULL),
     CONSTRAINT Service_status_NN CHECK (status IS NOT NULL),
     CONSTRAINT Service_rating_NN CHECK (rating IS NOT NULL),
     CONSTRAINT Service_freelancer_FK FOREIGN KEY (freelancerId) REFERENCES User (userId) ON UPDATE CASCADE,
@@ -105,19 +104,16 @@ CREATE TABLE Message
     messageId  INTEGER,
     senderId   INTEGER,
     receiverId INTEGER,
-    serviceId  INTEGER,
     content    TEXT,
     date       DATETIME,
 
     CONSTRAINT Message_PK PRIMARY KEY (messageId),
     CONSTRAINT Message_senderId_NN CHECK (senderId IS NOT NULL),
     CONSTRAINT Message_receiverId_NN CHECK (receiverId IS NOT NULL),
-    CONSTRAINT Message_serviceId_NN CHECK (serviceId IS NOT NULL),
     CONSTRAINT Message_content_NN CHECK (content IS NOT NULL),
     CONSTRAINT Message_date_NN CHECK (date IS NOT NULL),
     CONSTRAINT Message_sender_FK FOREIGN KEY (senderId) REFERENCES User (userId) ON UPDATE CASCADE,
-    CONSTRAINT Message_receiver_FK FOREIGN KEY (receiverId) REFERENCES User (userId) ON UPDATE CASCADE,
-    CONSTRAINT Message_service_FK FOREIGN KEY (serviceId) REFERENCES Service (serviceId) ON UPDATE CASCADE
+    CONSTRAINT Message_receiver_FK FOREIGN KEY (receiverId) REFERENCES User (userId) ON UPDATE CASCADE
 );
 
 CREATE TABLE Feedback
