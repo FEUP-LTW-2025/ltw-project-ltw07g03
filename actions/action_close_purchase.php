@@ -13,5 +13,5 @@ $freelancerId = intval($_POST["freelancerId"]);
 $purchase = Purchase::getPurchaseById($db, $purchaseId);
 $purchase->setStatus("closed", $db);
 
-header("Location: /pages/services_history.php?freelancerId=$freelancerId");
+header("Location: /pages/services_history.php?id= " . $freelancerId);
 exit();
