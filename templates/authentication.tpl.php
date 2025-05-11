@@ -1,5 +1,6 @@
 <?php function drawLoginForm(): void
 { ?>
+    <h2 class="section-title">Login</h2>
     <form action="/actions/action_login.php" method="POST" class="login">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="username">
@@ -13,6 +14,7 @@
 
 <?php function drawRegisterForm(): void
 { ?>
+    <h2 class="section-title">Register</h2>
     <form action="/actions/action_register.php" method="POST" enctype="multipart/form-data" class="login">
 
         <label for="name">Name</label>

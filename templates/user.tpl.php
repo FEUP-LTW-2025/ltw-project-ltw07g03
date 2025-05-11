@@ -7,8 +7,7 @@ function drawUserProfile(User $user): void
 { ?>
     <section class="section profile-section">
         <div class="profile-header">
-            <img src="<?= $user->getProfilePicture() ?>" alt="Profile Picture"
-                 class="profile-picture-large">
+            <img src="<?= $user->getProfilePicture() ?>" alt="Profile Picture" class="profile-picture-large">
             <h2><?= $user->getName() ?></h2>
             <p class="profile-username">@<?= $user->getUsername() ?></p>
         </div>
@@ -29,12 +28,9 @@ function drawUserProfile(User $user): void
 <?php function drawEditableUserProfile(User $user, $conversationUsers): void
 { ?>
     <section class="section profile-section">
-        <a href="/pages/purchase_history.php?id= <?= $user->getId() ?>">Check your purchase history</a>
-        <a href="/pages/services_history.php?id= <?= $user->getId() ?>">Check your services history</a>
         <div class="container">
-            <h2>Edit Your Profile</h2>
-            <form action="/actions/action_edit_profile.php" method="post" class="profile-card"
-                  enctype="multipart/form-data">
+            <h2 class="section-title">Edit Your Profile</h2>
+            <form action="/actions/action_edit_profile.php" method="post" class="profile-card" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $user->getId() ?>">
                 <div class="form-group center">
                     <img src="<?= $user->getProfilePicture() ?>" class="profile-picture-large">
@@ -56,39 +52,41 @@ function drawUserProfile(User $user): void
                     <label for="status">Status</label>
                     <select name="status" id="status">
                         <option value="active" <?= $user->getStatus() === 'active' ? 'selected' : '' ?>>Active</option>
-                        <option value="inactive" <?= $user->getStatus() === 'inactive' ? 'selected' : '' ?>>Inactive
-                        </option>
+                        <option value="inactive" <?= $user->getStatus() === 'inactive' ? 'selected' : '' ?>>Inactive</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn-secondary">Save Changes</button>
             </form>
-            <form action="/pages/service_creation.php" method="POST">
-                <input type="hidden" name="userId" value="<?= $user->getId() ?>">
-                <button type="submit" class="btn-primary">Create new Service</button>
-            </form>
+
+            <div class="action-buttons">
+                <form action="/pages/service_creation.php" method="POST">
+                    <input type="hidden" name="userId" value="<?= $user->getId() ?>">
+                    <button type="submit" class="btn-outline">Create new Service</button>
+                </form>
+                <a href="/pages/services_history.php?id=<?= $user->getId() ?>" class="btn-outline">Check your services history</a>
+                <a href="/pages/purchase_history.php?id=<?= $user->getId() ?>" class="btn-outline">Check your purchase history</a> 
+            </div>
+
+            <div class="messages-overview">
+                <h3>Your Conversations</h3>
+                <ul>
+                    <?php if (empty($conversationUsers)): ?>
+                        <li>No conversations yet.</li>
+                    <?php else: ?>
+                        <?php foreach ($conversationUsers as $otherUser): ?>
+                            <li class="conversation-entry">
+                                <a href="/pages/chat.php?user_id=<?= $otherUser->getId() ?>">
+                                    <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>" 
+                                        alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>" 
+                                        class="profile-picture-small">
+                                    <span><?= htmlspecialchars($otherUser->getName()) ?></span>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
-
-        <div class="messages-overview">
-            <h3>Your Conversations</h3>
-            <ul>
-            <?php if (empty($conversationUsers)): ?>
-                <li>No conversations yet.</li>
-            <?php else: ?>
-                    <?php foreach ($conversationUsers as $otherUser): ?>
-                        <li class="conversation-entry">
-                        <a href="/pages/chat.php?user_id=<?= $otherUser->getId() ?>">
-                                <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>" 
-                                    alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>" 
-                                    class="profile-picture-small">
-                                <span><?= htmlspecialchars($otherUser->getName()) ?></span>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </ul>
-        </div>
-
-
     </section>
 <?php } ?>
 
@@ -109,29 +107,35 @@ function drawAdminStatusBar(User $user): void
     </div>
 <?php } ?>
 
-<?php function drawUserServices(User $user, array $services): void
-{ ?>
-    <section class="user-services">
-        <h3><?= $user->getName() ?>'s services</h3>
-        <?php foreach ($services as $service): ?>
-            <div class="service-card">
-                <div class="service-image">
-                    <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
-                        <img
-                                src="<?= $service->getImages()[0] ?? '/assets/images/default.jpeg' ?>"
-                                alt="Service Image"
-                        > </a>
-                </div>
-                <div class="service-info">
-                    <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
-                        <h3><?= $service->getTitle() ?></h3>
-                    </a>
-                    <p><strong>Price:</strong> <?= $service->getPrice() ?> €</p>
-                    <p><strong>Delivery Time:</strong> <?= $service->getDeliveryTime() ?> days</p>
-                    <p><strong>Rating:</strong> <?= $service->getRating() ?> / 5</p>
-                    <p class="description"><?= $service->getDescription() ?></p>
-                </div>
+<?php function drawUserServices(User $user, array $services): void 
+{ 
+    if (empty($services)) {
+    echo '<!-- No services to display -->';
+    return;
+    }
+?>
+    <section class="user-services-section">
+        <div class="category-container">     
+            <h3 class="section-category-title"><?= htmlspecialchars($user->getName()) ?>'s services</h3>
+            <div class="service-grid">
+                <?php foreach ($services as $service): ?>
+                    <article class="service-display">
+                        <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
+                            <img src="<?= htmlspecialchars($service->getImages()[0] ?? '/assets/images/default.jpeg') ?>" 
+                                alt="Service Image" class="service-image">
+                        </a>
+                        <div class="service-info">
+                            <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
+                                <h3 class="service-title"><?= htmlspecialchars($service->getTitle()) ?></h3>
+                            </a>
+                            <p class="service-price"><?= htmlspecialchars(strval($service->getPrice())) ?> €</p>
+                            <p class="service-delivery">Delivery: <?= htmlspecialchars(strval($service->getDeliveryTime())) ?> days</p>
+                            <p class="service-rating">⭐ <?= htmlspecialchars(strval($service->getRating())) ?> / 5</p>
+                            <p class="service-description"><?= htmlspecialchars($service->getDescription()) ?></p> 
+                        </div>   
+                </article>
+                <?php endforeach; ?>
             </div>
-        <?php endforeach; ?>
+        </div>
     </section>
 <?php } ?>

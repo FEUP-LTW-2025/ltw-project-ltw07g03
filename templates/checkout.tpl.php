@@ -2,7 +2,7 @@
   <section class="checkout-section">
 
   <div class="checkout-summary">
-    <h2>Confirm purchase</h2>
+    <h2 class="section-title">Confirm purchase</h2>
 
     <img src="<?= htmlspecialchars($service_freelancer['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>" 
          alt="Service image" 

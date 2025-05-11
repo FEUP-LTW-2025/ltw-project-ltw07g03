@@ -19,34 +19,44 @@ $services = Service::getServicesByUserId($db, $id);
 $isOwner = false;
 $account = null;
 
+//If user not found, show error
+if ($user === null) {
+    drawHeader("User Not Found", $db, $session);
+    echo "<section class='error-section'><h2>User not found.</h2><p>The requested user does not exist.</p></section>";
+    drawFooter();
+    exit;
+}
+
 if ($session->isLoggedIn()) {
     $sessionId = $session->getId();
     $account = User::getUserById($db, $sessionId);
-    $isOwner = $sessionId === $user->getId();
+    $isOwner = $account !== null && $sessionId === $user->getId();
 }
 
 $relatedUserIds = Message::getConversationUsersByUserId($db, $id);
 
 $conversationUsers = [];
-foreach ($relatedUserIds as $otherUserId) {
-    $otherUser = User::getUserById($db, $otherUserId);
-    if ($otherUser !== null) {
-        $conversationUsers[] = $otherUser;
+if (is_array($relatedUserIds)) {
+    foreach ($relatedUserIds as $otherUserId) {
+        $otherUser = User::getUserById($db, $otherUserId);
+        if ($otherUser !== null) {
+            $conversationUsers[] = $otherUser;
+        }
     }
 }
 
-
-
 drawHeader($user->getName(), $db, $session);
+
 if ($account !== null && $account->isAdmin() && $account->getId() !== $user->getId() && !$user->isAdmin()) {
     drawAdminStatusBar($user);
 }
+
 if ($isOwner) {
     drawEditableUserProfile($user, $conversationUsers);
 } else {
     drawUserProfile($user);
 }
-if ($services != []) {
-    drawUserServices($user, $services);
-}
+
+drawUserServices($user, $services ?? []);
+
 drawFooter();
