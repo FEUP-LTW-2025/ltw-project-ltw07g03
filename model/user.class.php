@@ -180,7 +180,7 @@ class User
 
     public function setPassword(string $password, PDO $db): void
     {
-        $hashedPassword = sha1($password);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $db->prepare("UPDATE User SET password = :password WHERE userId = :id");
         $stmt->bindParam(":password", $hashedPassword);
         $stmt->bindParam(":id", $this->id);
