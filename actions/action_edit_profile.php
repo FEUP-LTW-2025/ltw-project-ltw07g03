@@ -59,7 +59,13 @@ $uploadDir = __DIR__ . '/../assets/images/pfps/';
 $uploadUrl = '/assets/images/pfps/';
 
 $currentPic = $user->getProfilePicture();
-$newPic = handleImageUpload('profilePicture', $uploadDir, $uploadUrl, $currentPic, $session);
+$newPic = handleSingleImageUpload(
+    $_FILES['profilePicture'] ?? [],
+    $uploadDir,
+    $uploadUrl,
+    $currentPic,
+    $session
+);
 
 if ($name !== $user->getName()) {
     $user->setName($name, $db);

@@ -28,10 +28,21 @@ require_once(__DIR__ . '/../model/service.class.php');
                 <div class="service-grid">
                     <?php foreach ($services as $service): ?>
                         <article class="service-display">
-                        <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
-                            <img src="<?= htmlspecialchars($service['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>"
-                            alt="Service image" class="service-image">
-                        </a>
+                        <div class="service-slider" data-service-id="<?= $service['serviceId'] ?>">
+    <button class="slider-prev">‹</button>
+
+    <div class="slider-images">
+        <?php foreach ($service['images'] as $index => $imgURL): ?>
+            <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
+                <img src="<?= htmlspecialchars($imgURL) ?>"
+                     alt="Service image <?= $index + 1 ?>"
+                     class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+            </a>
+        <?php endforeach; ?>
+    </div>
+
+    <button class="slider-next">›</button>
+</div>
                             <div class="service-info">
                                 <h3 class="service-title"><?= htmlspecialchars($service['title']) ?></h3>
                                 <p class="service-price"><?= htmlspecialchars((string)$service['price']) ?> €</p>

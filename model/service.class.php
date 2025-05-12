@@ -349,8 +349,8 @@ class Service
         $stmt = $db->prepare("INSERT INTO ServiceMedia (serviceId, mediaURL) VALUES (:serviceId, :mediaURL)");
 
         foreach ($this->images as $mediaURL) {
-            $stmt->bindParam(":serviceId", $this->id);
-            $stmt->bindParam(":mediaURL", $mediaURL);
+            $stmt->bindValue(":serviceId", $this->id, PDO::PARAM_INT);
+            $stmt->bindValue(":mediaURL", $mediaURL, PDO::PARAM_STR);
             $stmt->execute();
         }
     }

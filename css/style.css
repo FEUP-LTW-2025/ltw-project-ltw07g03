@@ -852,6 +852,60 @@ footer {
     margin-top: 0.5rem;
 }
 
+.service-slider {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.slider-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-image {
+    opacity: 0;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.slider-image.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.slider-prev,
+.slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.slider-prev {
+    left: 10px;
+}
+
+.slider-next {
+    right: 10px;
+}
+
+
 /* SERVICE_DETAIL */
 
 .service-detail-section {
@@ -1370,5 +1424,4 @@ input[type=number]::-webkit-outer-spin-button {
 #chat-form button:hover {
     background-color: #0056b3;
 }
-
 
