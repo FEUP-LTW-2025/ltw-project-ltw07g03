@@ -13,29 +13,29 @@ try {
         $idParam = $_GET["id"];
 
         if (filter_var($idParam, FILTER_VALIDATE_INT) && intval($idParam) > 0) {
-            $userId = intval($idParam);
+            $serviceId = intval($idParam);
 
-            $stmt = $db->prepare("SELECT userId, name, username, email, isAdmin, profilePictureURL, status FROM User WHERE userId = :id");
-            $stmt->bindParam(":id", $userId, PDO::PARAM_INT);
+            $stmt = $db->prepare("SELECT freelancerId, categoryId, title, price, deliveryTime, description, status FROM Service WHERE serviceId = :id");
+            $stmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
             $stmt->execute();
-            $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+            $serviceData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($userData) {
-                $response = $userData;
+            if ($serviceData) {
+                $response = $serviceData;
             } else {
                 http_response_code(404);
-                $response = ["error" => "User not found", "id" => $userId];
+                $response = ["error" => "Service not found", "id" => $serviceId];
             }
         } else {
             http_response_code(400);
             $response = ["error" => "Invalid ID format."];
         }
     } else {
-        $stmt = $db->prepare("SELECT userId, name, username, email, isAdmin, profilePictureURL, status FROM User");
+        $stmt = $db->prepare("SELECT freelancerId, categoryId, title, price, deliveryTime, description, status FROM Service");
         $stmt->execute();
-        $usersData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $servicesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $response = $usersData;
+        $response = $servicesData;
 
         if ($response === null) {
             $response = [];
