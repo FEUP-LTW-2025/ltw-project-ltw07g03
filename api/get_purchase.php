@@ -13,29 +13,29 @@ try {
         $idParam = $_GET["id"];
 
         if (filter_var($idParam, FILTER_VALIDATE_INT) && intval($idParam) > 0) {
-            $serviceId = intval($idParam);
+            $purchaseId = intval($idParam);
 
-            $stmt = $db->prepare("SELECT serviceId, freelancerId, name AS category, title, price, deliveryTime, description, about, status, rating FROM Service JOIN ServiceCategory ON (categoryId = serviceCategoryId) WHERE serviceId = :id");
-            $stmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
+            $stmt = $db->prepare("SELECT purchaseId, serviceId, clientId, strftime('%Y-%m-%d %H:%M:%S', date, 'unixepoch') AS date, status FROM Purchase WHERE purchaseId = :id");
+            $stmt->bindParam(":id", $purchaseId, PDO::PARAM_INT);
             $stmt->execute();
-            $serviceData = $stmt->fetch(PDO::FETCH_ASSOC);
+            $purchaseData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($serviceData) {
-                $response = $serviceData;
+            if ($purchaseData) {
+                $response = $purchaseData;
             } else {
                 http_response_code(404);
-                $response = ["error" => "Service not found", "id" => $serviceId];
+                $response = ["error" => "Purchase not found", "id" => $purchaseId];
             }
         } else {
             http_response_code(400);
             $response = ["error" => "Invalid ID format."];
         }
     } else {
-        $stmt = $db->prepare("SELECT serviceId, freelancerId, name AS category, title, price, deliveryTime, description, about, status, rating FROM Service JOIN ServiceCategory ON (categoryId = serviceCategoryId)");
+        $stmt = $db->prepare("SELECT purchaseId, serviceId, clientId, strftime('%Y-%m-%d %H:%M:%S', date, 'unixepoch') AS date, status FROM Purchase");
         $stmt->execute();
-        $servicesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $purchasesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $response = $servicesData;
+        $response = $purchasesData;
 
         if ($response === null) {
             $response = [];
