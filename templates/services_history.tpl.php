@@ -38,11 +38,12 @@ function drawServicesHistory(PDO $db, array $purchases): void
                                 <p class="status-description">Date: <?= gmdate("Y-m-d | H:i:s", $purchase['date']) ?></p>
 
                                 <?php if ($purchase['status'] === 'pending'): ?>
-                                    <form method="post" action="/actions/action_close_purchase.php">
-                                        <input type="hidden" name="purchaseId" value="<?= $purchase['purchaseId'] ?>">
-                                        <input type="hidden" name="freelancerId" value="<?= $service->getFreelancerId() ?>">
-                                        <button type="submit" class="btn-outline">Mark as closed</button>
-                                    </form>
+                                    <button 
+                                        class="btn-outline close-purchase-btn" 
+                                        data-purchase-id="<?= $purchase['purchaseId'] ?>" 
+                                        data-freelancer-id="<?= $service->getFreelancerId() ?>">
+                                        Mark as closed
+                                    </button>
                                 <?php endif; ?>
                             </div>
                         </article>
