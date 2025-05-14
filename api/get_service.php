@@ -15,7 +15,7 @@ try {
         if (filter_var($idParam, FILTER_VALIDATE_INT) && intval($idParam) > 0) {
             $serviceId = intval($idParam);
 
-            $stmt = $db->prepare("SELECT freelancerId, categoryId, title, price, deliveryTime, description, status FROM Service WHERE serviceId = :id");
+            $stmt = $db->prepare("SELECT freelancerId, name AS category, title, price, deliveryTime, description, status FROM Service JOIN ServiceCategory ON (categoryId = ServiceCategory.serviceCategoryId) WHERE serviceId = :id");
             $stmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
             $stmt->execute();
             $serviceData = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ try {
             $response = ["error" => "Invalid ID format."];
         }
     } else {
-        $stmt = $db->prepare("SELECT freelancerId, categoryId, title, price, deliveryTime, description, status FROM Service");
+        $stmt = $db->prepare("SELECT freelancerId, name AS category, title, price, deliveryTime, description, status FROM Service JOIN ServiceCategory ON (categoryId = ServiceCategory.serviceCategoryId)");
         $stmt->execute();
         $servicesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
