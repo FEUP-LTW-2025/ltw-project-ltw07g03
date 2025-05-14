@@ -110,32 +110,50 @@ function drawAdminStatusBar(User $user): void
 <?php function drawUserServices(User $user, array $services): void 
 { 
     if (empty($services)) {
-    echo '<!-- No services to display -->';
-    return;
+        echo '<!-- No services to display -->';
+        return;
     }
 ?>
-    <section class="user-services-section">
-        <div class="category-container">     
-            <h3 class="section-category-title"><?= htmlspecialchars($user->getName()) ?>'s services</h3>
-            <div class="service-grid">
-                <?php foreach ($services as $service): ?>
-                    <article class="service-display">
+<section class="user-services-section">
+    <div class="category-container">     
+        <h3 class="section-category-title"><?= htmlspecialchars($user->getName()) ?>'s services</h3>
+        <div class="service-grid">
+            <?php foreach ($services as $service): ?>
+                <article class="service-display">
+
+                    <div class="service-slider" data-service-id="<?= $service->getId() ?>">
+                        <?php if (count($service->getImages()) > 1): ?>
+                            <button class="slider-prev">‹</button>
+                        <?php endif; ?>
+
+                        <div class="slider-images">
+                            <?php foreach ($service->getImages() as $index => $imgURL): ?>
+                                <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
+                                    <img src="<?= htmlspecialchars($imgURL) ?>"
+                                         alt="Service image <?= $index + 1 ?>"
+                                         class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <?php if (count($service->getImages()) > 1): ?>
+                            <button class="slider-next">›</button>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="service-info">
                         <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
-                            <img src="<?= htmlspecialchars($service->getImages()[0] ?? '/assets/images/default.jpeg') ?>" 
-                                alt="Service Image" class="service-image">
+                            <h3 class="service-title"><?= htmlspecialchars($service->getTitle()) ?></h3>
                         </a>
-                        <div class="service-info">
-                            <a href="/pages/service_detail.php?id=<?= $service->getId() ?>">
-                                <h3 class="service-title"><?= htmlspecialchars($service->getTitle()) ?></h3>
-                            </a>
-                            <p class="service-price"><?= htmlspecialchars(strval($service->getPrice())) ?> €</p>
-                            <p class="service-delivery">Delivery: <?= htmlspecialchars(strval($service->getDeliveryTime())) ?> days</p>
-                            <p class="service-rating">⭐ <?= htmlspecialchars(strval($service->getRating())) ?> / 5</p>
-                            <p class="service-description"><?= htmlspecialchars($service->getDescription()) ?></p> 
-                        </div>   
+                        <p class="service-price"><?= htmlspecialchars(strval($service->getPrice())) ?> €</p>
+                        <p class="service-delivery">Delivery: <?= htmlspecialchars(strval($service->getDeliveryTime())) ?> days</p>
+                        <p class="service-rating">⭐ <?= htmlspecialchars(strval($service->getRating())) ?> / 5</p>
+                        <p class="service-description"><?= htmlspecialchars($service->getDescription()) ?></p> 
+                    </div>   
                 </article>
-                <?php endforeach; ?>
-            </div>
+            <?php endforeach; ?>
         </div>
-    </section>
+    </div>
+</section>
 <?php } ?>
+

@@ -8,13 +8,18 @@ document.querySelectorAll('.service-slider').forEach(slider => {
         });
     }
 
-    slider.querySelector('.slider-prev').addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        showImage(currentIndex);
-    });
+    const prevBtn = slider.querySelector('.slider-prev');
+    const nextBtn = slider.querySelector('.slider-next');
 
-    slider.querySelector('.slider-next').addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        showImage(currentIndex);
-    });
+    if (prevBtn && nextBtn && images.length > 1) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+    }
 });
