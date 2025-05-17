@@ -23,5 +23,5 @@ $categoryId = $categoryId->getId();
 $relatedServices = getServices_FreelancersByCategoryId($db, $categoryId);
 
 drawHeader("Category", $db, $session);
-drawCategoryResults($category, $relatedServices);
+drawCategoryResults($category, $relatedServices, $db);
 drawFooter();

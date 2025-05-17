@@ -20,7 +20,7 @@ if ($searchQuery) {
     $services_info = getFreelancersForServices($db, $relatedServices);
 
     drawHeader("Search", $db, $session);
-    drawCategoryResults("_" . $searchQuery, $services_info);
+    drawCategoryResults("_" . $searchQuery, $services_info, $db);
     drawFooter();
 } else {
     $session->addMessage('error', 'Missing input');

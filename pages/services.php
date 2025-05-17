@@ -14,5 +14,5 @@ $services = Service::getAllServices($db);
 $services_freelancers = getFreelancersForServices($db, $services);
 
 drawHeader("Services", $db, $session);
-drawCategoryResults("Services", $services_freelancers);
+drawCategoryResults("Services", $services_freelancers, $db);
 drawFooter();
