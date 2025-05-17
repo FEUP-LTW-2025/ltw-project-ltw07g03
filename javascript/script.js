@@ -1,11 +1,11 @@
 const searchServiceInput = document.querySelector('#search-service-input');
-const categoryFilter      = document.querySelector('#category-filter');
-const serviceList         = document.querySelector('.service-grid');
+const categoryFilter = document.querySelector('#category-filter');
+const serviceList = document.querySelector('.service-grid');
 
 async function searchService() {
     if (!serviceList) return;
 
-    const q   = searchServiceInput?.value.trim() ?? '';
+    const q = searchServiceInput?.value.trim() ?? '';
     const cat = categoryFilter?.value ?? '';
 
     const url = new URL('../api/search_service.php', window.location);
@@ -29,24 +29,24 @@ async function searchService() {
 }
 
 function insertService(service) {
-    const serviceId      = service.serviceId ?? service.id ?? 0;
-    const title          = escapeHTML(service.title ?? 'Untitled');
-    const price          = escapeHTML(String(service.price ?? '0'));
-    const description    = escapeHTML(service.description ?? '');
-    const image          = escapeHTML(
+    const serviceId = service.serviceId ?? service.id ?? 0;
+    const title = escapeHTML(service.title ?? 'Untitled');
+    const price = escapeHTML(String(service.price ?? '0'));
+    const description = escapeHTML(service.description ?? '');
+    const image = escapeHTML(
         (service.images?.[0]) ?? '/assets/images/pfps/default.jpeg'
     );
 
-    const freelancer     = service.freelancer ?? {};
-    const freelancerId   = freelancer.id   ?? 0;
+    const freelancer = service.freelancer ?? {};
+    const freelancerId = freelancer.id ?? 0;
     const freelancerName = escapeHTML(freelancer.name ?? 'Unknown');
-    const freelancerPic  = escapeHTML(
+    const freelancerPic = escapeHTML(
         freelancer.profilePictureURL
         ?? '/assets/images/pfps/default.jpeg'
     );
 
-    const rating         = service.avgRating ?? 0;
-    const ratingText     = rating
+    const rating = service.avgRating ?? 0;
+    const ratingText = rating
         ? `⭐ ${escapeHTML(String(rating))} / 5`
         : '⭐ No ratings yet';
 
@@ -85,11 +85,15 @@ function escapeHTML(str) {
     }[match]));
 }
 
-if (searchServiceInput) {
-    searchServiceInput.addEventListener('input',  searchService);
-}
-if (categoryFilter) {
-    categoryFilter.addEventListener('change', searchService);
-}
+const isServicesPage = window.location.pathname === '/pages/services.php';
 
-window.addEventListener('DOMContentLoaded', searchService);
+if (isServicesPage) {
+    if (searchServiceInput) {
+        searchServiceInput.addEventListener('input', searchService);
+    }
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', searchService);
+    }
+
+    window.addEventListener('DOMContentLoaded', searchService);
+}
