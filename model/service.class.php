@@ -151,7 +151,7 @@ class Service
     public static function getServicesBySearch(PDO $db, string $search, int $count): array
     {
         $stmt = $db->prepare('SELECT * FROM Service WHERE title LIKE ? AND status = ? LIMIT ?');
-        $stmt->execute(["$search%", 'active', $count]);
+        $stmt->execute(["%$search%", 'active', $count]);
 
         $services = [];
 

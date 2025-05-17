@@ -69,4 +69,10 @@ function escapeHTML(str) {
     });
 }
 
-searchServiceInput.addEventListener('input', searchService);
+if (searchServiceInput) {
+    searchServiceInput.addEventListener('input', () => {
+        const query = searchServiceInput.value.trim();
+        searchService(query);
+    });
+}
+

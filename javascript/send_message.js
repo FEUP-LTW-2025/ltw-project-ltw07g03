@@ -1,22 +1,31 @@
-document.getElementById('chat-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Impede o recarregamento da página
+const chatForm = document.getElementById('chat-form');
 
-    const receiverId = document.getElementById('receiver-id').value;
-    const content = document.getElementById('message-content').value;
+if (chatForm) {
+    chatForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    // Envia a mensagem via AJAX para o backend, sem esperar a resposta
-    fetch('/actions/action_sendMessage.php', {
-        method: 'POST',
-        body: new URLSearchParams({
-            'receiver_id': receiverId,
-            'msg_content': content
-        }),
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+        const receiverIdInput = document.getElementById('receiver-id');
+        const messageContentInput = document.getElementById('message-content');
+
+        if (!receiverIdInput || !messageContentInput) {
+            console.error('Missing receiver-id or message-content input field.');
+            return;
         }
-    })
-        .catch(err => console.error('Error sending message:', err));
 
-    // Limpar o campo de mensagem após o envio
-    document.getElementById('message-content').value = '';
-});
+        const receiverId = receiverIdInput.value;
+        const content = messageContentInput.value;
+
+        fetch('/actions/action_sendMessage.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'receiver_id': receiverId,
+                'msg_content': content
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).catch(err => console.error('Error sending message:', err));
+
+        messageContentInput.value = '';
+    });
+}
