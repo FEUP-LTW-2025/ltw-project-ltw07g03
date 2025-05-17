@@ -148,6 +148,42 @@ class Service
         return $services;
     }
 
+    public static function getServicesBySearch(PDO $db, string $search, int $count): array
+    {
+        $stmt = $db->prepare('SELECT * FROM Service WHERE title LIKE ? AND status = ? LIMIT ?');
+        $stmt->execute(["$search%", 'active', $count]);
+
+        $services = [];
+
+        while ($row = $stmt->fetch()) {
+            $freelancerStmt = $db->prepare('SELECT userId AS id, name, profilePictureURL FROM User WHERE userId = ?');
+            $freelancerStmt->execute([$row['freelancerId']]);
+            $freelancer = $freelancerStmt->fetch() ?: ['id' => 0, 'name' => 'Unknown', 'profilePictureURL' => '/assets/images/pfps/default.jpeg'];
+
+            $mediaStmt = $db->prepare('SELECT mediaURL FROM ServiceMedia WHERE serviceId = ? LIMIT 1');
+            $mediaStmt->execute([$row['serviceId']]);
+            $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
+            $firstImage = count($images) > 0 ? $images : ['/assets/images/pfps/default.jpeg'];
+
+            $services[] = [
+                'serviceId' => (int)$row['serviceId'],
+                'title' => $row['title'],
+                'description' => $row['description'],
+                'price' => (float)$row['price'],
+                'images' => $firstImage,
+                'avgRating' => (float)$row['rating'],
+                'freelancer' => [
+                    'id' => (int)$freelancer['id'],
+                    'name' => $freelancer['name'],
+                    'profilePictureURL' => $freelancer['profilePictureURL']
+                ]
+            ];
+        }
+
+        return $services;
+    }
+
+
     public static function getServicesByUserId(PDO $db, int $user_id): array
     {
         $stmt = $db->prepare("
