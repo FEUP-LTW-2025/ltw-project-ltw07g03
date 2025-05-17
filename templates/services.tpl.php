@@ -9,12 +9,14 @@ require_once(__DIR__ . '/../model/category.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
 ?>
 
-<?php function drawCategoryResults(string $category, array $services): void
-{ ?>
+<?php function drawServices(string $category, array $services, PDO $db): void
+{
+    $categories = Category::getAllCategories($db);
+    ?>
     <section class="category-section">
         <div class="category-container">
             <?php
-            if (strtolower($category) === 'serviços') {
+            if (strtolower($category) === 'services') {
                 echo '<h2 class="section-category-title">Services</h2>';
             } elseif (str_starts_with($category, '_')) {
                 echo '<h2 class="section-category-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
@@ -22,6 +24,17 @@ require_once(__DIR__ . '/../model/service.class.php');
                 echo '<h2 class="section-category-title">' . $category . '</h2>';
             }
             ?>
+            <div class="filter-controls">
+                <select id="category-filter">
+                    <option value="">All Categories</option>
+                    <?php foreach ($categories as $cat): ?>
+                        <option value="<?= $cat->getId() ?>">
+                            <?= htmlspecialchars($cat->getName()) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <input type="text" id="search-service-input" placeholder="Search...">
+            </div>
             <?php if (empty($services)): ?>
                 <p>No services found in this category.</p>
             <?php else: ?>
