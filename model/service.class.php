@@ -148,32 +148,47 @@ class Service
         return $services;
     }
 
-    public static function getServicesBySearch(PDO $db, string $search, int $count): array
+    public static function getServicesBySearch(PDO $db, string $search, int $count, ?int $categoryId = null): array
     {
-        $stmt = $db->prepare('SELECT * FROM Service WHERE title LIKE ? AND status = ? LIMIT ?');
-        $stmt->execute(["%$search%", 'active', $count]);
+        $sql = 'SELECT * FROM Service WHERE title LIKE ? AND status = ?';
+        $params = ["%$search%", 'active'];
+
+        if ($categoryId) {
+            $sql .= ' AND categoryId = ?';
+            $params[] = $categoryId;
+        }
+
+        $sql .= ' LIMIT ?';
+        $params[] = $count;
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
 
         $services = [];
-
-        while ($row = $stmt->fetch()) {
-            $freelancerStmt = $db->prepare('SELECT userId AS id, name, profilePictureURL FROM User WHERE userId = ?');
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $freelancerStmt = $db->prepare(
+                'SELECT userId AS id, name, profilePictureURL FROM User WHERE userId = ?'
+            );
             $freelancerStmt->execute([$row['freelancerId']]);
-            $freelancer = $freelancerStmt->fetch() ?: ['id' => 0, 'name' => 'Unknown', 'profilePictureURL' => '/assets/images/pfps/default.jpeg'];
+            $freelancer = $freelancerStmt->fetch(PDO::FETCH_ASSOC)
+                ?: ['id' => 0, 'name' => 'Unknown', 'profilePictureURL' => '/assets/images/pfps/default.jpeg'];
 
-            $mediaStmt = $db->prepare('SELECT mediaURL FROM ServiceMedia WHERE serviceId = ? LIMIT 1');
+            $mediaStmt = $db->prepare(
+                'SELECT mediaURL FROM ServiceMedia WHERE serviceId = ?'
+            );
             $mediaStmt->execute([$row['serviceId']]);
-            $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN);
-            $firstImage = count($images) > 0 ? $images : ['/assets/images/pfps/default.jpeg'];
+            $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN)
+                ?: ['/assets/images/pfps/default.jpeg'];
 
             $services[] = [
-                'serviceId' => (int)$row['serviceId'],
+                'serviceId' => intval($row['serviceId']),
                 'title' => $row['title'],
                 'description' => $row['description'],
-                'price' => (float)$row['price'],
-                'images' => $firstImage,
-                'avgRating' => (float)$row['rating'],
+                'price' => floatval($row['price']),
+                'images' => $images,
+                'avgRating' => floatval($row['rating']),
                 'freelancer' => [
-                    'id' => (int)$freelancer['id'],
+                    'id' => intval($freelancer['id']),
                     'name' => $freelancer['name'],
                     'profilePictureURL' => $freelancer['profilePictureURL']
                 ]
