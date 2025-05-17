@@ -22,26 +22,27 @@ require_once(__DIR__ . '/../model/service.class.php');
                 echo '<h2 class="section-category-title">' . $category . '</h2>';
             }
             ?>
+            <input type="text" id="search-service-input" placeholder="Search...">
             <?php if (empty($services)): ?>
                 <p>No services found in this category.</p>
             <?php else: ?>
                 <div class="service-grid">
                     <?php foreach ($services as $service): ?>
                         <article class="service-display">
-                        <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
-                            <img src="<?= htmlspecialchars($service['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>"
-                            alt="Service image" class="service-image">
-                        </a>
+                            <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
+                                <img src="<?= htmlspecialchars($service['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>"
+                                     alt="Service image" class="service-image">
+                            </a>
                             <div class="service-info">
                                 <h3 class="service-title"><?= htmlspecialchars($service['title']) ?></h3>
                                 <p class="service-price"><?= htmlspecialchars((string)$service['price']) ?> €</p>
                                 <p class="service-description"><?= htmlspecialchars($service['description']) ?></p>
                                 <div class="freelancer-info">
-                                <a href="/pages/user.php?id=<?= $service['freelancer']['id'] ?>">
-                                    <img src="<?= htmlspecialchars($service['freelancer']['profilePictureURL']) ?>"
-                                         alt="Freelancer profile" class="freelancer-pic">
-                                    <span class="freelancer-name"><?= htmlspecialchars($service['freelancer']['name']) ?></span>
-                                </a>
+                                    <a href="/pages/user.php?id=<?= $service['freelancer']['id'] ?>">
+                                        <img src="<?= htmlspecialchars($service['freelancer']['profilePictureURL']) ?>"
+                                             alt="Freelancer profile" class="freelancer-pic">
+                                        <span class="freelancer-name"><?= htmlspecialchars($service['freelancer']['name']) ?></span>
+                                    </a>
                                 </div>
                                 <?php if ($service['avgRating'] != 0): ?>
                                     <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?>

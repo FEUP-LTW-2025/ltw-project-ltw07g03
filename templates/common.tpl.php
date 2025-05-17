@@ -15,6 +15,7 @@ function drawHeader(string $title, PDO $db, Session $session): void
     <script src="/javascript/request_messages.js" defer></script>
     <script src="/javascript/send_message.js" defer></script>
     <script src="/javascript/close_purchase.js" defer></script>
+    <script src="/javascript/script.js" defer></script>
 </head>
 <body>
 <header class="site-header dark-header">
