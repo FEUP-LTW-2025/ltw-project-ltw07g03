@@ -12,10 +12,15 @@ function drawHeader(string $title, PDO $db, Session $session): void
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= "FLEXA :: " . $title ?></title>
     <link href="/css/style.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
     <script src="/javascript/request_messages.js" defer></script>
     <script src="/javascript/send_message.js" defer></script>
     <script src="/javascript/close_purchase.js" defer></script>
-     <script src="/javascript/slider.js" defer></script>
+    <script src="/javascript/slider.js" defer></script>
+    <script src="/javascript/script.js" defer></script>
 </head>
 <body>
 <header class="site-header dark-header">
@@ -23,8 +28,7 @@ function drawHeader(string $title, PDO $db, Session $session): void
         <div class="logo">
             <a href="/pages/index.php">
                 <img
-                        src="/assets/images/flexa-logo@2x.png"
-                        srcset="/assets/images/flexa-logo@2x.png 2x"
+                        src="/assets/images/flexa-logo.png"
                         alt="FLEXA logo"
                         class="logo-img-big"
                 />
