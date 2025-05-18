@@ -34,14 +34,6 @@
     scroll-behavior: smooth;
 }
 
-.section-category-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    margin-top: 2rem;
-    text-align: center;
-    font-weight: bold;
-}
-
 .category-row::-webkit-scrollbar {
     display: none;                     /* Chrome, Safari, Opera */
 }

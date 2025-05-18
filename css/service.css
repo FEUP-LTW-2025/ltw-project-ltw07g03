@@ -2,14 +2,10 @@
 
 .service-grid {
     display: flex;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     justify-content: center;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
     flex-wrap: wrap;
-    overflow-x: unset;
+    align-items: stretch;
 }
 
 .user-services-section {
@@ -47,12 +43,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
-    flex: 0 1 280px;
     width: 280px;
-    min-height: 490px;
-    max-height: 490px;
+    min-height: 500px;
     box-sizing: border-box;
+    flex: 0 1 auto;
 }
 
 .service-display:hover {
@@ -64,13 +58,13 @@
     width: 100%;
     height: 180px;
     object-fit: cover;
+    border-bottom: 1px solid #eee;
 }
 
 .service-info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 1rem;
     height: 100%;
 }
@@ -95,6 +89,11 @@
 .service-description {
     font-size: 0.9rem;
     color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .freelancer-info {
