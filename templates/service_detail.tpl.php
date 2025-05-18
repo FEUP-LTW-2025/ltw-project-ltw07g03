@@ -9,8 +9,21 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                 <div class="service-detail-left">
                     <p class="freelancer-name-detail">By
                         <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong></p>
-                    <img src="<?= htmlspecialchars($service_freelancer['images'][0] ?? '/assets/images/pfps/default.jpeg') ?>"
-                         alt="Service image" class="service-detail-img">
+                    <div class="carousel">
+                        <?php if (count($service_freelancer['images']) > 1): ?>
+                            <button class="prev">&#10094;</button>
+                        <?php endif; ?>
+                        <div class="carousel-images">
+                            <?php foreach ($service_freelancer['images'] as $index => $img): ?>
+                                <img src="<?= htmlspecialchars($img) ?>" 
+                                    alt="Service image"
+                                    class="carousel-image <?= $index === 0 ? 'active' : '' ?>">
+                            <?php endforeach; ?>
+                        </div>
+                        <?php if (count($service_freelancer['images']) > 1): ?>
+                            <button class="next">&#10095;</button>
+                        <?php endif; ?>
+                    </div>
                     <h2 class="service-detail-title"><?= htmlspecialchars($service_freelancer['title']) ?></h2>
                     <p class="service-detail-description"><?= htmlspecialchars($service_freelancer['description']) ?></p>
                     <?php if (!empty($service_freelancer['about'])): ?>

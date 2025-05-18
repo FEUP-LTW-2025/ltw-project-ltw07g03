@@ -59,4 +59,8 @@ if ($isOwner) {
 
 drawUserServices($user, $services ?? []);
 
+?> 
+<script src="/javascript/image_preview.js"></script>
+<?php
+
 drawFooter();

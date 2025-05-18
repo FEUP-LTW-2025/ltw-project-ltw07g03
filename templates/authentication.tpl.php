@@ -30,8 +30,9 @@
         <input type="password" name="password" placeholder="password">
 
         <label for="profilePicture">Profile Picture</label>
-        <input type="file" name="profilePicture">
-
+        <input type="file" name="profilePicture" id="registerPicture" required>
+        <p id="profilePreviewLabel" class="preview-label">Selected Image</p>
+        <div id="profile-preview-container" class="image-preview-container profile-preview-container"></div>
         <input type="submit" value="Register">
     </form>
 <?php } ?>

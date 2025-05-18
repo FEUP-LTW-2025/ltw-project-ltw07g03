@@ -27,4 +27,8 @@ $allCategories = Category::getAllCategories($db);
 
 drawHeader("Create Service", $db, $session);
 drawServiceCreationForm($allCategories, (int)$userId);
+
+?> 
+<script src="/javascript/image_preview.js"></script>
+<?php
 drawFooter();

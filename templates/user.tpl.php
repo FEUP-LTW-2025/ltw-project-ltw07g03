@@ -34,7 +34,9 @@ function drawUserProfile(User $user): void
                 <input type="hidden" name="id" value="<?= $user->getId() ?>">
                 <div class="form-group center">
                     <img src="<?= $user->getProfilePicture() ?>" class="profile-picture-large">
-                    <input type="file" name="profilePicture" id="profilePicture" accept="image/*">
+                    <input type="file" name="profilePicture" id="editProfilePicture" required>
+                    <p id="profilePreviewLabel" class="preview-label">Selected Image</p>
+                    <div id="profile-preview-container" class="image-preview-container profile-preview-container"></div>
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>

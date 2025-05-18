@@ -33,4 +33,8 @@ $feedbacks_author = Feedback::getFeedback_AuthorByServiceId($db, $serviceId);
 
 drawHeader("Service Detail", $db, $session);
 drawServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
+
+?> 
+<script src="/javascript/service_carousel.js"></script>
+<?php
 drawFooter();
