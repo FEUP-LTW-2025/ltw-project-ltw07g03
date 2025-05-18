@@ -16,8 +16,21 @@ function drawServicesHistory(PDO $db, array $purchases): void
                         if (!$service) continue;
                         ?>
                         <article class="service-display">
-                            <img src="<?= htmlspecialchars($service->getImages()[0]["mediaURL"]) ?>" alt="Service Image" class="service-image">
-                        
+                            <div class="service-slider" data-service-id="<?= $purchase['purchaseId'] ?>">
+                                <?php if (count($service->getImages()) > 1): ?>
+                                    <button class="slider-prev">‹</button>
+                                <?php endif; ?>
+                            <div class="slider-images">
+                                <?php foreach ($service->getImages() as $index => $img): ?>
+                                    <img src="<?= htmlspecialchars($img['mediaURL']) ?>"
+                                    alt="Service image <?= $index + 1 ?>"
+                                    class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                <?php endforeach; ?>
+                            </div>
+                            <?php if (count($service->getImages()) > 1): ?>
+                                <button class="slider-next">›</button>
+                            <?php endif; ?>
+                            </div>
                             <div class="service-info">
                                 <h3 class="service-title"><?= htmlspecialchars($service->getTitle()) ?></h3>
                                 <p class="service-price">€<?= number_format($service->getPrice()) ?></p>
@@ -25,11 +38,12 @@ function drawServicesHistory(PDO $db, array $purchases): void
                                 <p class="status-description">Date: <?= gmdate("Y-m-d | H:i:s", $purchase['date']) ?></p>
 
                                 <?php if ($purchase['status'] === 'pending'): ?>
-                                    <form method="post" action="/actions/action_close_purchase.php">
-                                        <input type="hidden" name="purchaseId" value="<?= $purchase['purchaseId'] ?>">
-                                        <input type="hidden" name="freelancerId" value="<?= $service->getFreelancerId() ?>">
-                                        <button type="submit" class="btn-outline">Mark as closed</button>
-                                    </form>
+                                    <button 
+                                        class="btn-outline close-purchase-btn" 
+                                        data-purchase-id="<?= $purchase['purchaseId'] ?>" 
+                                        data-freelancer-id="<?= $service->getFreelancerId() ?>">
+                                        Mark as closed
+                                    </button>
                                 <?php endif; ?>
                             </div>
                         </article>
