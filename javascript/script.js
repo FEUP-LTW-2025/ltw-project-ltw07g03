@@ -28,21 +28,42 @@ async function searchService() {
     }
 }
 
+function initSlider(slider) {
+    const images = slider.querySelectorAll('.slider-image');
+    const prevBtn = slider.querySelector('.slider-prev');
+    const nextBtn = slider.querySelector('.slider-next');
+
+    let currentIndex = 0;
+
+    const showImage = (index) => {
+        images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+        });
+    };
+
+    prevBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    });
+}
+
 function insertService(service) {
     const serviceId = service.serviceId ?? service.id ?? 0;
     const title = escapeHTML(service.title ?? 'Untitled');
     const price = escapeHTML(String(service.price ?? '0'));
     const description = escapeHTML(service.description ?? '');
-    const image = escapeHTML(
-        (service.images?.[0]) ?? '/assets/images/pfps/default.jpeg'
-    );
+    const images = service.images ?? [];
 
     const freelancer = service.freelancer ?? {};
     const freelancerId = freelancer.id ?? 0;
     const freelancerName = escapeHTML(freelancer.name ?? 'Unknown');
     const freelancerPic = escapeHTML(
-        freelancer.profilePictureURL
-        ?? '/assets/images/pfps/default.jpeg'
+        freelancer.profilePictureURL ?? '/assets/images/pfps/default.jpeg'
     );
 
     const rating = service.avgRating ?? 0;
@@ -50,12 +71,27 @@ function insertService(service) {
         ? `⭐ ${escapeHTML(String(rating))} / 5`
         : '⭐ No ratings yet';
 
+    const hasMultipleImages = images.length > 1;
+    const sliderButtons = hasMultipleImages
+        ? `<button class="slider-prev">‹</button><button class="slider-next">›</button>`
+        : '';
+
+    const sliderImages = images.map((img, index) => `
+        <a href="/pages/service_detail.php?id=${serviceId}">
+            <img src="${escapeHTML(img)}" alt="Service image ${index + 1}"
+                 class="slider-image${index === 0 ? ' active' : ''}">
+        </a>
+    `).join('');
+
     const article = document.createElement('article');
     article.className = 'service-display';
     article.innerHTML = `
-    <a href="/pages/service_detail.php?id=${serviceId}">
-      <img src="${image}" alt="Service image" class="service-image">
-    </a>
+    <div class="service-slider" data-service-id="${serviceId}">
+      ${sliderButtons}
+      <div class="slider-images">
+        ${sliderImages}
+      </div>
+    </div>
     <div class="service-info">
       <h3 class="service-title">${title}</h3>
       <p class="service-price">${price} €</p>
@@ -71,6 +107,10 @@ function insertService(service) {
   `;
 
     serviceList.appendChild(article);
+
+    if (hasMultipleImages) {
+        initSlider(article.querySelector('.service-slider'));
+    }
 }
 
 function clearServices() {
