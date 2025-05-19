@@ -3,10 +3,8 @@ const categoryFilter = document.querySelector('#category-filter');
 const serviceList = document.querySelector('.service-grid');
 const budgetSliderValue = document.querySelector("#budget-value");
 const budgetSliderInput = document.querySelector("#slider-service-budget");
-budgetSliderValue.textContent = budgetSliderInput.value;
 const ratingSliderValue = document.querySelector("#rating-value");
 const ratingSliderInput = document.querySelector("#slider-service-rating");
-ratingSliderValue.textContent = ratingSliderInput.value;
 
 async function searchService() {
     if (!serviceList) return;
@@ -149,12 +147,14 @@ if (isServicesPage) {
         budgetSliderInput.addEventListener("change", (event) => {
             budgetSliderValue.textContent = event.target.value;
         });
+        budgetSliderValue.textContent = budgetSliderInput.value;
     }
     if (ratingSliderInput) {
         ratingSliderInput.addEventListener("change", searchService);
         ratingSliderInput.addEventListener("change", (event) => {
             ratingSliderValue.textContent = event.target.value;
         });
+        ratingSliderValue.textContent = ratingSliderInput.value;
     }
 
     window.addEventListener('DOMContentLoaded', searchService);
