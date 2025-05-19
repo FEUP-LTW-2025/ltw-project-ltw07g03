@@ -1,6 +1,10 @@
 const searchServiceInput = document.querySelector('#search-service-input');
 const categoryFilter = document.querySelector('#category-filter');
 const serviceList = document.querySelector('.service-grid');
+const value = document.querySelector("#budget-value");
+const sliderInput = document.querySelector("#slider-service-budget");
+value.textContent = sliderInput.value;
+
 
 async function searchService() {
     if (!serviceList) return;
@@ -133,6 +137,11 @@ if (isServicesPage) {
     }
     if (categoryFilter) {
         categoryFilter.addEventListener('change', searchService);
+    }
+    if (sliderInput) {
+        sliderInput.addEventListener("input", (event) => {
+            value.textContent = event.target.value;
+        });
     }
 
     window.addEventListener('DOMContentLoaded', searchService);

@@ -34,6 +34,10 @@ require_once(__DIR__ . '/../model/service.class.php');
                     <?php endforeach; ?>
                 </select>
                 <input type="text" id="search-service-input" placeholder="Search...">
+                <input type="range" id="slider-service-budget" min="10" max="1000" step="20">
+                <p>Budget:
+                    <output id="budget-value"></output>
+                </p>
             </div>
 
             <?php if (empty($services)): ?>
