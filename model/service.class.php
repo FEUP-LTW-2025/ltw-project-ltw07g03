@@ -148,10 +148,10 @@ class Service
         return $services;
     }
 
-    public static function getServicesBySearch(PDO $db, string $search, int $count, ?int $categoryId = null): array
+    public static function getServicesBySearch(PDO $db, string $search, int $count, ?int $categoryId = null, ?int $budget = null): array
     {
-        $sql = 'SELECT * FROM Service WHERE title LIKE ? AND status = ?';
-        $params = ["%$search%", 'active'];
+        $sql = 'SELECT * FROM Service WHERE title LIKE ? AND status = ? AND price <= ?';
+        $params = ["%$search%", 'active', $budget];
 
         if ($categoryId) {
             $sql .= ' AND categoryId = ?';

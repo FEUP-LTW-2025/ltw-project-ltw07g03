@@ -11,10 +11,12 @@ async function searchService() {
 
     const q = searchServiceInput?.value.trim() ?? '';
     const cat = categoryFilter?.value ?? '';
+    const budget = sliderInput?.value ?? '';
 
     const url = new URL('../api/search_service.php', window.location);
     url.searchParams.set('search', q);
     if (cat) url.searchParams.set('category', cat);
+    if (budget) url.searchParams.set('budget', budget);
 
     const response = await fetch(url);
     if (!response.ok) return;
@@ -139,7 +141,8 @@ if (isServicesPage) {
         categoryFilter.addEventListener('change', searchService);
     }
     if (sliderInput) {
-        sliderInput.addEventListener("input", (event) => {
+        sliderInput.addEventListener("change", searchService);
+        sliderInput.addEventListener("change", (event) => {
             value.textContent = event.target.value;
         });
     }
