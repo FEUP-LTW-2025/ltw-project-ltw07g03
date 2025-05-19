@@ -8,7 +8,8 @@ $db = getDatabaseConnection();
 $search   = $_GET['search']   ?? '';
 $category = isset($_GET['category']) ? (int)$_GET['category'] : null;
 $budget = isset($_GET['budget']) ? (int)$_GET['budget'] : null;
-$services = Service::getServicesBySearch($db, $search, 50, $category, $budget);
+$rating = isset($_GET['rating']) ? (int)$_GET['rating'] : null;
+$services = Service::getServicesBySearch($db, $search, 50, $category, $budget, $rating);
 
 header('Content-Type: application/json');
 echo json_encode($services);

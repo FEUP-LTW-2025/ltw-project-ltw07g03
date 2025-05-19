@@ -1,22 +1,26 @@
 const searchServiceInput = document.querySelector('#search-service-input');
 const categoryFilter = document.querySelector('#category-filter');
 const serviceList = document.querySelector('.service-grid');
-const value = document.querySelector("#budget-value");
-const sliderInput = document.querySelector("#slider-service-budget");
-value.textContent = sliderInput.value;
-
+const budgetSliderValue = document.querySelector("#budget-value");
+const budgetSliderInput = document.querySelector("#slider-service-budget");
+budgetSliderValue.textContent = budgetSliderInput.value;
+const ratingSliderValue = document.querySelector("#rating-value");
+const ratingSliderInput = document.querySelector("#slider-service-rating");
+ratingSliderValue.textContent = ratingSliderInput.value;
 
 async function searchService() {
     if (!serviceList) return;
 
     const q = searchServiceInput?.value.trim() ?? '';
     const cat = categoryFilter?.value ?? '';
-    const budget = sliderInput?.value ?? '';
+    const budget = budgetSliderInput?.value ?? '';
+    const rating = ratingSliderInput?.value ?? '';
 
     const url = new URL('../api/search_service.php', window.location);
     url.searchParams.set('search', q);
     if (cat) url.searchParams.set('category', cat);
     if (budget) url.searchParams.set('budget', budget);
+    if (rating) url.searchParams.set('rating', rating);
 
     const response = await fetch(url);
     if (!response.ok) return;
@@ -140,10 +144,16 @@ if (isServicesPage) {
     if (categoryFilter) {
         categoryFilter.addEventListener('change', searchService);
     }
-    if (sliderInput) {
-        sliderInput.addEventListener("change", searchService);
-        sliderInput.addEventListener("change", (event) => {
-            value.textContent = event.target.value;
+    if (budgetSliderInput) {
+        budgetSliderInput.addEventListener("change", searchService);
+        budgetSliderInput.addEventListener("change", (event) => {
+            budgetSliderValue.textContent = event.target.value;
+        });
+    }
+    if (ratingSliderInput) {
+        ratingSliderInput.addEventListener("change", searchService);
+        ratingSliderInput.addEventListener("change", (event) => {
+            ratingSliderValue.textContent = event.target.value;
         });
     }
 

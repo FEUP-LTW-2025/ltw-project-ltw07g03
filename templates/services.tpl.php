@@ -38,6 +38,10 @@ require_once(__DIR__ . '/../model/service.class.php');
                 <p>Budget:
                     <output id="budget-value"></output>
                 </p>
+                <input type="range" id="slider-service-rating" min="1" max="5" step="1">
+                <p>Rating:
+                    <output id="rating-value"></output>
+                </p>
             </div>
 
             <?php if (empty($services)): ?>
