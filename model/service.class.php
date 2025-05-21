@@ -241,6 +241,10 @@ class Service
         return $this->id;
     }
 
+    public function updateService(){
+        
+    }
+
     public function getFreelancerId(): int
     {
         return $this->freelancerId;
