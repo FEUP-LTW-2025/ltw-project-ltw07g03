@@ -241,9 +241,27 @@ class Service
         return $this->id;
     }
 
-    public function updateService(){
-        
-    }
+    public function updateService(PDO $db, string $title, int $price, int $deliveryTime, string $description, string $about) {
+    $stmt = $db->prepare("
+        UPDATE Service 
+        SET title = :title, 
+            price = :price, 
+            deliveryTime = :deliveryTime, 
+            description = :description, 
+            about = :about 
+        WHERE serviceId = :serviceId
+    ");
+
+    $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+    $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+    $stmt->bindParam(':deliveryTime', $deliveryTime, PDO::PARAM_INT);
+    $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+    $stmt->bindParam(':about', $about, PDO::PARAM_STR);
+    $stmt->bindParam(':serviceId', $this->id, PDO::PARAM_INT);
+
+    return $stmt->execute(); 
+}
+
 
     public function getFreelancerId(): int
     {

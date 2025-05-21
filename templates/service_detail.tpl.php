@@ -147,8 +147,8 @@ function drawEditableServiceDetail(array $service_freelancer, array $feedbacks_a
                 </div>
                 <div class="service-detail-right">
                     <div class="service-detail-price-box">
-                        <p class="service-detail-price">
-                            <?= $service_freelancer['price'] ?> €
+                        <p class="service-detail-price editable" data-field="price">
+                            <span class="price-value"><?= $service_freelancer['price'] ?></span> <span>€</span>
                         </p>
                     </div>
                 </div>
