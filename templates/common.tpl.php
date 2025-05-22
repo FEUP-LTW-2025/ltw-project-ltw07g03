@@ -11,16 +11,38 @@ function drawHeader(string $title, PDO $db, Session $session): void
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= "FLEXA :: " . $title ?></title>
-    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Imperial+Script&family=Ruda&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/hero.css">
+    <link rel="stylesheet" href="/css/categories.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/service.css">
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+
+    <!-- JS files -->
     <script src="/javascript/request_messages.js" defer></script>
     <script src="/javascript/send_message.js" defer></script>
     <script src="/javascript/close_purchase.js" defer></script>
-    <script src="/javascript/slider.js" defer></script>
-    <script src="/javascript/script.js" defer></script>
+    <script src="/javascript/service_carousel.js" defer></script>
+    <script src="/javascript/image_preview.js" defer></script>
 </head>
 <body>
 <header class="site-header dark-header">
@@ -57,8 +79,7 @@ function drawHeader(string $title, PDO $db, Session $session): void
 <main>
     <?php } ?>
 
-    <?php function drawFooter(): void
-    { ?>
+    <?php function drawFooter(): void { ?>
 </main>
 <footer class="site-footer">
     <div class="container">

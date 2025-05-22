@@ -1,0 +1,59 @@
+/* Base styles and Typography */
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* Global Utilities */
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+

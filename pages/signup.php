@@ -11,4 +11,9 @@ $db = getDatabaseConnection();
 
 drawHeader("Register", $db, $session);
 drawRegisterForm();
+
+?> 
+<script src="/javascript/image_preview.js"></script>
+<?php
+
 drawFooter();

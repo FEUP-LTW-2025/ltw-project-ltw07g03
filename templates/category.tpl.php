@@ -14,11 +14,12 @@ require_once(__DIR__ . '/../model/service.class.php');
     <section class="category-section">
         <div class="category-container">
             <?php
-            if (strtolower($category) === 'serviços') {
-                echo '<h2 class="section-category-title">Services</h2>';
+            if (strtolower($category) === 'services') {
+                echo '<h2 class="section-title">Services</h2>';
             } elseif (str_starts_with($category, '_')) {
-                echo '<h2 class="section-category-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
+                echo '<h2 class="section-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
             } else {
+
                 echo '<h2 class="section-category-title">' . htmlspecialchars($category) . '</h2>';
             }
             ?>

@@ -259,7 +259,9 @@ VALUES (1, 'https://picsum.photos/id/1011/1024'),
        (11, 'https://picsum.photos/id/1021/1024'),
        (12, 'https://picsum.photos/id/1022/1024'),
        (13, 'https://picsum.photos/id/1023/1024'),
-       (14, 'https://picsum.photos/id/1024/1024');
+       (14, 'https://picsum.photos/id/1024/1024'),
+       (14, 'https://picsum.photos/id/1029/1024');
+
 
 INSERT INTO Purchase (serviceId, clientId, date, status)
 VALUES (1, 3, 1746641342, 'pending'),

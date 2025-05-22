@@ -34,7 +34,8 @@ declare(strict_types=1);
             <label for="images" class="custom-file-upload">
                 Upload Images
             </label>
-            <input type="file" id="images" name="images[]" multiple>
+            <input type="file" id="images" name="images[]" multiple required>
+            <div id="service-preview-container" class="image-preview-container service-preview-container"></div>
         </div>
         <button type="submit" class="btn-outline">Create Service</button>
     </form>
