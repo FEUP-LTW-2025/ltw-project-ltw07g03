@@ -10,14 +10,29 @@ function drawPurchaseHistory(array $purchasesWithDetails): void
                 <?php if (!empty($purchasesWithDetails)): ?>
                     <?php foreach ($purchasesWithDetails as $item): ?>
                         <article class="service-display">
-                            <img src="<?= htmlspecialchars($item["service"]["images"][0]) ?>" alt="Service Image" class="service-image">
+
+                            <div class="service-slider" data-service-id="<?= $item['purchase']->getId() ?>">
+                                <?php if (count($item['service']['images']) > 1): ?>
+                                    <button class="slider-prev">‹</button>
+                                <?php endif; ?>
+
+                            <div class="slider-images">
+                                <?php foreach ($item['service']['images'] as $index => $imgURL): ?>
+                                    <img src="<?= htmlspecialchars($imgURL) ?>"
+                                    alt="Service image <?= $index + 1 ?>"
+                                    class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                <?php endforeach; ?>
+                            </div>
+                            <?php if (count($item['service']['images']) > 1): ?>
+                                <button class="slider-next">›</button>
+                            <?php endif; ?>
+                        </div>
                             <div class="service-info">
                                 <h3 class="service-title"><?= htmlspecialchars($item['service']['title']) ?></h3>
                                 <p class="service-price">€<?= number_format($item['service']['price']) ?></p>
                                 <p class="freelancer-name">Freelancer: <?= htmlspecialchars($item['service']['freelancer']['name']) ?></p>
                                 <p class="service-delivery">Status: <?= htmlspecialchars($item['purchase']->getStatus()) ?></p>
                                 <p class="status-description">Date: <?= gmdate("Y-m-d | H:i:s", $item['purchase']->getDate()) ?></p>
-
                                 <?php 
                                     if($item['purchase']->getStatus() === 'closed'): ?>
                                     <a href="review_form.php?purchase_id=<?= $item['purchase']->getId() ?>" class="btn-outline">Leave a review</a>

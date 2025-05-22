@@ -148,6 +148,57 @@ class Service
         return $services;
     }
 
+    public static function getServicesBySearch(PDO $db, string $search, int $count, ?int $categoryId = null, ?int $budget = null, ?int $rating = null): array
+    {
+        $sql = 'SELECT * FROM Service WHERE title LIKE ? AND status = ? AND price <= ? AND rating >= ?';
+        $params = ["%$search%", 'active', $budget, $rating];
+
+        if ($categoryId) {
+            $sql .= ' AND categoryId = ?';
+            $params[] = $categoryId;
+        }
+
+        $sql .= ' LIMIT ?';
+        $params[] = $count;
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+
+        $services = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $freelancerStmt = $db->prepare(
+                'SELECT userId AS id, name, profilePictureURL FROM User WHERE userId = ?'
+            );
+            $freelancerStmt->execute([$row['freelancerId']]);
+            $freelancer = $freelancerStmt->fetch(PDO::FETCH_ASSOC)
+                ?: ['id' => 0, 'name' => 'Unknown', 'profilePictureURL' => '/assets/images/pfps/default.jpeg'];
+
+            $mediaStmt = $db->prepare(
+                'SELECT mediaURL FROM ServiceMedia WHERE serviceId = ?'
+            );
+            $mediaStmt->execute([$row['serviceId']]);
+            $images = $mediaStmt->fetchAll(PDO::FETCH_COLUMN)
+                ?: ['/assets/images/pfps/default.jpeg'];
+
+            $services[] = [
+                'serviceId' => intval($row['serviceId']),
+                'title' => $row['title'],
+                'description' => $row['description'],
+                'price' => floatval($row['price']),
+                'images' => $images,
+                'avgRating' => floatval($row['rating']),
+                'freelancer' => [
+                    'id' => intval($freelancer['id']),
+                    'name' => $freelancer['name'],
+                    'profilePictureURL' => $freelancer['profilePictureURL']
+                ]
+            ];
+        }
+
+        return $services;
+    }
+
+
     public static function getServicesByUserId(PDO $db, int $user_id): array
     {
         $stmt = $db->prepare("
@@ -349,8 +400,8 @@ class Service
         $stmt = $db->prepare("INSERT INTO ServiceMedia (serviceId, mediaURL) VALUES (:serviceId, :mediaURL)");
 
         foreach ($this->images as $mediaURL) {
-            $stmt->bindParam(":serviceId", $this->id);
-            $stmt->bindParam(":mediaURL", $mediaURL);
+            $stmt->bindValue(":serviceId", $this->id, PDO::PARAM_INT);
+            $stmt->bindValue(":mediaURL", $mediaURL, PDO::PARAM_STR);
             $stmt->execute();
         }
     }

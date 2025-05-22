@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .then(() => {
-                const statusLine = buttonEl.closest('.service-info').querySelector('.status-line');
+                const statusLine = buttonEl.closest('.service-info').querySelector('.service-delivery');
                 if (statusLine) {
-                    statusLine.innerHTML = '<strong>Status:</strong> closed';
+                    statusLine.innerHTML = 'Status: closed';
                 }
 
                 buttonEl.remove();
