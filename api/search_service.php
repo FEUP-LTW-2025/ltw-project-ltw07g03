@@ -15,7 +15,7 @@ $rating = isset($_GET['rating']) ? intval($_GET['rating']) : null;
 
 if ($category !== null && $category < 0) $category = null;
 if ($budget !== null && $budget < 0) $budget = null;
-if ($rating !== null && ($rating < 1 || $rating > 5)) $rating = null;
+if ($rating !== null && ($rating < 0 || $rating > 5)) $rating = null;
 
 if (strlen($search) > 100) {
     http_response_code(400);

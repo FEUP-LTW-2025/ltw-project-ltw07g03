@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../templates/common.tpl.php');
@@ -33,13 +34,13 @@ function drawServices(string $category, array $services, PDO $db): void
                     <?php endforeach; ?>
                 </select>
                 <input type="text" id="search-service-input" placeholder="Search...">
-                <input type="range" id="slider-service-budget" min="10" max="1000" step="20">
+                <input type="range" id="slider-service-budget" min="0" max="1000" step="20" value="1000">
                 <p>Budget:
-                    <output id="budget-value"></output>
+                    <output id="budget-value">1000</output>
                 </p>
-                <input type="range" id="slider-service-rating" min="1" max="5" step="1">
+                <input type="range" id="slider-service-rating" min="0" max="5" step="1" value="0">
                 <p>Rating:
-                    <output id="rating-value"></output>
+                    <output id="rating-value">0</output>
                 </p>
             </div>
 
