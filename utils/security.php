@@ -30,14 +30,6 @@ class Security
             preg_match('/[0-9]/', $password);
     }
 
-    public static function hashPassword(string $password): string
-    {
-        return password_hash($password, PASSWORD_ARGON2ID, [
-            'memory_cost' => 65536,
-            'time_cost' => 4,
-            'threads' => 3,
-        ]);
-    }
 
     public static function generateSecureFilename(string $originalName): string
     {
