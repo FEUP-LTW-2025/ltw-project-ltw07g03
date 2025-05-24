@@ -20,7 +20,7 @@ if (!Security::validateCSRFToken($session)) {
 $db = getDatabaseConnection();
 
 $receiverId = intval($_POST['receiver_id'] ?? 0);
-$content = Security::sanitizeInput($_POST['msg_content'] ?? '');
+$content = trim($_POST['msg_content'] ?? '');
 
 if (!isset($receiverId, $content) || empty($content) || $receiverId <= 0) {
     echo json_encode(['success' => false, 'error' => 'Please fill the message field with valid data']);

@@ -30,7 +30,7 @@ function drawChat(User $user, User $otherUser, array $history, Session $session)
                                 <span class="message-time"><?= date('d/m/Y H:i', $message->getDate()) ?></span>
                             </div>
                             <div class="message-text">
-                                <?= nl2br(htmlspecialchars($message->getContent())) ?>
+                                <?= htmlspecialchars($message->getContent(), ENT_QUOTES, 'UTF-8') ?>
                             </div>
                         </div>
                     <?php endforeach; ?>

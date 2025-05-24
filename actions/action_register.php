@@ -55,7 +55,7 @@ function isEmailUnique(PDO $db, string $email): bool
 
 if (!isEmptyInput($name, $username, $email, $password) && isValidInput($name, $username, $email, $password)) {
     if (isUsernameUnique($db, $username) && isEmailUnique($db, $email)) {
-        $hashedPassword = Security::hashPassword($password);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $profilePictureURL = handleSingleImageUpload($_FILES['profilePicture'] ?? [], $uploadDir, $uploadUrl, $defaultProfilePicture, $session);
 
         $user = new User($mockId, $name, $username, $email, $hashedPassword, $isAdmin, $profilePictureURL, $status);
