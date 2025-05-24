@@ -14,6 +14,5 @@ $db = getDatabaseConnection();
 $purchase_id = $_GET['purchase_id'];
 
 drawHeader('Review Form', $db, $session);
-drawReviewForm($purchase_id);
+drawReviewForm($purchase_id, $session);
 drawFooter();
-?>

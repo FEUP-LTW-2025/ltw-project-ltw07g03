@@ -26,5 +26,5 @@ if (!$isOwner) {
 $purchases = getPurchasesByFreelancerId($db, $id);
 
 drawHeader("History", $db, $session);
-drawServicesHistory($db, $purchases);
+drawServicesHistory($db, $purchases, $session);
 drawFooter();

@@ -29,7 +29,7 @@ if (!$service) {
 
 $service_freelancer = getFreelancersForServices($db, array($service));
 
-if(!$session->isLoggedIn()){
+if (!$session->isLoggedIn()) {
     $session->addMessage('error', 'Login to buy services');
     header('Location: /pages/login.php');
     exit();
@@ -37,7 +37,5 @@ if(!$session->isLoggedIn()){
 
 
 drawHeader("Service Detail", $db, $session);
-drawCheckoutForm($service_freelancer[$serviceId], $session->getId());
+drawCheckoutForm($service_freelancer[$serviceId], $session->getId(), $session);
 drawFooter();
-
-

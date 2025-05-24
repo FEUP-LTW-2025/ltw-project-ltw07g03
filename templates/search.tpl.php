@@ -1,12 +1,11 @@
 <?php
 declare(strict_types=1);
-?>
 
-<?php function drawSearchResults(string $search, array $results): void
+function drawSearchResults(string $search, array $results): void
 { ?>
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Search Results for: <?= $search ?></h2>
+            <h2 class="section-title">Search Results for: <?= htmlspecialchars($search) ?></h2>
             <?php if (!empty($results)): ?>
                 <ul class="category-grid">
                     <?php foreach ($results as $result): ?>
