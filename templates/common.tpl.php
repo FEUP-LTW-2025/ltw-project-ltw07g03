@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../model/user.class.php');
@@ -39,12 +40,14 @@ function drawHeader(string $title, PDO $db, Session $session): void
     <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
 
     <!-- JS files -->
+    <script src="/javascript/script.js" defer></script>
     <script src="/javascript/request_messages.js" defer></script>
     <script src="/javascript/send_message.js" defer></script>
     <script src="/javascript/close_purchase.js" defer></script>
     <script src="/javascript/service_carousel.js" defer></script>
     <script src="/javascript/image_preview.js" defer></script>
 </head>
+
 <body>
 <header class="site-header dark-header">
     <div class="container header-flex">

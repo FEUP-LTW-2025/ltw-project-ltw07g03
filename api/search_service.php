@@ -6,7 +6,6 @@ require_once(__DIR__ . "/../utils/security.php");
 
 header('Content-Type: application/json');
 
-
 $db = getDatabaseConnection();
 
 $search = Security::sanitizeInput($_GET['search'] ?? '');
