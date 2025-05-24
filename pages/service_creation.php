@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../model/category.class.php');
 $session = new Session();
 $db = getDatabaseConnection();
 
-$userId = $_POST['userId'] ?? null;      
+$userId = $_POST['userId'] ?? null;
 
 if ($userId === null) {
     if ($session->isLoggedIn()) {
@@ -26,9 +26,9 @@ if ($userId === null) {
 $allCategories = Category::getAllCategories($db);
 
 drawHeader("Create Service", $db, $session);
-drawServiceCreationForm($allCategories, (int)$userId);
+drawServiceCreationForm($allCategories, (int)$userId, $session);
 
-?> 
-<script src="/javascript/image_preview.js"></script>
+?>
+    <script src="/javascript/image_preview.js"></script>
 <?php
 drawFooter();
