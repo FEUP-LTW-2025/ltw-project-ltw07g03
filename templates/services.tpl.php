@@ -7,9 +7,8 @@ require_once(__DIR__ . '/../templates/authentication.tpl.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../model/category.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
-?>
 
-<?php function drawServices(string $category, array $services, PDO $db): void
+function drawServices(string $category, array $services, PDO $db): void
 {
     $categories = Category::getAllCategories($db);
     ?>
