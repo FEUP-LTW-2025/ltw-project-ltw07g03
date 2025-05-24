@@ -49,5 +49,5 @@ foreach ($purchases as $purchase) {
 }
 
 drawHeader("Purchase history", $db, $session);
-drawPurchaseHistory($purchasesWithDetails);
+drawPurchaseHistory($purchasesWithDetails, $db);
 drawFooter();

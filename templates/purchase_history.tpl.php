@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-function drawPurchaseHistory(array $purchasesWithDetails): void
+require_once(__DIR__ . '/../model/feedback.class.php');
+
+function drawPurchaseHistory(array $purchasesWithDetails, PDO $db): void
 { ?>
     <section class="user-services-section">
         <div class="category-container">
@@ -16,26 +18,36 @@ function drawPurchaseHistory(array $purchasesWithDetails): void
                                     <button class="slider-prev">‹</button>
                                 <?php endif; ?>
 
-                            <div class="slider-images">
-                                <?php foreach ($item['service']['images'] as $index => $imgURL): ?>
-                                    <img src="<?= htmlspecialchars($imgURL) ?>"
-                                    alt="Service image <?= $index + 1 ?>"
-                                    class="slider-image<?= $index === 0 ? ' active' : '' ?>">
-                                <?php endforeach; ?>
+                                <div class="slider-images">
+                                    <?php foreach ($item['service']['images'] as $index => $imgURL): ?>
+                                        <img src="<?= htmlspecialchars($imgURL) ?>"
+                                             alt="Service image <?= $index + 1 ?>"
+                                             class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                    <?php endforeach; ?>
+                                </div>
+                                <?php if (count($item['service']['images']) > 1): ?>
+                                    <button class="slider-next">›</button>
+                                <?php endif; ?>
                             </div>
-                            <?php if (count($item['service']['images']) > 1): ?>
-                                <button class="slider-next">›</button>
-                            <?php endif; ?>
-                        </div>
                             <div class="service-info">
                                 <h3 class="service-title"><?= htmlspecialchars($item['service']['title']) ?></h3>
                                 <p class="service-price">€<?= number_format($item['service']['price']) ?></p>
-                                <p class="freelancer-name">Freelancer: <?= htmlspecialchars($item['service']['freelancer']['name']) ?></p>
-                                <p class="service-delivery">Status: <?= htmlspecialchars($item['purchase']->getStatus()) ?></p>
-                                <p class="status-description">Date: <?= gmdate("Y-m-d | H:i:s", $item['purchase']->getDate()) ?></p>
-                                <?php 
-                                    if($item['purchase']->getStatus() === 'closed'): ?>
-                                    <a href="review_form.php?purchase_id=<?= $item['purchase']->getId() ?>" class="btn-outline">Leave a review</a>
+                                <p class="freelancer-name">
+                                    Freelancer: <?= htmlspecialchars($item['service']['freelancer']['name']) ?></p>
+                                <p class="service-delivery">
+                                    Status: <?= htmlspecialchars($item['purchase']->getStatus()) ?></p>
+                                <p class="status-description">
+                                    Date: <?= gmdate("Y-m-d | H:i:s", $item['purchase']->getDate()) ?></p>
+                                <?php
+                                // Debug output
+                                $status = $item['purchase']->getStatus();
+                                $purchaseId = $item['purchase']->getId();
+                                $feedbackExists = Feedback::feedbackExistsForPurchase($db, $purchaseId);
+                                echo "<!-- DEBUG: Status: $status, Purchase ID: $purchaseId, Feedback exists: " . ($feedbackExists ? "YES" : "NO") . " -->";
+
+                                if ($item['purchase']->getStatus() === 'closed' && !Feedback::feedbackExistsForPurchase($db, $item['purchase']->getId())): ?>
+                                    <a href="review_form.php?purchase_id=<?= $item['purchase']->getId() ?>"
+                                       class="btn-outline">Leave a review</a>
                                 <?php endif; ?>
                             </div>
                         </article>
@@ -47,4 +59,3 @@ function drawPurchaseHistory(array $purchasesWithDetails): void
         </div>
     </section>
 <?php } ?>
-
