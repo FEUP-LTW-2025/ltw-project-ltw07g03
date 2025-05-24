@@ -55,7 +55,12 @@ class Session
 
     public function getMessages()
     {
-        return $_SESSION['messages'];
+        return $_SESSION['messages'] ?? [];
+    }
+
+    public function clearMessages()
+    {
+        $_SESSION['messages'] = [];
     }
 
     public function validateCSRFToken(string $token): bool

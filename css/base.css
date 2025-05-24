@@ -57,3 +57,69 @@ button {
     text-align: left;
 }
 
+#snackbar-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.snackbar {
+    padding: 12px 40px 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 300px;
+    text-align: center;
+}
+
+.snackbar-close {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.snackbar-close:hover {
+    opacity: 0.7;
+}
+
+.snackbar.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.snackbar.error {
+    background-color: #dc3545;
+}
+
+.snackbar.success {
+    background-color: #28a745;
+}
+
+.snackbar.info {
+    background-color: #17a2b8;
+}
+
+.snackbar.warning {
+    background-color: #ffc107;
+    color: #212529;
+}

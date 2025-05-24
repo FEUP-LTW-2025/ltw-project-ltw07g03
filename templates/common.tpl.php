@@ -83,7 +83,27 @@ function drawHeader(string $title, PDO $db, Session $session): void
     </div>
 </header>
 <main>
+    <?php displaySessionMessages($session); ?>
     <?php } ?>
+
+    <?php function displaySessionMessages(Session $session): void
+    {
+        $messages = $session->getMessages();
+        if (!empty($messages)): ?>
+            <div id="snackbar-container"></div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const messages = <?= json_encode($messages) ?>;
+                    messages.forEach(function (message, index) {
+                        setTimeout(function () {
+                            showSnackbar(message.text, message.type);
+                        }, index * 100);
+                    });
+                });
+            </script>
+        <?php endif;
+        $session->clearMessages();
+    } ?>
 
     <?php function drawFooter(): void
     { ?>
