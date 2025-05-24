@@ -241,7 +241,7 @@ class Service
         return $this->id;
     }
 
-    public function updateService(PDO $db, string $title, int $price, int $deliveryTime, string $description, string $about) {
+    public function updateService(PDO $db, string $title, float $price, int $deliveryTime, string $description, string $about) {
     $stmt = $db->prepare("
         UPDATE Service 
         SET title = :title, 
@@ -252,8 +252,10 @@ class Service
         WHERE serviceId = :serviceId
     ");
 
+    $formattedPrice = number_format($price, 2, '.', '');
+
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-    $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+    $stmt->bindParam(':price', $formattedPrice, PDO::PARAM_STR);
     $stmt->bindParam(':deliveryTime', $deliveryTime, PDO::PARAM_INT);
     $stmt->bindParam(':description', $description, PDO::PARAM_STR);
     $stmt->bindParam(':about', $about, PDO::PARAM_STR);

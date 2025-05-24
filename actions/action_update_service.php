@@ -20,7 +20,7 @@ if (!$input) {
 // Exemplo de acesso aos dados
 $serviceId = intval($input['serviceId']) ?? null;
 $title = $input['title'] ?? null;
-$price = intval($input['price']) ?? null;
+$price = floatval($input['price']) ?? null;
 $description = $input['description'] ?? null;
 $about = $input['about'] ?? null;
 $deliveryTime = intval($input['deliveryTime']) ?? null;
