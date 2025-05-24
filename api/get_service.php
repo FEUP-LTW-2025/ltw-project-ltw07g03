@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
+require_once(__DIR__ . "/../database/connection.db.php");
 
 header('Content-Type: application/json');
-
-require_once(__DIR__ . "/../database/connection.db.php");
 
 $db = getDatabaseConnection();
 $response = null;
@@ -16,10 +15,10 @@ try {
             $serviceId = intval($idParam);
 
             $stmt = $db->prepare("
-                SELECT s.serviceId, s.freelancerId, sc.name AS category, s.title, s.price, 
-                       s.deliveryTime, s.description, s.about, s.status, s.rating 
+                SELECT s.serviceId, s.freelancerId, sc.name AS category, s.title, s.price,
+                       s.deliveryTime, s.description, s.about, s.status, s.rating
                 FROM Service s
-                JOIN ServiceCategory sc ON (s.categoryId = sc.serviceCategoryId) 
+                JOIN ServiceCategory sc ON (s.categoryId = sc.serviceCategoryId)
                 WHERE s.serviceId = :id
             ");
             $stmt->bindParam(":id", $serviceId, PDO::PARAM_INT);
@@ -34,7 +33,6 @@ try {
 
                 $serviceData['media'] = $mediaUrls ?: [];
                 $response = $serviceData;
-
             } else {
                 http_response_code(404);
                 $response = ["error" => "Service not found", "id" => $serviceId];
@@ -45,8 +43,8 @@ try {
         }
     } else {
         $stmt = $db->prepare("
-            SELECT s.serviceId, s.freelancerId, sc.name AS category, s.title, s.price, 
-                   s.deliveryTime, s.description, s.about, s.status, s.rating 
+            SELECT s.serviceId, s.freelancerId, sc.name AS category, s.title, s.price,
+                   s.deliveryTime, s.description, s.about, s.status, s.rating
             FROM Service s
             JOIN ServiceCategory sc ON (s.categoryId = sc.serviceCategoryId)
         ");
