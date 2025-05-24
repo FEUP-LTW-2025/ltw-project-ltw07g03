@@ -43,6 +43,9 @@ function drawHeader(string $title, PDO $db, Session $session): void
     <script src="/javascript/close_purchase.js" defer></script>
     <script src="/javascript/service_carousel.js" defer></script>
     <script src="/javascript/image_preview.js" defer></script>
+    <script src="/javascript/slider.js" defer></script>
+    <script src="/javascript/script.js" defer></script>
+    <script src="/javascript/edit_service.js" defer></script>
 </head>
 <body>
 <header class="site-header dark-header">
