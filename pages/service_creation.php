@@ -16,10 +16,9 @@ if ($userId === null) {
     if ($session->isLoggedIn()) {
         $userId = $session->getId();
     } else {
-        drawHeader("Unauthorized", $db, $session);
-        echo "<p class='error-message'>You must be logged in to create a service.</p>";
-        drawFooter();
-        exit;
+        $session->addMessage('error', 'You must be logged in to create a service.');
+        header('Location: /pages/login.php');
+        exit();
     }
 }
 
