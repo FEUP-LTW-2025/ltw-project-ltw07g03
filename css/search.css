@@ -36,3 +36,27 @@
 .search-btn:hover {
   background: var(--color-primary-dark);
 }
+
+/* Responsive styles for the search button */
+@media (max-width: 768px) {
+  .search-btn {
+    width: auto; /* Ensure the button does not stretch unnecessarily */
+    padding: 0.5rem 1rem; /* Adjust padding for smaller screens */
+    font-size: 1rem; /* Reduce font size for better fit */
+  }
+
+  .search-form {
+    display: flex;
+    flex-direction: row; /* Ensure input and button are side by side */
+    align-items: center; /* Align items vertically */
+    gap: 0; /* Remove spacing between input and button */
+  }
+
+  .search-input {
+    border-radius: 8px 0 0 8px; /* Keep rounded corners for input */
+  }
+
+  .search-btn {
+    border-radius: 0 8px 8px 0; /* Keep rounded corners for button */
+  }
+}
