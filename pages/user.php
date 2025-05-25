@@ -57,12 +57,12 @@ if ($account !== null && $account->isAdmin() && $account->getId() !== $user->get
 }
 
 if ($isOwner) {
-    drawEditableUserProfile($user, $conversationUsers, $session);
+    drawEditableUserProfile($user, $conversationUsers, $services);
 } else {
     drawUserProfile($user);
+    drawUserServices($user, $services ?? []);
 }
 
-drawUserServices($user, $services ?? []);
 
 ?>
     <script src="/javascript/image_preview.js"></script>

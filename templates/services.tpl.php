@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../templates/common.tpl.php');
@@ -8,8 +7,9 @@ require_once(__DIR__ . '/../templates/authentication.tpl.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../model/category.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
+?>
 
-function drawServices(string $category, array $services, PDO $db): void
+<?php function drawServices(string $category, array $services, PDO $db): void
 {
     $categories = Category::getAllCategories($db);
     ?>
@@ -17,31 +17,72 @@ function drawServices(string $category, array $services, PDO $db): void
         <div class="category-container">
             <?php
             if (strtolower($category) === 'services') {
-                echo '<h2 class="section-category-title">Services</h2>';
+                echo '<h2 class="section-title">Services</h2>';
             } elseif (str_starts_with($category, '_')) {
-                echo '<h2 class="section-category-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
+                echo '<h2 class="section-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
             } else {
-                echo '<h2 class="section-category-title">' . htmlspecialchars($category) . '</h2>';
+                echo '<h2 class="section-title">' . htmlspecialchars($category) . '</h2>';
             }
             ?>
             <div class="filter-controls">
-                <select id="category-filter">
-                    <option value="">All Categories</option>
-                    <?php foreach ($categories as $cat): ?>
-                        <option value="<?= $cat->getId() ?>">
-                            <?= htmlspecialchars($cat->getName()) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <input type="text" id="search-service-input" placeholder="Search...">
-                <input type="range" id="slider-service-budget" min="0" max="1000" step="20" value="1000">
-                <p>Budget:
-                    <output id="budget-value">1000</output>
-                </p>
-                <input type="range" id="slider-service-rating" min="0" max="5" step="1" value="0">
-                <p>Rating:
-                    <output id="rating-value">0</output>
-                </p>
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#categories-dropdown">
+                        Categories <span class="arrow">▼</span>
+                    </button>
+                    <div id="categories-dropdown" class="dropdown-panel">
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?= $cat->getId() ?>">
+                                    <?= htmlspecialchars($cat->getName()) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#price-dropdown">
+                        Price <span class="arrow">▼</span>
+                    </button>
+                    <div id="price-dropdown" class="dropdown-panel">
+                        <h3>Price</h3>
+                        <p class="range-label">Select range</p>
+                        <div class="slider-container">
+                            <div class="range-values">
+                                <span>5€</span>
+                                <span>500€</span>
+                            </div>
+                            <input type="range" id="slider-service-budget" min="5" max="500" value="250">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="clear-btn">Clear</button>
+                            <button class="apply-btn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#rating-dropdown">
+                        Rating <span class="arrow">▼</span>
+                    </button>
+                    <div id="rating-dropdown" class="dropdown-panel">
+                        <h3>Rating</h3>
+                        <p class="range-label">Select range</p>
+                        <div class="slider-container">
+                            <div class="range-values">
+                                <span>0 ⭐</span>
+                                <span>5 ⭐</span>
+                            </div>
+                            <input type="range" id="slider-service-rating" min="0" max="5" step="0.5" value="0">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="clear-btn">Clear</button>
+                            <button class="apply-btn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-wrapper">
+                    <input type="text" id="search-service-input" class="search-bar" placeholder="Search services...">
+                </div>
             </div>
 
             <?php if (empty($services)): ?>
@@ -60,7 +101,7 @@ function drawServices(string $category, array $services, PDO $db): void
                                         <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
                                             <img src="<?= htmlspecialchars($imgURL) ?>"
                                                  alt="Service image <?= $index + 1 ?>"
-                                                 class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                                 class="slider-image slider-image-small<?= $index === 0 ? ' active' : '' ?>">
                                         </a>
                                     <?php endforeach; ?>
                                 </div>
@@ -82,8 +123,7 @@ function drawServices(string $category, array $services, PDO $db): void
                                     </a>
                                 </div>
                                 <?php if ($service['avgRating'] != 0): ?>
-                                    <p class="service-rating">
-                                        ⭐ <?= htmlspecialchars((string)round($service['avgRating']), 2) ?> /
+                                    <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?> /
                                         5</p>
                                 <?php else: ?>
                                     <p class="service-rating">⭐ No ratings yet</p>

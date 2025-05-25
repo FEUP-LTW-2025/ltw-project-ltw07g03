@@ -3,11 +3,7 @@
 /* Medium devices (≤ 992px) */
 
 @media (max-width: 992px) {
-    .header-flex {
-        flex-direction: column;
-        text-align: center;
-    }
-
+    .header-flex,
     .hero-grid {
         flex-direction: column;
         text-align: center;
@@ -16,11 +12,23 @@
     .service-detail-grid {
         flex-direction: column;
         gap: 2rem;
+        align-items: center;
     }
 
     .service-detail-right {
         margin-left: 0;
         position: static;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .service-detail-img {
+        height: auto;
+        display: block;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto 1.5rem;
     }
 
     .service-grid {
@@ -30,7 +38,127 @@
     .category-dashboard {
         max-width: 90vw;
     }
+
+    .form-group.center input[type="file"] {
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.9rem;
+    }
+
+    .form-group.center {
+        padding: 0 1rem;
+    }
+
+    .search-form {
+        flex-direction: column;
+        display: flex;
+        gap: 0.5rem;
+        max-width: 400%;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .search-input, 
+    .search-btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .conversation-entry a {
+        width: 110px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .service-slider {
+        max-width: 100%;
+    }
+
+    .filter-controls {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .filter-button,
+    .search-bar {
+        width: calc(50% - 0.25rem);
+        min-width: 0;
+    }
 }
+
+@media (max-width: 768px) {
+    .service-detail-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+    }
+  
+    .service-detail-left,
+    .service-detail-right {
+        width: 100% !important;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .service-detail-right {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .service-detail-left {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+  
+    .freelancer-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+  
+    .service-detail-description {
+        text-align: center;
+        padding: 0 1rem;
+    }
+  
+    .slider-image {
+        height: 250px;
+    }
+  
+    .service-price-box-inline {
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+  
+    .service-contact-btn,
+    .service-edit-btn,
+    .purchase-btn {
+        margin: 0.3rem 0;
+        max-width: 90%;
+    }
+  
+    .service-reviews {
+        padding: 0 1rem;
+        margin-top: 2.5rem;
+    }
+
+    .review-list {
+        margin-top: 1rem;
+    }
+
+    .slider-prev,
+    .slider-next {
+        top: 125px; 
+    }
+  }
 
 /* Small devices (≤ 576px) */
 
@@ -49,18 +177,6 @@
         padding: 1rem;
     }
 
-    .search-form {
-        flex-direction: column;
-    }
-
-    .search-input {
-        border-radius: 8px 8px 0 0;
-    }
-
-    .search-btn {
-        border-radius: 0 0 8px 8px;
-    }
-
     .purchase-card {
         flex-direction: column;
         align-items: flex-start;
@@ -74,18 +190,50 @@
         max-width: 100%;
     }
 
-    .service-detail-img {
-        width: 100%;
-    }
-
-    .carousel {
-        max-width: 100%;
-    }
-
     .checkout-summary-img {
         max-height: 160px;
     }
 
+    .filter-controls {
+        flex-direction: column;
+        padding: 0.75rem;
+    }
+
+    .filter-button,
+    .search-bar,
+    .purchase-btn,
+    .service-contact-btn, 
+    #search-service-input {
+        width: 100%
+    }
+    
 }
+
+/* Extra small devices (≤ 480px) */
+
+@media (max-width: 480px) {
+    .profile-picture-small,
+    .conversation-entry img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .conversation-entry a {
+        min-width: 100px;
+        text-align: center;
+        flex: 1 0 100px;
+    }
+
+    .messages-overview ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .search-section h2 {
+        font-size: 1.5rem;
+    }
+
+}
+
 
 

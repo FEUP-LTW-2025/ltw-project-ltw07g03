@@ -26,10 +26,11 @@ if (!$input) {
 
 $serviceId = intval($input['serviceId']) ?? null;
 $title = $input['title'] ?? null;
-$price = floatval($input['price']) ?? null;
+$price = intval($input['price']) ?? null;
 $description = $input['description'] ?? null;
 $about = $input['about'] ?? null;
 $deliveryTime = intval($input['deliveryTime']) ?? null;
+
 
 if (!$serviceId || !$title || !is_numeric($price) || !$description || !$about || !is_numeric($deliveryTime)) {
     echo json_encode(['error' => 'Missing or invalid fields']);
@@ -38,6 +39,7 @@ if (!$serviceId || !$title || !is_numeric($price) || !$description || !$about ||
 }
 
 $service = Service::getServiceById($db, $serviceId);
+
 if (!$service) {
     echo json_encode(['error' => 'Service not found']);
     http_response_code(404);
