@@ -116,43 +116,59 @@
 /* Service detail */
 
 .service-detail-section {
-  padding-top: 40px;
+  padding: 3rem 1rem;
+  background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+  font-family: "Arial", sans-serif;
 }
 
 .service-detail-grid {
   display: flex;
   flex-direction: row;
-  gap: 4rem;
+  gap: 3rem;
   align-items: flex-start;
   margin-top: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .service-detail-left {
   flex: 2;
-  max-width: 600px;
+  max-width: 700px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Service detail right section */
 .service-detail-right {
   flex: 1;
-  background: var(--color-bg-secondary);
-  padding: 1.5rem;
+  background: #f7f7f7;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 100px;
-  margin-left: 7rem;
+  width: 100%; /* Ensure it takes full width on smaller screens */
+  max-width: 400px; /* Limit the width on larger screens */
+  margin: 0 auto; /* Center align on smaller screens */
 }
 
 .service-detail-title {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
 }
 
 .service-detail-description {
-  font-size: 1rem;
-  margin-bottom: 0.8rem;
-  color: var(--color-text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+  line-height: 1.8;
+  text-align: justify;
 }
 
 .service-detail-about {
@@ -182,51 +198,52 @@
 }
 
 .service-detail-price-box {
-  background: white;
-  border: 1px solid var(--color-border-light);
-  padding: 30px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .service-detail-price {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: var(--color-success);
+  color: #28a745;
+  margin-bottom: 1.5rem;
+}
+
+.purchase-btn,
+.service-contact-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
+  border-radius: 8px;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .purchase-btn {
-  background-color: var(--color-info-dark);
+  background-color: #007bff;
   color: white;
-  font-weight: bold;
-  border-radius: 1rem;
-  padding: 0.75rem 1.5rem;
-  text-align: center;
-  display: block;
-  margin-top: 1rem;
-  transition: background-color 0.3s ease;
 }
 
 .purchase-btn:hover {
-  background-color: var(--color-info-dark);
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .service-contact-btn {
-  background-color: var(--color-secondary);
+  background-color: #6c757d;
   color: white;
-  font-weight: bold;
-  border-radius: 1rem;
-  padding: 0.75rem 1.5rem;
-  text-align: center;
-  display: block;
-  margin-top: 1rem;
-  transition: background-color 0.3s ease;
 }
 
 .service-contact-btn:hover {
-  background-color: var(--color-info-dark);
+  background-color: #5a6268;
+  transform: scale(1.05);
 }
 
 .freelancer-name-detail {
@@ -245,20 +262,36 @@
 
 /* Reviews */
 
+.reviews-section {
+  margin-top: 3rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .review-list {
   list-style: none;
   padding-left: 0;
 }
 
 .review-item {
-  background-color: var(--color-bg-primary);
-  border: 1px solid var(--color-border-secondary);
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border-secondary);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.review-item p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.review-item strong {
+  color: #333;
 }
 
 .service-reviews {
@@ -280,6 +313,9 @@ h3 {
   height: 180px;
   overflow: hidden;
   margin: 0;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .slider-images {
@@ -297,6 +333,7 @@ h3 {
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 12px;
 }
 
 .carousel-image.active,
@@ -384,4 +421,65 @@ h3 {
 .filter-controls output {
   font-weight: bold;
   color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .service-detail-grid {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .service-detail-left,
+  .service-detail-right {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .service-detail-title {
+    font-size: 2rem;
+  }
+
+  .service-detail-description {
+    font-size: 1.1rem;
+  }
+
+  .service-detail-right {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-detail-title {
+    font-size: 1.8rem;
+  }
+
+  .service-detail-description {
+    font-size: 1rem;
+  }
+
+  .purchase-btn,
+  .service-contact-btn {
+    font-size: 1rem;
+  }
+
+  .service-detail-right {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .service-detail-description {
+    font-size: 0.9rem;
+  }
+
+  .purchase-btn,
+  .service-contact-btn {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
 }
