@@ -12,15 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.querySelectorAll(".editable").forEach((el) => {
             if (["P", "H2"].includes(el.tagName)) {
-                if (el.classList.contains("service-detail-price")) {
-                } else {
-                    el.contentEditable = true;
-                    el.style.border = "1px dashed #ccc";
-                    el.style.padding = "5px";
-                    el.dataset.originalText = el.innerText;
-                }
+                el.contentEditable = true;
+                el.style.border = "1px dashed #ccc";
+                el.style.padding = "5px";
+                el.dataset.originalText = el.innerText;
             }
         });
+
         const priceSpan = document.querySelector(".price-value");
         if (priceSpan) {
             priceSpan.contentEditable = true;
@@ -29,9 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             priceSpan.dataset.originalText = priceSpan.innerText;
         }
 
-        const deliveryParagraph = document.querySelector(
-            ".service-detail-delivery"
-        );
+        const deliveryParagraph = document.querySelector(".service-detail-delivery");
         if (deliveryParagraph) {
             const match = deliveryParagraph.innerText.match(/(\d+)\s*days/);
             if (match) {
@@ -78,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.querySelectorAll(".editable").forEach((el) => {
             const field = el.dataset.field;
-            if (field && !el.classList.contains("service-detail-price")) {
+            if (field) {
                 updatedData[field] = el.innerText.trim();
                 el.contentEditable = false;
                 el.style.border = "";
@@ -100,8 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             deliveryDays.style.padding = "";
         }
 
-        updatedData["serviceId"] =
-            document.querySelector(".service-slider").dataset.serviceId;
+        updatedData["serviceId"] = document.querySelector(".service-slider").dataset.serviceId;
 
         console.log(updatedData);
 

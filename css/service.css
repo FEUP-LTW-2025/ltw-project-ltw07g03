@@ -423,6 +423,58 @@ h3 {
   color: #333;
 }
 
+/* Styling for Edit and Save buttons */
+#toggle-edit-btn,
+#toggle-save-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+}
+
+#toggle-edit-btn:hover,
+#toggle-save-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+#toggle-save-btn {
+  background-color: #28a745;
+}
+
+#toggle-save-btn:hover {
+  background-color: #218838;
+}
+
+/* About section styling */
+.about-section {
+    font-size: 1.2rem; /* Increased font size for better readability */
+    line-height: 1.8; /* Improved line spacing */
+    color: var(--color-text-primary);
+    margin-top: 2rem;
+}
+
+.about-section h3 {
+    font-size: 1.5rem; /* Increased heading size */
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.about-section p {
+    font-size: 1.2rem; /* Match paragraph font size with section */
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .service-detail-grid {

@@ -8,9 +8,17 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
         <div class="container">
             <div class="service-detail-grid">
                 <div class="service-detail-left">
-                    <p class="freelancer-name-detail">By
-                        <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong>
-                    </p>
+                    <div class="freelancer-info">
+                        <div class="freelancer-details">
+                            <p class="freelancer-name-detail">By
+                                <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong>
+                            </p>
+                            <p class="service-detail-rating">
+                                <strong>Rating:</strong>
+                                <?= $service_freelancer['avgRating'] > 0 ? '⭐ ' . $service_freelancer['avgRating'] . ' /5' : 'No ratings yet' ?>
+                            </p>
+                        </div>
+                    </div>
                     <div class="carousel">
                         <?php if (count($service_freelancer['images']) > 1): ?>
                             <button class="prev">&#10094;</button>
@@ -36,10 +44,6 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                     <?php endif; ?>
                     <p class="service-detail-delivery">
                         <strong>Delivery Time:</strong> <?= $service_freelancer['deliveryTime'] ?> days
-                    </p>
-                    <p class="service-detail-rating">
-                        <strong>Rating:</strong>
-                        <?= $service_freelancer['avgRating'] > 0 ? '⭐ ' . $service_freelancer['avgRating'] . ' /5' : 'No ratings yet' ?>
                     </p>
                     <div class="reviews-section">
                         <h3>Reviews</h3>
@@ -91,9 +95,17 @@ function drawEditableServiceDetail(array $service_freelancer, array $feedbacks_a
         <div class="container">
             <div class="service-detail-grid">
                 <div class="service-detail-left">
-                    <p class="freelancer-name-detail">By
-                        <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong>
-                    </p>
+                    <div class="freelancer-info">
+                        <div class="freelancer-details">
+                            <p class="freelancer-name-detail">By
+                                <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong>
+                            </p>
+                            <p class="service-detail-rating">
+                                <strong>Rating:</strong>
+                                <?= $service_freelancer['avgRating'] > 0 ? '⭐ ' . $service_freelancer['avgRating'] . ' /5' : 'No ratings yet' ?>
+                            </p>
+                        </div>
+                    </div>
                     <div class="service-slider" data-service-id="<?= $service_freelancer['serviceId'] ?>">
                         <?php if (count($service_freelancer['images']) > 1): ?>
                             <button class="slider-prev">‹</button>
@@ -121,10 +133,6 @@ function drawEditableServiceDetail(array $service_freelancer, array $feedbacks_a
                     <?php endif; ?>
                     <p class="service-detail-delivery">
                         <strong>Delivery Time:</strong> <?= $service_freelancer['deliveryTime'] ?> days
-                    </p>
-                    <p class="service-detail-rating">
-                        <strong>Rating:</strong>
-                        <?= $service_freelancer['avgRating'] > 0 ? '⭐ ' . $service_freelancer['avgRating'] . ' /5' : 'No ratings yet' ?>
                     </p>
                     <div class="reviews-section">
                         <h3>Reviews</h3>
