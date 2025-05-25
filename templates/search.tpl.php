@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 function drawSearchResults(string $search, array $results): void
@@ -9,7 +10,7 @@ function drawSearchResults(string $search, array $results): void
             <?php if (!empty($results)): ?>
                 <ul class="category-grid">
                     <?php foreach ($results as $result): ?>
-                        <li class="category-card"><?= $result ?></li>
+                        <li class="category-card card-hover-lift"><?= $result ?></li>
                     <?php endforeach; ?>
                 </ul>
             <?php else: ?>

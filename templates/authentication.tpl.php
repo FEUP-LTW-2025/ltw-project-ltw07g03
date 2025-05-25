@@ -9,7 +9,7 @@
         <label for="password">Password</label>
         <input type="password" name="password" placeholder="password" required>
 
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" class="btn-transition">
     </form>
 <?php } ?>
 
@@ -35,6 +35,6 @@
         <input type="file" name="profilePicture" id="registerPicture" required>
         <p id="profilePreviewLabel" class="preview-label">Selected Image</p>
         <div id="profile-preview-container" class="image-preview-container profile-preview-container"></div>
-        <input type="submit" value="Register">
+        <input type="submit" value="Register" class="btn-transition">
     </form>
 <?php } ?>

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 function drawServiceCreationForm(array $possible_categories, int $userId, Session $session): void
@@ -37,6 +38,6 @@ function drawServiceCreationForm(array $possible_categories, int $userId, Sessio
             <input type="file" id="images" name="images[]" multiple required>
             <div id="service-preview-container" class="image-preview-container service-preview-container"></div>
         </div>
-        <button type="submit" class="btn-outline">Create Service</button>
+        <button type="submit" class="btn-outline btn-transition">Create Service</button>
     </form>
 <?php } ?>

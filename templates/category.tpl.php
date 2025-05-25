@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../templates/common.tpl.php');
@@ -29,7 +30,7 @@ require_once(__DIR__ . '/../model/service.class.php');
             <?php else: ?>
                 <div class="service-grid">
                     <?php foreach ($services as $service): ?>
-                        <article class="service-display">
+                        <article class="service-display card-hover-lift">
                             <div class="service-slider" data-service-id="<?= $service['serviceId'] ?>">
                                 <?php if (count($service['images']) > 1): ?>
                                     <button class="slider-prev">‹</button>
@@ -39,8 +40,8 @@ require_once(__DIR__ . '/../model/service.class.php');
                                     <?php foreach ($service['images'] as $index => $imgURL): ?>
                                         <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
                                             <img src="<?= htmlspecialchars($imgURL) ?>"
-                                                 alt="Service image <?= $index + 1 ?>"
-                                                 class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                                alt="Service image <?= $index + 1 ?>"
+                                                class="slider-image<?= $index === 0 ? ' active' : '' ?>">
                                         </a>
                                     <?php endforeach; ?>
                                 </div>
@@ -53,11 +54,11 @@ require_once(__DIR__ . '/../model/service.class.php');
                             <div class="service-info">
                                 <h3 class="service-title"><?= htmlspecialchars($service['title']) ?></h3>
                                 <p class="service-price"><?= htmlspecialchars((string)$service['price']) ?> €</p>
-                                <p class="service-description"><?= htmlspecialchars($service['description']) ?></p>
+                                <p class="service-description text-clamp-3"><?= htmlspecialchars($service['description']) ?></p>
                                 <div class="freelancer-info">
                                     <a href="/pages/user.php?id=<?= $service['freelancer']['id'] ?>">
                                         <img src="<?= htmlspecialchars($service['freelancer']['profilePictureURL']) ?>"
-                                             alt="Freelancer profile" class="freelancer-pic">
+                                            alt="Freelancer profile" class="freelancer-pic">
                                         <span class="freelancer-name"><?= htmlspecialchars($service['freelancer']['name']) ?></span>
                                     </a>
                                 </div>

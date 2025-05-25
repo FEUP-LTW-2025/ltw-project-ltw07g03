@@ -53,7 +53,7 @@
         <input type="text" id="cardholder_name" name="cardholder_name" placeholder="John Silva" required>
       </div>
 
-      <input type="submit" value="Buy">
+      <input type="submit" value="Buy" class="btn-transition">
     </form>
 
   </section>

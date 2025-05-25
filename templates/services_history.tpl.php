@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 require_once(__DIR__ . '/../model/service.class.php');
 require_once(__DIR__ . '/../model/purchase.class.php');
@@ -15,7 +16,7 @@ function drawServicesHistory(PDO $db, array $purchases, Session $session): void
                         $service = Service::getServiceById($db, $purchase['serviceId']);
                         if (!$service) continue;
                         ?>
-                        <article class="service-display">
+                        <article class="service-display card-hover-lift">
                             <div class="service-slider" data-service-id="<?= $purchase['purchaseId'] ?>">
                                 <?php if (count($service->getImages()) > 1): ?>
                                     <button class="slider-prev">‹</button>
@@ -39,7 +40,7 @@ function drawServicesHistory(PDO $db, array $purchases, Session $session): void
 
                                 <?php if ($purchase['status'] === 'pending'): ?>
                                     <button
-                                        class="btn-outline close-purchase-btn"
+                                        class="btn-outline btn-transition close-purchase-btn"
                                         data-purchase-id="<?= $purchase['purchaseId'] ?>"
                                         data-freelancer-id="<?= $service->getFreelancerId() ?>"
                                         data-csrf-token="<?= $session->getCSRFToken() ?? '' ?>">

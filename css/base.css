@@ -1,5 +1,11 @@
 /* Base styles and Typography */
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: var(--color-bg-primary);
@@ -127,4 +133,49 @@ button {
 .snackbar.warning {
   background-color: var(--color-warning);
   color: var(--color-gray-dark);
+}
+
+/* Common Patterns */
+.btn-transition {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.small-hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.small-hover-lift:hover {
+  transform: translateY(-3px);
 }

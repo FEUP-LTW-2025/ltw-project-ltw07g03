@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 function drawServiceDetail(array $service_freelancer, array $feedbacks_author): void
@@ -17,8 +18,8 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                         <div class="carousel-images">
                             <?php foreach ($service_freelancer['images'] as $index => $img): ?>
                                 <img src="<?= htmlspecialchars($img) ?>"
-                                     alt="Service image"
-                                     class="carousel-image <?= $index === 0 ? 'active' : '' ?>">
+                                    alt="Service image"
+                                    class="carousel-image <?= $index === 0 ? 'active' : '' ?>">
                             <?php endforeach; ?>
                         </div>
                         <?php if (count($service_freelancer['images']) > 1): ?>
@@ -53,7 +54,8 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                                         <p><strong><?= htmlspecialchars($author->getName()) ?></strong> says:</p>
                                         <p><?= htmlspecialchars($feedback->getReview()) ?></p>
                                         <p>Rating: ⭐ <?= $feedback->getRating() ?> / 5</p>
-                                        <p class="review-date"><?= date('d/m/Y H:i', $feedback->getDate()) ?></p></li>
+                                        <p class="review-date"><?= date('d/m/Y H:i', $feedback->getDate()) ?></p>
+                                    </li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php else: ?>
@@ -67,11 +69,11 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                             <?= $service_freelancer['price'] ?> €
                         </p>
                         <a href="/pages/checkout.php?serviceId=<?= $service_freelancer['serviceId'] ?>"
-                           class="purchase-btn">
+                            class="purchase-btn btn-transition">
                             Purchase
                         </a>
                         <a href="/pages/chat.php?user_id=<?= $service_freelancer['freelancer']['id'] ?>"
-                           class="service-contact-btn">
+                            class="service-contact-btn btn-transition">
                             Contact Me
                         </a>
                     </div>
@@ -80,7 +82,7 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
             </div>
         </div>
     </section>
-<?php } 
+<?php }
 
 
 function drawEditableServiceDetail(array $service_freelancer, array $feedbacks_author): void
@@ -90,30 +92,31 @@ function drawEditableServiceDetail(array $service_freelancer, array $feedbacks_a
             <div class="service-detail-grid">
                 <div class="service-detail-left">
                     <p class="freelancer-name-detail">By
-                        <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong></p>
+                        <strong><?= htmlspecialchars($service_freelancer['freelancer']['name'] ?? 'Unknown') ?></strong>
+                    </p>
                     <div class="service-slider" data-service-id="<?= $service_freelancer['serviceId'] ?>">
                         <?php if (count($service_freelancer['images']) > 1): ?>
                             <button class="slider-prev">‹</button>
                         <?php endif; ?>
 
-                    <div class="slider-images">
-                        <?php foreach ($service_freelancer['images'] as $index => $imgURL): ?>
-                            <img src="<?= htmlspecialchars($imgURL) ?>"
-                            alt="Service image <?= $index + 1 ?>"
-                            class="slider-image<?= $index === 0 ? ' active' : '' ?>">
-                        <?php endforeach; ?>
-                    </div>
+                        <div class="slider-images">
+                            <?php foreach ($service_freelancer['images'] as $index => $imgURL): ?>
+                                <img src="<?= htmlspecialchars($imgURL) ?>"
+                                    alt="Service image <?= $index + 1 ?>"
+                                    class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                            <?php endforeach; ?>
+                        </div>
 
-                    <?php if (count($service_freelancer['images']) > 1): ?>
-                        <button class="slider-next">›</button>
-                    <?php endif; ?>
+                        <?php if (count($service_freelancer['images']) > 1): ?>
+                            <button class="slider-next">›</button>
+                        <?php endif; ?>
                     </div>
                     <h2 class="service-detail-title editable" data-field="title"><?= htmlspecialchars($service_freelancer['title']) ?></h2>
                     <p class="service-detail-description editable" data-field="description"><?= htmlspecialchars($service_freelancer['description']) ?></p>
                     <?php if (!empty($service_freelancer['about'])): ?>
-                       <section class="about-section" data-field="about">
-                        <h3 class="editable" data-field="about-heading">About this gig</h3>
-                        <p class="editable" data-field="about"><?= nl2br(htmlspecialchars($service_freelancer['about'])) ?></p>
+                        <section class="about-section" data-field="about">
+                            <h3 class="editable" data-field="about-heading">About this gig</h3>
+                            <p class="editable" data-field="about"><?= nl2br(htmlspecialchars($service_freelancer['about'])) ?></p>
                         </section>
                     <?php endif; ?>
                     <p class="service-detail-delivery">
@@ -136,7 +139,8 @@ function drawEditableServiceDetail(array $service_freelancer, array $feedbacks_a
                                         <p><strong><?= htmlspecialchars($author->getName()) ?></strong> says:</p>
                                         <p><?= htmlspecialchars($feedback->getReview()) ?></p>
                                         <p>Rating: ⭐ <?= $feedback->getRating() ?> / 5</p>
-                                        <p class="review-date"><?= date('d/m/Y H:i', $feedback->getDate()) ?></p></li>
+                                        <p class="review-date"><?= date('d/m/Y H:i', $feedback->getDate()) ?></p>
+                                    </li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php else: ?>

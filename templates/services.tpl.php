@@ -12,7 +12,7 @@ require_once(__DIR__ . '/../model/service.class.php');
 function drawServices(string $category, array $services, PDO $db): void
 {
     $categories = Category::getAllCategories($db);
-    ?>
+?>
     <section class="category-section">
         <div class="category-container">
             <?php
@@ -49,7 +49,7 @@ function drawServices(string $category, array $services, PDO $db): void
             <?php else: ?>
                 <div class="service-grid">
                     <?php foreach ($services as $service): ?>
-                        <article class="service-display">
+                        <article class="service-display card-hover-lift">
                             <div class="service-slider" data-service-id="<?= $service['serviceId'] ?>">
                                 <?php if (count($service['images']) > 1): ?>
                                     <button class="slider-prev">‹</button>
@@ -59,8 +59,8 @@ function drawServices(string $category, array $services, PDO $db): void
                                     <?php foreach ($service['images'] as $index => $imgURL): ?>
                                         <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
                                             <img src="<?= htmlspecialchars($imgURL) ?>"
-                                                 alt="Service image <?= $index + 1 ?>"
-                                                 class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                                alt="Service image <?= $index + 1 ?>"
+                                                class="slider-image<?= $index === 0 ? ' active' : '' ?>">
                                         </a>
                                     <?php endforeach; ?>
                                 </div>
@@ -73,11 +73,11 @@ function drawServices(string $category, array $services, PDO $db): void
                             <div class="service-info">
                                 <h3 class="service-title"><?= htmlspecialchars($service['title']) ?></h3>
                                 <p class="service-price"><?= htmlspecialchars((string)$service['price']) ?> €</p>
-                                <p class="service-description"><?= htmlspecialchars($service['description']) ?></p>
+                                <p class="service-description text-clamp-3"><?= htmlspecialchars($service['description']) ?></p>
                                 <div class="freelancer-info">
                                     <a href="/pages/user.php?id=<?= $service['freelancer']['id'] ?>">
                                         <img src="<?= htmlspecialchars($service['freelancer']['profilePictureURL']) ?>"
-                                             alt="Freelancer profile" class="freelancer-pic">
+                                            alt="Freelancer profile" class="freelancer-pic">
                                         <span class="freelancer-name"><?= htmlspecialchars($service['freelancer']['name']) ?></span>
                                     </a>
                                 </div>

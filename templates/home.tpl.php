@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 require_once(__DIR__ . '/../model/category.class.php');
 ?>
@@ -11,7 +12,7 @@ require_once(__DIR__ . '/../model/category.class.php');
                 <div class="hero-text">
                     <h1 class="hero-title">Freelancing made simple with <span class="highlight">FLEXA</span></h1>
                     <p class="hero-subtitle">Hire top talent or get hired - all in one place.</p>
-                    <a href="#categories" class="hero-btn">GET STARTED</a>
+                    <a href="#categories" class="hero-btn btn-transition">GET STARTED</a>
                 </div>
             </div>
         </div>
@@ -26,14 +27,13 @@ require_once(__DIR__ . '/../model/category.class.php');
             <form action="/pages/search.php" method="GET" class="search-form">
                 <label>
                     <input
-                            type="text"
-                            name="query"
-                            placeholder="Try 'logo design', 'web developer'..."
-                            class="search-input"
-                            required
-                    />
+                        type="text"
+                        name="query"
+                        placeholder="Try 'logo design', 'web developer'..."
+                        class="search-input"
+                        required />
                 </label>
-                <button type="submit" class="search-btn">Search</button>
+                <button type="submit" class="search-btn btn-transition">Search</button>
             </form>
         </div>
     </section>
@@ -47,7 +47,7 @@ require_once(__DIR__ . '/../model/category.class.php');
             <div class="category-row">
                 <?php foreach ($categories as $cat): ?>
                     <?php $encoded = urlencode($cat->getName()); ?>
-                    <a href="/pages/category.php?name=<?= $encoded ?>" class="category-card">
+                    <a href="/pages/category.php?name=<?= $encoded ?>" class="category-card card-hover-lift">
                         <?= $cat->getIcon() ?> <?= $cat->getName() ?>
                     </a>
                 <?php endforeach; ?>

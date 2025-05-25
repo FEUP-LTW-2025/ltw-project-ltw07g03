@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 require_once(__DIR__ . '/../model/user.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
@@ -8,13 +9,13 @@ function drawUserProfile(User $user): void
     <section class="section profile-section">
         <div class="profile-header">
             <img src="<?= htmlspecialchars($user->getProfilePicture()) ?>" alt="Profile Picture"
-                 class="profile-picture-large">
+                class="profile-picture-large">
             <h2><?= htmlspecialchars($user->getName()) ?></h2>
             <p class="profile-username">@<?= htmlspecialchars($user->getUsername()) ?></p>
         </div>
 
         <div class="container">
-            <div class="profile-card">
+            <div class="profile-card card-hover-lift">
                 <h3 class="card-title">User Information</h3>
                 <ul class="profile-info">
                     <li><span>Email:</span> <?= htmlspecialchars($user->getEmail()) ?></li>
@@ -31,8 +32,8 @@ function drawUserProfile(User $user): void
     <section class="section profile-section">
         <div class="container">
             <h2 class="section-title">Edit Your Profile</h2>
-            <form action="/actions/action_edit_profile.php" method="post" class="profile-card"
-                  enctype="multipart/form-data">
+            <form action="/actions/action_edit_profile.php" method="post" class="profile-card card-hover-lift"
+                enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?= $session->getCSRFToken() ?? '' ?>">
                 <input type="hidden" name="id" value="<?= htmlspecialchars((string)$user->getId()) ?>">
                 <div class="form-group center">
@@ -61,20 +62,20 @@ function drawUserProfile(User $user): void
                         </option>
                     </select>
                 </div>
-                <button type="submit" class="btn-secondary">Save Changes</button>
+                <button type="submit" class="btn-secondary btn-transition">Save Changes</button>
             </form>
 
             <div class="action-buttons">
                 <form action="/pages/service_creation.php" method="POST">
                     <input type="hidden" name="csrf_token"
-                           value="<?= $session->getCSRFToken() ?? '' ?>">
+                        value="<?= $session->getCSRFToken() ?? '' ?>">
                     <input type="hidden" name="userId" value="<?= htmlspecialchars((string)$user->getId()) ?>">
-                    <button type="submit" class="btn-outline">Create new Service</button>
+                    <button type="submit" class="btn-outline btn-transition">Create new Service</button>
                 </form>
                 <a href="/pages/services_history.php?id=<?= htmlspecialchars((string)$user->getId()) ?>"
-                   class="btn-outline">Check your services history</a>
+                    class="btn-outline btn-transition">Check your services history</a>
                 <a href="/pages/purchase_history.php?id=<?= htmlspecialchars((string)$user->getId()) ?>"
-                   class="btn-outline">Check your purchase history</a>
+                    class="btn-outline btn-transition">Check your purchase history</a>
             </div>
 
             <div class="messages-overview">
@@ -85,10 +86,10 @@ function drawUserProfile(User $user): void
                     <?php else: ?>
                         <?php foreach ($conversationUsers as $otherUser): ?>
                             <li class="conversation-entry">
-                                <a href="/pages/chat.php?user_id=<?= htmlspecialchars((string)$otherUser->getId()) ?>">
+                                <a href="/pages/chat.php?user_id=<?= htmlspecialchars((string)$otherUser->getId()) ?>" class="small-hover-lift">
                                     <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>"
-                                         alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>"
-                                         class="profile-picture-small">
+                                        alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>"
+                                        class="profile-picture-small">
                                     <span><?= htmlspecialchars($otherUser->getName()) ?></span>
                                 </a>
                             </li>
@@ -111,7 +112,7 @@ function drawAdminStatusBar(User $user, Session $session): void
             <input type="hidden" name="csrf_token" value="<?= $session->getCSRFToken() ?? '' ?>">
             <input type="hidden" name="userId" value="<?= htmlspecialchars((string)$user->getId()) ?>">
             <input type="hidden" name="isAdmin" value="<?= $user->isAdmin() ? '0' : '1' ?>">
-            <button type="submit" class="admin-toggle-btn">
+            <button type="submit" class="admin-toggle-btn btn-transition">
                 <?= $user->isAdmin() ? 'Revoke admin privileges' : 'Elevate this user to admin' ?>
             </button>
         </form>
@@ -124,16 +125,16 @@ function drawAdminStatusBar(User $user, Session $session): void
         echo '<!-- No services to display -->';
         return;
     }
-    ?>
+?>
     <section class="user-services-section">
         <div class="category-container">
             <h3 class="section-category-title"><?= htmlspecialchars($user->getName()) ?>'s services</h3>
             <div class="service-grid">
                 <?php foreach ($services as $service): ?>
-                    <article class="service-display">
+                    <article class="service-display card-hover-lift">
 
                         <div class="service-slider"
-                             data-service-id="<?= htmlspecialchars((string)$service->getId()) ?>">
+                            data-service-id="<?= htmlspecialchars((string)$service->getId()) ?>">
                             <?php if (count($service->getImages()) > 1): ?>
                                 <button class="slider-prev">‹</button>
                             <?php endif; ?>
@@ -142,8 +143,8 @@ function drawAdminStatusBar(User $user, Session $session): void
                                 <?php foreach ($service->getImages() as $index => $imgURL): ?>
                                     <a href="/pages/service_detail.php?id=<?= htmlspecialchars((string)$service->getId()) ?>">
                                         <img src="<?= htmlspecialchars($imgURL) ?>"
-                                             alt="Service image <?= $index + 1 ?>"
-                                             class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                            alt="Service image <?= $index + 1 ?>"
+                                            class="slider-image<?= $index === 0 ? ' active' : '' ?>">
                                     </a>
                                 <?php endforeach; ?>
                             </div>
@@ -161,7 +162,7 @@ function drawAdminStatusBar(User $user, Session $session): void
                             <p class="service-delivery">
                                 Delivery: <?= htmlspecialchars(strval($service->getDeliveryTime())) ?> days</p>
                             <p class="service-rating">⭐ <?= htmlspecialchars(strval($service->getRating())) ?> / 5</p>
-                            <p class="service-description"><?= htmlspecialchars($service->getDescription()) ?></p>
+                            <p class="service-description text-clamp-3"><?= htmlspecialchars($service->getDescription()) ?></p>
                         </div>
                     </article>
                 <?php endforeach; ?>

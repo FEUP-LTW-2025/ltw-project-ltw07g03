@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 require_once(__DIR__ . '/../model/category.class.php');
 
@@ -8,7 +9,7 @@ function drawAdminDashboard(array $categories, Session $session): void
         <h3>Create a new category</h3>
         <?php foreach ($categories as $cat): ?>
             <?php $encoded = urlencode($cat->getName()); ?>
-            <a class="category-box" href="/pages/category.php?name=<?= $encoded ?>">
+            <a class="category-box card-hover-lift" href="/pages/category.php?name=<?= $encoded ?>">
                 <span class="category-icon"><?= htmlspecialchars($cat->getIcon()) ?></span>
                 <span class="category-name"><?= htmlspecialchars($cat->getName()) ?></span>
             </a>
@@ -19,7 +20,7 @@ function drawAdminDashboard(array $categories, Session $session): void
             <input type="text" name="name" placeholder="New category name" required>
             <label for="icon">Icon (emoji)</label>
             <input type="text" name="icon" placeholder="Paste emoji here" required>
-            <input type="submit" value="Create">
+            <input type="submit" value="Create" class="btn-transition">
         </form>
     </section>
 <?php } ?>

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 function drawReviewForm($purchase_id, Session $session): void
@@ -21,6 +22,6 @@ function drawReviewForm($purchase_id, Session $session): void
         <label for="feedback">Feedback</label>
         <textarea id="feedback" name="feedback" rows="4" required></textarea>
 
-        <button type="submit">Submit Review</button>
+        <button type="submit" class="btn-transition">Submit Review</button>
     </form>
 <?php } ?>
