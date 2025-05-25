@@ -43,6 +43,7 @@
 
 - [x] API Integration: Develop a robust API to allow third-party applications to interact with the platform.
 - [x] Real-time Messaging: Complete chat system with conversation history.
+- [x] Snackbar Notifications: Implement user-friendly error and success notifications.
 
 ## Running
 

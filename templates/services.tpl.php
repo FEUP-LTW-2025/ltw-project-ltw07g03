@@ -82,7 +82,8 @@ function drawServices(string $category, array $services, PDO $db): void
                                     </a>
                                 </div>
                                 <?php if ($service['avgRating'] != 0): ?>
-                                    <p class="service-rating">⭐ <?= htmlspecialchars((string)$service['avgRating']) ?> /
+                                    <p class="service-rating">
+                                        ⭐ <?= htmlspecialchars((string)round($service['avgRating']), 2) ?> /
                                         5</p>
                                 <?php else: ?>
                                     <p class="service-rating">⭐ No ratings yet</p>
