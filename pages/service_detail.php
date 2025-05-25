@@ -31,10 +31,13 @@ if (!$service) {
 $service_freelancer = getFreelancersForServices($db, array($service));
 $feedbacks_author = Feedback::getFeedback_AuthorByServiceId($db, $serviceId);
 
-drawHeader("Service Detail", $db, $session);
-drawServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
+$isOwner = $service->getFreelancerId() === $session->getId();
 
-?> 
-<script src="/javascript/service_carousel.js"></script>
-<?php
+drawHeader("Service Detail", $db, $session);
+
+if($isOwner){
+    drawEditableServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
+} else{
+    drawServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
+}
 drawFooter();

@@ -150,8 +150,18 @@ class Service
 
     public static function getServicesBySearch(PDO $db, string $search, int $count, ?int $categoryId = null, ?int $budget = null, ?int $rating = null): array
     {
-        $sql = 'SELECT * FROM Service WHERE title LIKE ? AND status = ? AND price <= ? AND rating >= ?';
-        $params = ["%$search%", 'active', $budget, $rating];
+        $sql = 'SELECT * FROM Service WHERE title LIKE ? AND status = ?';
+        $params = ["%$search%", 'active'];
+
+        if ($budget !== null) {
+            $sql .= ' AND price <= ?';
+            $params[] = $budget;
+        }
+
+        if ($rating !== null) {
+            $sql .= ' AND rating >= ?';
+            $params[] = $rating;
+        }
 
         if ($categoryId) {
             $sql .= ' AND categoryId = ?';
@@ -240,6 +250,28 @@ class Service
     {
         return $this->id;
     }
+
+    public function updateService(PDO $db, string $title, int $price, int $deliveryTime, string $description, string $about) {
+    $stmt = $db->prepare("
+        UPDATE Service 
+        SET title = :title, 
+            price = :price, 
+            deliveryTime = :deliveryTime, 
+            description = :description, 
+            about = :about 
+        WHERE serviceId = :serviceId
+    ");
+
+    $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+    $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+    $stmt->bindParam(':deliveryTime', $deliveryTime, PDO::PARAM_INT);
+    $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+    $stmt->bindParam(':about', $about, PDO::PARAM_STR);
+    $stmt->bindParam(':serviceId', $this->id, PDO::PARAM_INT);
+
+    return $stmt->execute(); 
+}
+
 
     public function getFreelancerId(): int
     {

@@ -17,13 +17,14 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
             S.description,
             S.about,
             S.status,
+            S.rating,
             U.name AS freelancerName,
             U.profilePictureURL,
             SM.mediaURL
         FROM Service S
         JOIN User U ON S.freelancerId = U.userId
-        JOIN ServiceMedia SM ON S.serviceId = SM.serviceId
-        WHERE S.categoryId = :cat_id
+        LEFT JOIN ServiceMedia SM ON S.serviceId = SM.serviceId
+        WHERE S.categoryId = :cat_id AND S.status = 'active'
     ");
 
     $stmt->bindParam(":cat_id", $cat_id, PDO::PARAM_INT);
@@ -34,9 +35,6 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $id = $row['serviceId'];
 
-        $freelancer = User::getUserById($db, $row['freelancerId']);
-        $rating = $freelancer->getRating($db);
-
         if (!isset($services[$id])) {
             $services[$id] = [
                 'serviceId' => $row['serviceId'],
@@ -46,7 +44,7 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
                 'description' => $row['description'],
                 'about' => $row['about'],
                 'status' => $row['status'],
-                'avgRating' => $rating,
+                'avgRating' => floatval($row['rating']),
                 'freelancer' => [
                     'id' => $row['freelancerId'],
                     'name' => $row['freelancerName'],
@@ -56,7 +54,15 @@ function getServices_FreelancersByCategoryId(PDO $db, int $cat_id): array
             ];
         }
 
-        $services[$id]['images'][] = $row['mediaURL'];
+        if ($row['mediaURL']) {
+            $services[$id]['images'][] = $row['mediaURL'];
+        }
+    }
+
+    foreach ($services as &$service) {
+        if (empty($service['images'])) {
+            $service['images'] = ['/assets/images/pfps/default.jpeg'];
+        }
     }
 
     return array_values($services);

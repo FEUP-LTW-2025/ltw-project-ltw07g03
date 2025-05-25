@@ -14,7 +14,7 @@ $session = new Session();
 $id = intval($_GET['id']);
 $db = getDatabaseConnection();
 $user = User::getUserById($db, $id);
-$services = Service::getServicesByUserId($db, $id);
+$services = Service::getServicesByUserId($db, $user->getId());
 
 $isOwner = false;
 $account = null;
@@ -52,12 +52,13 @@ if ($account !== null && $account->isAdmin() && $account->getId() !== $user->get
 }
 
 if ($isOwner) {
-    drawEditableUserProfile($user, $conversationUsers);
+    drawEditableUserProfile($user, $conversationUsers, $services);
 } else {
     drawUserProfile($user);
+    drawUserServices($user, $services ?? []);
 }
 
-drawUserServices($user, $services ?? []);
+
 
 ?> 
 <script src="/javascript/image_preview.js"></script>

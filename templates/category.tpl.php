@@ -19,11 +19,55 @@ require_once(__DIR__ . '/../model/service.class.php');
             } elseif (str_starts_with($category, '_')) {
                 echo '<h2 class="section-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
             } else {
-
-                echo '<h2 class="section-category-title">' . htmlspecialchars($category) . '</h2>';
+                echo '<h2 class="section-title">' . htmlspecialchars($category) . '</h2>';
             }
             ?>
 
+            <div class="filter-controls">
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#price-dropdown">
+                        Price <span class="arrow">▼</span>
+                    </button>
+                    <div id="price-dropdown" class="dropdown-panel">
+                        <h3>Price</h3>
+                        <p class="range-label">Select range</p>
+                        <div class="slider-container">
+                            <div class="range-values">
+                                <span>5€</span>
+                                <span>500€</span>
+                            </div>
+                            <input type="range" id="slider-service-budget" min="5" max="500" value="250">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="clear-btn">Clear</button>
+                            <button class="apply-btn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#rating-dropdown">
+                        Rating <span class="arrow">▼</span>
+                    </button>
+                    <div id="rating-dropdown" class="dropdown-panel">
+                        <h3>Rating</h3>
+                        <p class="range-label">Select range</p>
+                        <div class="slider-container">
+                            <div class="range-values">
+                                <span>0 ⭐</span>
+                                <span>5 ⭐</span>
+                            </div>
+                            <input type="range" id="slider-service-rating" min="0" max="5" step="0.5" value="0">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="clear-btn">Clear</button>
+                            <button class="apply-btn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-wrapper">
+                    <input type="text" id="search-service-input" class="search-bar" placeholder="Search services...">
+                </div>
+            </div>
             <?php if (empty($services)): ?>
                 <p>No services found in this category.</p>
             <?php else: ?>
@@ -40,7 +84,7 @@ require_once(__DIR__ . '/../model/service.class.php');
                                         <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
                                             <img src="<?= htmlspecialchars($imgURL) ?>"
                                                  alt="Service image <?= $index + 1 ?>"
-                                                 class="slider-image<?= $index === 0 ? ' active' : '' ?>">
+                                                 class="slider-image slider-image-small<?= $index === 0 ? ' active' : '' ?>">
                                         </a>
                                     <?php endforeach; ?>
                                 </div>

@@ -7,21 +7,20 @@
 .section-title {
     text-align: center;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 600;
     margin-top: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: #333;
 }
 
 .category-section {
     padding: 2rem 0;
-    background-color: #f9f9f9;
 }
 
 .category-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 }
 
 .category-row {
@@ -32,6 +31,9 @@
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     gap: 1rem;
     scroll-behavior: smooth;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .category-row::-webkit-scrollbar {
@@ -55,4 +57,8 @@
 .category-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-row .category-card {
+    white-space: nowrap;
 }
