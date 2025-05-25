@@ -31,6 +31,7 @@ function drawHeader(string $title, PDO $db, Session $session): void
     <link rel="stylesheet" href="/css/chat.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/filters.css">
+    <link rel="stylesheet" href="/css/core.css">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">

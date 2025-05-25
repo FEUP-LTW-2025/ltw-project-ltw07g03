@@ -84,7 +84,7 @@ require_once(__DIR__ . '/../model/service.class.php');
                                         <a href="/pages/service_detail.php?id=<?= $service['serviceId'] ?>">
                                             <img src="<?= htmlspecialchars($imgURL) ?>"
                                                  alt="Service image <?= $index + 1 ?>"
-                                                 class="slider-image slider-image-small<?= $index === 0 ? ' active' : '' ?>">
+                                                 class="slider-image<?= $index === 0 ? ' active' : '' ?>">
                                         </a>
                                     <?php endforeach; ?>
                                 </div>

@@ -33,6 +33,7 @@
 
     .service-grid {
         justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .category-dashboard {
@@ -158,6 +159,10 @@
     .slider-next {
         top: 125px; 
     }
+
+    .service-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
   }
 
 /* Small devices (≤ 576px) */
@@ -234,6 +239,4 @@
     }
 
 }
-
-
 
