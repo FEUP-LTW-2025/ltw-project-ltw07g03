@@ -153,4 +153,12 @@ class Feedback
 
         $stmt->execute();
     }
+
+    public static function feedbackExistsForPurchase(PDO $db, int $purchaseId): bool
+    {
+        $stmt = $db->prepare("SELECT COUNT(*) FROM Feedback WHERE purchaseId = :purchaseId");
+        $stmt->bindParam(":purchaseId", $purchaseId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn() > 0;
+    }
 }

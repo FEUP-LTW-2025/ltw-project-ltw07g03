@@ -251,8 +251,9 @@ class Service
         return $this->id;
     }
 
-    public function updateService(PDO $db, string $title, int $price, int $deliveryTime, string $description, string $about) {
-    $stmt = $db->prepare("
+    public function updateService(PDO $db, string $title, float $price, int $deliveryTime, string $description, string $about)
+    {
+        $stmt = $db->prepare("
         UPDATE Service 
         SET title = :title, 
             price = :price, 
@@ -262,16 +263,19 @@ class Service
         WHERE serviceId = :serviceId
     ");
 
-    $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-    $stmt->bindParam(':price', $price, PDO::PARAM_INT);
-    $stmt->bindParam(':deliveryTime', $deliveryTime, PDO::PARAM_INT);
-    $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-    $stmt->bindParam(':about', $about, PDO::PARAM_STR);
-    $stmt->bindParam(':serviceId', $this->id, PDO::PARAM_INT);
+        $formattedPrice = number_format($price, 2, '.', '');
 
-    return $stmt->execute(); 
-}
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':price', $formattedPrice);
+        $stmt->bindParam(':deliveryTime', $deliveryTime, PDO::PARAM_INT);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':about', $about);
+        $stmt->bindParam(':serviceId', $this->id, PDO::PARAM_INT);
 
+        return $stmt->execute();
+    }
 
     public function getFreelancerId(): int
     {

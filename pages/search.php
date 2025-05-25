@@ -11,22 +11,22 @@ require_once(__DIR__ . '/../database/complex_queries.php');
 $session = new Session();
 $db = getDatabaseConnection();
 
-$searchQuery = $_GET['query'] ?? '';
+$searchQuery = trim($_GET['query'] ?? '');
 
-if ($searchQuery) {
-    $single_word = explode(" ", $searchQuery);
-
-    $relatedServices = getRelatedServices($db, $single_word);
-    $services_info = getFreelancersForServices($db, $relatedServices);
-
-    drawHeader("Search", $db, $session);
-    drawCategoryResults("_" . $searchQuery, $services_info);
-    drawFooter();
-} else {
-    $session->addMessage('error', 'Missing input');
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
+if (empty($searchQuery)) {
+    $session->addMessage('error', 'Please enter a search term.');
+    header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? '/pages/index.php'));
+    exit();
 }
+
+$single_word = explode(" ", $searchQuery);
+
+$relatedServices = getRelatedServices($db, $single_word);
+$services_info = getFreelancersForServices($db, $relatedServices);
+
+drawHeader("Search", $db, $session);
+drawCategoryResults("_" . $searchQuery, $services_info);
+drawFooter();
 
 function getRelatedServices(PDO $db, array $words): array
 {

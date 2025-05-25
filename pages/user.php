@@ -8,24 +8,29 @@ require_once(__DIR__ . '/../model/user.class.php');
 require_once(__DIR__ . '/../model/service.class.php');
 require_once(__DIR__ . '/../model/message.class.php');
 
-
 $session = new Session();
 
-$id = intval($_GET['id']);
+$id = intval($_GET['id'] ?? 0);
+
+if ($id <= 0) {
+    $session->addMessage('error', 'Invalid user ID.');
+    header('Location: /pages/index.php');
+    exit();
+}
+
 $db = getDatabaseConnection();
 $user = User::getUserById($db, $id);
-$services = Service::getServicesByUserId($db, $user->getId());
+
+if ($user === null) {
+    $session->addMessage('error', 'User not found.');
+    header('Location: /pages/index.php');
+    exit();
+}
+
+$services = Service::getServicesByUserId($db, $id);
 
 $isOwner = false;
 $account = null;
-
-//If user not found, show error
-if ($user === null) {
-    drawHeader("User Not Found", $db, $session);
-    echo "<section class='error-section'><h2>User not found.</h2><p>The requested user does not exist.</p></section>";
-    drawFooter();
-    exit;
-}
 
 if ($session->isLoggedIn()) {
     $sessionId = $session->getId();
@@ -48,7 +53,7 @@ if (is_array($relatedUserIds)) {
 drawHeader($user->getName(), $db, $session);
 
 if ($account !== null && $account->isAdmin() && $account->getId() !== $user->getId() && !$user->isAdmin()) {
-    drawAdminStatusBar($user);
+    drawAdminStatusBar($user, $session);
 }
 
 if ($isOwner) {
@@ -59,9 +64,8 @@ if ($isOwner) {
 }
 
 
-
-?> 
-<script src="/javascript/image_preview.js"></script>
+?>
+    <script src="/javascript/image_preview.js"></script>
 <?php
 
 drawFooter();

@@ -140,6 +140,30 @@ BEGIN
     SET rating = COALESCE((SELECT AVG(f.rating)
                            FROM Feedback f
                                     JOIN Purchase p ON f.purchaseId = p.purchaseId
-                           WHERE p.serviceId = NEW.purchaseId), 0)
+                           WHERE p.serviceId = (SELECT serviceId FROM Purchase WHERE purchaseId = NEW.purchaseId)), 0)
     WHERE serviceId = (SELECT serviceId FROM Purchase WHERE purchaseId = NEW.purchaseId);
+END;
+
+CREATE TRIGGER update_service_rating_after_rating_update
+    AFTER UPDATE
+    ON Feedback
+BEGIN
+    UPDATE Service
+    SET rating = COALESCE((SELECT AVG(f.rating)
+                           FROM Feedback f
+                                    JOIN Purchase p ON f.purchaseId = p.purchaseId
+                           WHERE p.serviceId = (SELECT serviceId FROM Purchase WHERE purchaseId = NEW.purchaseId)), 0)
+    WHERE serviceId = (SELECT serviceId FROM Purchase WHERE purchaseId = NEW.purchaseId);
+END;
+
+CREATE TRIGGER update_service_rating_after_rating_delete
+    AFTER DELETE
+    ON Feedback
+BEGIN
+    UPDATE Service
+    SET rating = COALESCE((SELECT AVG(f.rating)
+                           FROM Feedback f
+                                    JOIN Purchase p ON f.purchaseId = p.purchaseId
+                           WHERE p.serviceId = (SELECT serviceId FROM Purchase WHERE purchaseId = OLD.purchaseId)), 0)
+    WHERE serviceId = (SELECT serviceId FROM Purchase WHERE purchaseId = OLD.purchaseId);
 END;

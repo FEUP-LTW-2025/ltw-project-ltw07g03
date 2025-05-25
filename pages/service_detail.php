@@ -35,9 +35,9 @@ $isOwner = $service->getFreelancerId() === $session->getId();
 
 drawHeader("Service Detail", $db, $session);
 
-if($isOwner){
+if ($isOwner) {
     drawEditableServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
-} else{
+} else {
     drawServiceDetail($service_freelancer[$serviceId], $feedbacks_author);
 }
 drawFooter();

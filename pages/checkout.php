@@ -29,15 +29,25 @@ if (!$service) {
 
 $service_freelancer = getFreelancersForServices($db, array($service));
 
-if(!$session->isLoggedIn()){
+if (!$session->isLoggedIn()) {
     $session->addMessage('error', 'Login to buy services');
     header('Location: /pages/login.php');
     exit();
 }
 
+if ($service->getFreelancerId() === $session->getId()) {
+    $session->addMessage('error', 'You cannot purchase your own service.');
+    header('Location: /pages/services.php');
+    exit();
+}
+
+if ($service->getStatus() !== 'active') {
+    $session->addMessage('error', 'This service is not available for purchase.');
+    header('Location: /pages/services.php');
+    exit();
+}
+
 
 drawHeader("Service Detail", $db, $session);
-drawCheckoutForm($service_freelancer[$serviceId], $session->getId());
+drawCheckoutForm($service_freelancer[$serviceId], $session->getId(), $session);
 drawFooter();
-
-

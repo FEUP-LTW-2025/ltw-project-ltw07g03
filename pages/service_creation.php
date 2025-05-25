@@ -10,25 +10,24 @@ require_once(__DIR__ . '/../model/category.class.php');
 $session = new Session();
 $db = getDatabaseConnection();
 
-$userId = $_POST['userId'] ?? null;      
+$userId = $_POST['userId'] ?? null;
 
 if ($userId === null) {
     if ($session->isLoggedIn()) {
         $userId = $session->getId();
     } else {
-        drawHeader("Unauthorized", $db, $session);
-        echo "<p class='error-message'>You must be logged in to create a service.</p>";
-        drawFooter();
-        exit;
+        $session->addMessage('error', 'You must be logged in to create a service.');
+        header('Location: /pages/login.php');
+        exit();
     }
 }
 
 $allCategories = Category::getAllCategories($db);
 
 drawHeader("Create Service", $db, $session);
-drawServiceCreationForm($allCategories, (int)$userId);
+drawServiceCreationForm($allCategories, (int)$userId, $session);
 
-?> 
-<script src="/javascript/image_preview.js"></script>
+?>
+    <script src="/javascript/image_preview.js"></script>
 <?php
 drawFooter();

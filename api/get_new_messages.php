@@ -16,14 +16,29 @@ $userId = $session->getId();
 $otherUserId = intval($_GET['user_id'] ?? 0);
 $lastTimestamp = intval($_GET['since'] ?? 0);
 
-// Buscar mensagens com timestamp maior
-$messages = Message::getMessagesSince($db, $userId, $otherUserId, $lastTimestamp);
+if ($otherUserId <= 0) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid user ID']);
+    exit;
+}
 
-header('Content-Type: application/json');
-echo json_encode(array_map(function($msg) {
-    return [
-        'senderId' => $msg->getSenderId(),
-        'content' => $msg->getContent(),
-        'timestamp' => $msg->getDate(),
-    ];
-}, $messages));
+if ($otherUserId === $userId) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Cannot get messages with yourself']);
+    exit;
+}
+
+try {
+    $messages = Message::getMessagesSince($db, $userId, $otherUserId, $lastTimestamp);
+
+    echo json_encode(array_map(function ($msg) {
+        return [
+            'senderId' => $msg->getSenderId(),
+            'content' => htmlspecialchars($msg->getContent(), ENT_QUOTES, 'UTF-8'),
+            'timestamp' => $msg->getDate(),
+        ];
+    }, $messages));
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Internal server error']);
+}

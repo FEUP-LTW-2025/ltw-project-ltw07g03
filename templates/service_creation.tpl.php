@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
-?>
 
-<?php function drawServiceCreationForm(array $possible_categories, int $userId): void
+function drawServiceCreationForm(array $possible_categories, int $userId, Session $session): void
 { ?>
     <h2 class="section-title">Create New Service</h2>
     <form action="/actions/action_create_service.php" method="post" enctype="multipart/form-data" class="service-form">
+        <input type="hidden" name="csrf_token" value="<?= $session->getCSRFToken() ?? '' ?>">
         <input type="hidden" name="userId" value="<?= htmlspecialchars((string)$userId) ?>">
         <label for="category">Category</label>
         <select name="categoryId" id="category" required>

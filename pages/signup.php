@@ -10,10 +10,10 @@ $session = new Session();
 $db = getDatabaseConnection();
 
 drawHeader("Register", $db, $session);
-drawRegisterForm();
+drawRegisterForm($session);
 
-?> 
-<script src="/javascript/image_preview.js"></script>
+?>
+    <script src="/javascript/image_preview.js"></script>
 <?php
 
 drawFooter();

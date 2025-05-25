@@ -10,11 +10,13 @@ require_once(__DIR__ . '/../model/category.class.php');
 $session = new Session();
 $db = getDatabaseConnection();
 if (!$session->isLoggedIn()) {
+    $session->addMessage('error', 'You must be logged in to access the admin dashboard.');
     header('Location: /pages/login.php');
     exit();
 }
 $user = User::getUserById($db, $session->getId());
-if (!$user->isAdmin()) {
+if (!$user || !$user->isAdmin()) {
+    $session->addMessage('error', 'Access denied. Admin privileges required.');
     header('Location: /pages/index.php');
     exit();
 }
@@ -22,5 +24,5 @@ if (!$user->isAdmin()) {
 $categories = Category::getAllCategories($db);
 
 drawHeader("Admin Dashboard", $db, $session);
-drawAdminDashboard($categories);
+drawAdminDashboard($categories, $session);
 drawFooter();
