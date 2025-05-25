@@ -65,7 +65,11 @@ require_once(__DIR__ . '/../model/service.class.php');
                     </div>
                 </div>
                 <div class="search-wrapper">
-                    <input type="text" id="search-service-input" class="search-bar" placeholder="Search services...">
+                    <?php
+                    if (strtolower($category) === 'services') {
+                    echo '<input type="text" id="search-service-input" class="search-bar" placeholder="Search services...">';
+                    }
+                    ?>
                 </div>
             </div>
             <?php if (empty($services)): ?>
