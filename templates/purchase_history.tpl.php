@@ -38,14 +38,7 @@ function drawPurchaseHistory(array $purchasesWithDetails, PDO $db): void
                                     Status: <?= htmlspecialchars($item['purchase']->getStatus()) ?></p>
                                 <p class="status-description">
                                     Date: <?= gmdate("Y-m-d | H:i:s", $item['purchase']->getDate()) ?></p>
-                                <?php
-                                // Debug output
-                                $status = $item['purchase']->getStatus();
-                                $purchaseId = $item['purchase']->getId();
-                                $feedbackExists = Feedback::feedbackExistsForPurchase($db, $purchaseId);
-                                echo "<!-- DEBUG: Status: $status, Purchase ID: $purchaseId, Feedback exists: " . ($feedbackExists ? "YES" : "NO") . " -->";
-
-                                if ($item['purchase']->getStatus() === 'closed' && !Feedback::feedbackExistsForPurchase($db, $item['purchase']->getId())): ?>
+                                <?php if ($item['purchase']->getStatus() === 'closed' && !Feedback::feedbackExistsForPurchase($db, $item['purchase']->getId())): ?>
                                     <a href="review_form.php?purchase_id=<?= $item['purchase']->getId() ?>"
                                        class="btn-outline">Leave a review</a>
                                 <?php endif; ?>

@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const editButton = document.getElementById("toggle-edit-btn");
     const saveButton = document.getElementById("toggle-save-btn");
 
+    if (!editButton || !saveButton) {
+        return;
+    }
+
     editButton.addEventListener("click", function () {
         editButton.style.display = "none";
         saveButton.style.display = "inline-block";
