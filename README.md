@@ -26,14 +26,14 @@
 
 - [x] Elevate a user to admin status.
 - [x] Introduce new service categories and other pertinent entities.
-- [?] Oversee and ensure the smooth operation of the entire system.
+- [x] Oversee and ensure the smooth operation of the entire system.
 
 **Security:**
 
 - [x] Protect against SQL injection by using prepared statements with PDO.
 - [x] Mitigate Cross-Site Scripting (XSS) attacks by sanitizing user input and output.
 - [x] Prevent Cross-Site Request Forgery (CSRF) by implementing anti-CSRF tokens.
-- [?] Implement secure password storage with proper hashing and salting techniques.
+- [x] Implement secure password storage with proper hashing and salting techniques.
 
 **Extra:**
 
