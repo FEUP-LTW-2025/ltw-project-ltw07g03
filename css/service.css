@@ -1,347 +1,348 @@
 /* Service section */
 
 .service-grid {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: stretch;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .user-services-section {
-    text-align: center;
-    margin-top: 1rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .user-services-section .section-category-title {
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .user-services-section .service-title {
-    color: #000;
-    text-align: left;
-    margin-bottom: 0.5rem;
+  color: var(--color-black);
+  text-align: left;
+  margin-bottom: 0.5rem;
 }
 
 .user-services-empty {
-    margin-top: 2rem;
-    font-size: 1.1rem;
-    color: #555;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
 }
 
 /* Service display card */
 
 .service-display {
-    background-color: white;
-    border: 1px solid #e2e2e2;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 280px;
-    min-height: 500px;
-    box-sizing: border-box;
-    flex: 0 1 auto;
+  background-color: white;
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 280px;
+  min-height: 500px;
+  box-sizing: border-box;
+  flex: 0 1 auto;
 }
 
 .service-display:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .service-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-bottom: 1px solid #eee;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .service-info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  height: 100%;
 }
 
 .service-info form {
-    margin-top: auto;
+  margin-top: auto;
 }
 
 .service-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #000 !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--color-black) !important;
 }
 
 .service-price {
-    color: #27ae60;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  color: var(--color-success);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .service-description {
-    font-size: 0.9rem;
-    color: #555;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .freelancer-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .freelancer-pic {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .freelancer-name {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #333;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
 }
 
 .service-rating {
-    font-size: 0.9rem;
-    color: #f39c12;
-    margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-warning);
+  margin-top: 0.5rem;
 }
 
 /* Service detail */
 
 .service-detail-section {
-    padding-top: 40px;
+  padding-top: 40px;
 }
 
 .service-detail-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 4rem;
-    align-items: flex-start;
-    margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  align-items: flex-start;
+  margin-top: 2rem;
 }
 
 .service-detail-left {
-    flex: 2;
-    max-width: 600px;
+  flex: 2;
+  max-width: 600px;
 }
 
 .service-detail-right {
-    flex: 1;
-    background: #f8f8f8;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 100px;
-    margin-left: 7rem;
+  flex: 1;
+  background: var(--color-bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 100px;
+  margin-left: 7rem;
 }
 
 .service-detail-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.8rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
 }
 
 .service-detail-description {
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-    color: #333;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-text-primary);
 }
 
 .service-detail-about {
-    line-height: 1.6;
-    font-size: 1rem;
-    margin-top: 2rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-top: 2rem;
 }
 
 .service-detail-about h3 {
-    margin-bottom: 0.5em;
-    font-size: 1.1rem;
-    font-weight: bold;
+  margin-bottom: 0.5em;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .service-detail-about p {
-    white-space: pre-line;
-    line-height: 1.6;
-    font-size: 1rem;
-    color: #555;
+  white-space: pre-line;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
 }
 
 .service-detail-delivery,
 .service-detail-rating {
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-    color: #333;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-text-primary);
 }
 
 .service-detail-price-box {
-    background: white;
-    border: 1px solid #eee;
-    padding: 30px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background: white;
+  border: 1px solid var(--color-border-light);
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .service-detail-price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #27ae60;
-    text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-success);
+  text-align: center;
 }
 
 .purchase-btn {
-    background-color: #2563eb;
-    color: white;
-    font-weight: bold;
-    border-radius: 1rem;
-    padding: 0.75rem 1.5rem;
-    text-align: center;
-    display: block;
-    margin-top: 1rem;
-    transition: background-color 0.3s ease;
+  background-color: var(--color-info-dark);
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  display: block;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .purchase-btn:hover {
-    background-color: #1e40af;
+  background-color: var(--color-info-dark);
 }
 
 .service-contact-btn {
-    background-color: #55c3c5;
-    color: white;
-    font-weight: bold;
-    border-radius: 1rem;
-    padding: 0.75rem 1.5rem;
-    text-align: center;
-    display: block;
-    margin-top: 1rem;
-    transition: background-color 0.3s ease;
+  background-color: var(--color-secondary);
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  display: block;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .service-contact-btn:hover {
-    background-color: #0056b3;
+  background-color: var(--color-info-dark);
 }
 
 .freelancer-name-detail {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-    font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
 }
 
 .service-detail-img {
-    width: 340px;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
+  width: 340px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
 }
 
 /* Reviews */
 
 .review-list {
-    list-style: none;
-    padding-left: 0;
+  list-style: none;
+  padding-left: 0;
 }
 
 .review-item {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border-secondary);
 }
 
 .service-reviews {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 h3 {
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-    font-size: 1.4rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  font-size: 1.4rem;
 }
 
 /* Image carousel */
 
 .carousel,
 .service-slider {
-    position: relative;
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    margin: 0;
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  margin: 0;
 }
 
 .slider-images {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .carousel-image,
 .slider-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .carousel-image.active,
 .slider-image.active {
-    display: block;
+  display: block;
 }
 
 .carousel button,
 .slider-prev,
 .slider-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    font-size: 1.5rem;
-    padding: 5px 10px;
-    cursor: pointer;
-    z-index: 10;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  border-radius: 4px;
 }
 
 .carousel .prev,
 .slider-prev {
-    left: 10px;
+  left: 10px;
 }
 
 .carousel .next,
 .slider-next {
-    right: 10px;
+  right: 10px;
 }
 
 .carousel button:hover,
 .slider-prev:hover,
 .slider-next:hover {
-    opacity: 1;
+  opacity: 1;
 }

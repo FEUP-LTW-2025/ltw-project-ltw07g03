@@ -1,48 +1,48 @@
 /* Header styles */
 
 .site-header {
-    background: #000;
-    padding: 0.5rem 0;
+  background: var(--color-black);
+  padding: 0.5rem 0;
 }
 
 .header-flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    gap: 1rem;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .logo-img-big {
-    height: auto;
-    max-height: 80px;
-    width: auto;
-    max-width: 240px;
-    object-fit: contain;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+  height: auto;
+  max-height: 80px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 /* Navigation menu */
 
 .nav-menu {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
 }
 
 .nav-menu li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.2s ease;
+  color: var(--color-text-white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
 }
 
 .nav-menu li a:hover {
-    color: #ff3c00;
+  color: var(--color-primary);
 }
