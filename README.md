@@ -6,13 +6,16 @@
 
 - [x] Register a new account.
 - [x] Log in and out.
-- [x] Edit their profile, including their name, username, password, and email.
+- [x] Edit their profile, including their name, username, password, email, and profile pictures.
+- [x] View and manage account status (active/inactive).
+- [x] Access real-time messaging system with conversation history and chat interface.
 
 **Freelancers:**
 
 - [x] List new services, providing details such as category, pricing, delivery time, and service description, along with images or videos.
 - [x] Track and manage their offered services.
-- [x] Respond to inquiries from clients regarding their services and provide custom offers if needed.
+- [x] Edit and update existing services with new information, pricing, or media galleries.
+- [x] Respond to inquiries from clients and provide custom offers through real-time messaging system.
 - [x] Mark services as completed once delivered.
 
 **Clients:**
@@ -21,12 +24,13 @@
 - [x] Engage with freelancers to ask questions or request custom orders.
 - [x] Hire freelancers and proceed to checkout (simulate payment process).
 - [x] Leave ratings and reviews for completed services.
+- [x] Track purchase history and order status with detailed order management (pending/closed).
+- [x] Leave ratings and reviews for completed services.
 
 **Admins:**
 
 - [x] Elevate a user to admin status.
-- [x] Introduce new service categories and other pertinent entities.
-- [x] Oversee and ensure the smooth operation of the entire system.
+- [x] Introduce new service categories.
 
 **Security:**
 
@@ -38,6 +42,7 @@
 **Extra:**
 
 - [x] API Integration: Develop a robust API to allow third-party applications to interact with the platform.
+- [x] Real-time Messaging: Complete chat system with conversation history.
 
 ## Running
 
