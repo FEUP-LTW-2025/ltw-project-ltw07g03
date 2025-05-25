@@ -3,6 +3,10 @@
 /* Medium devices (≤ 992px) */
 
 @media (max-width: 992px) {
+    .site-header {
+        position: static;
+    }
+
     .header-flex {
         flex-direction: column;
         text-align: center;
@@ -87,5 +91,3 @@
     }
 
 }
-
-

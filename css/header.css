@@ -3,6 +3,11 @@
 .site-header {
   background: var(--color-black);
   padding: 0.5rem 0;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .header-flex {
@@ -22,6 +27,7 @@
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  position: sticky;
 }
 
 /* Navigation menu */

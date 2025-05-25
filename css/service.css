@@ -336,3 +336,52 @@ h3 {
 .slider-next:hover {
   opacity: 1;
 }
+
+/* Styling for the filter-controls div */
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem; /* Added margin at the bottom */
+  align-items: flex-start; /* Align items at the top */
+}
+
+.filter-controls select,
+.filter-controls input[type="text"],
+.filter-controls input[type="range"] {
+  flex: 1 1 auto;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.filter-controls .sliders {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 1rem;
+}
+
+.filter-controls .sliders + .texts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.filter-controls p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.filter-controls output {
+  font-weight: bold;
+  color: #333;
+}
