@@ -37,7 +37,7 @@
 
 **Extra:**
 
-- [ ] Something else.
+- [x] API Integration: Develop a robust API to allow third-party applications to interact with the platform.
 
 ## Running
 
