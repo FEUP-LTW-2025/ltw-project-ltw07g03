@@ -41,10 +41,35 @@
 
 ## Running
 
-    sqlite3 database/database.db < database/database.sql
-    php -S localhost:9000
+### Database Setup
+
+The database is already included in this repository with sample data. However, if you need to recreate it from scratch, just run the following command:
+
+```bash
+sqlite3 database/database.db < database/create.sql && \
+sqlite3 database/database.db < database/populate.sql
+```
+
+### Starting the Development Server
+
+Start the PHP development server:
+
+```bash
+php -S localhost:9000
+```
+
+The website will be available at `http://localhost:9000`
 
 ## Credentials
 
-- administrator/password123
-- JohnDoe/password123
+All users in the sample database use the same password: `password123`
+
+**Regular Users:**
+
+- Username: `JohnDoe` / Password: `password123`
+- Username: `MaryJoe` / Password: `password123`
+- And so on...
+
+**Administrator Account:**
+
+- Username: `administrator` / Password: `password123`
