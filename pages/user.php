@@ -10,20 +10,27 @@ require_once(__DIR__ . '/../model/message.class.php');
 
 $session = new Session();
 
-$id = intval($_GET['id']);
+$id = intval($_GET['id'] ?? 0);
+
+if ($id <= 0) {
+    $session->addMessage('error', 'Invalid user ID.');
+    header('Location: /pages/index.php');
+    exit();
+}
+
 $db = getDatabaseConnection();
 $user = User::getUserById($db, $id);
+
+if ($user === null) {
+    $session->addMessage('error', 'User not found.');
+    header('Location: /pages/index.php');
+    exit();
+}
+
 $services = Service::getServicesByUserId($db, $id);
 
 $isOwner = false;
 $account = null;
-
-if ($user === null) {
-    drawHeader("User Not Found", $db, $session);
-    echo "<section class='error-section'><h2>User not found.</h2><p>The requested user does not exist.</p></section>";
-    drawFooter();
-    exit;
-}
 
 if ($session->isLoggedIn()) {
     $sessionId = $session->getId();

@@ -73,7 +73,7 @@ function insertService(service) {
     const freelancerPic = escapeHTML(freelancer.profilePictureURL ?? "/assets/images/pfps/default.jpeg");
 
     const rating = service.avgRating ?? 0;
-    const ratingText = rating ? `⭐ ${escapeHTML(String(rating))} / 5` : "⭐ No ratings yet";
+    const ratingText = rating ? `⭐ ${escapeHTML(String(rating.toFixed(1)))} / 5` : "⭐ No ratings yet";
 
     const hasMultipleImages = images.length > 1;
     const sliderButtons = hasMultipleImages ? `<button class="slider-prev">‹</button><button class="slider-next">›</button>` : "";

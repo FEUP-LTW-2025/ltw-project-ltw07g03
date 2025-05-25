@@ -52,5 +52,5 @@ $date = time();
 $feedback = new Feedback($mockId, $purchase_id, $rating, $feedback_text, $date);
 $feedback->upload($db);
 $session->addMessage('success', 'Your feedback has been sent, thanks!');
-header("Location: /pages/user.php?id=" . $session->getId());
+header("Location: /pages/purchase_history.php?id=" . $session->getId());
 exit();

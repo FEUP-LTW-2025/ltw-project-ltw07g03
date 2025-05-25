@@ -5,20 +5,37 @@ require_once(__DIR__ . '/../templates/common.tpl.php');
 require_once(__DIR__ . '/../templates/services_history.tpl.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/complex_queries.php');
+require_once(__DIR__ . '/../model/user.class.php');
 
 $session = new Session();
 
-if ($session->getId() === null) {
+if (!$session->isLoggedIn()) {
+    $session->addMessage('error', 'You must be logged in to view services history.');
     header("Location: /pages/login.php");
     exit();
 }
 
-$id = intval($_GET['id']);
+$id = intval($_GET['id'] ?? 0);
+
+if ($id <= 0) {
+    $session->addMessage('error', 'Invalid user ID.');
+    header("Location: /pages/index.php");
+    exit();
+}
+
 $db = getDatabaseConnection();
 $user = User::getUserById($db, $id);
-$isOwner = $session->isLoggedIn() && $session->getId() === $user->getId();
+
+if (!$user) {
+    $session->addMessage('error', 'User not found.');
+    header("Location: /pages/index.php");
+    exit();
+}
+
+$isOwner = $session->getId() === $user->getId();
 
 if (!$isOwner) {
+    $session->addMessage('error', 'You can only view your own services history.');
     header("Location: /pages/index.php");
     exit();
 }
