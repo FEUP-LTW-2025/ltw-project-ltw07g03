@@ -43,7 +43,11 @@ function drawServiceDetail(array $service_freelancer, array $feedbacks_author): 
                         </section>
                     <?php endif; ?>
                     <p class="service-detail-delivery">
-                        <strong>Delivery Time:</strong> <?= $service_freelancer['deliveryTime'] ?> days
+                        <?php if($service_freelancer['deliveryTime'] == 1): ?>
+                            <strong>Delivery Time:</strong> <?= $service_freelancer['deliveryTime'] ?> day
+                        <?php else: ?>
+                            <strong>Delivery Time:</strong> <?= $service_freelancer['deliveryTime'] ?> days
+                        <?php endif; ?>
                     </p>
                     <div class="reviews-section">
                         <h3>Reviews</h3>
