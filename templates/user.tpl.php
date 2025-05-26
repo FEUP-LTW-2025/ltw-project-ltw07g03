@@ -27,78 +27,79 @@ function drawUserProfile(User $user): void
     </section>
 <?php } ?>
 
-<?php function drawEditableUserProfile(User $user, $conversationUsers, Session $session): void
+<?php function drawEditableUserProfile(User $user, $conversationUsers, array $services, Session $session): void
 { ?>
     <section class="section profile-section">
-        <div class="container">
-            <h2 class="section-title">Edit Your Profile</h2>
-            <form action="/actions/action_edit_profile.php" method="post" class="profile-card card-hover-lift"
-                enctype="multipart/form-data">
-                <input type="hidden" name="csrf_token" value="<?= $session->getCSRFToken() ?? '' ?>">
-                <input type="hidden" name="id" value="<?= htmlspecialchars((string)$user->getId()) ?>">
-                <div class="form-group center">
-                    <img src="<?= htmlspecialchars($user->getProfilePicture()) ?>" class="profile-picture-large">
-                    <input type="file" name="profilePicture" id="editProfilePicture" required>
-                    <p id="profilePreviewLabel" class="preview-label">Selected Image</p>
-                    <div id="profile-preview-container" class="image-preview-container profile-preview-container"></div>
-                </div>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" value="<?= htmlspecialchars($user->getName()) ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" value="<?= htmlspecialchars($user->getUsername()) ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" value="<?= htmlspecialchars($user->getEmail()) ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="status">Status</label>
-                    <select name="status" id="status">
-                        <option value="active" <?= $user->getStatus() === 'active' ? 'selected' : '' ?>>Active</option>
-                        <option value="inactive" <?= $user->getStatus() === 'inactive' ? 'selected' : '' ?>>Inactive
-                        </option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-secondary btn-transition">Save Changes</button>
-            </form>
-
-            <div class="action-buttons">
-                <form action="/pages/service_creation.php" method="POST">
-                    <input type="hidden" name="csrf_token"
-                        value="<?= $session->getCSRFToken() ?? '' ?>">
-                    <input type="hidden" name="userId" value="<?= htmlspecialchars((string)$user->getId()) ?>">
-                    <button type="submit" class="btn-outline btn-transition">Create new Service</button>
+        <div class="profile-layout"> 
+            <div class="profile-left-column"> 
+                <h2 class="section-title">Edit Your Profile</h2>
+                <form action="/actions/action_edit_profile.php" method="post" class="profile-card" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="<?= $session->getCSRFToken() ?? '' ?>">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars((string)$user->getId()) ?>">
+                    <div class="form-group center">
+                        <img src="<?= htmlspecialchars($user->getProfilePicture()) ?>" class="profile-picture-large">
+                        <input type="file" name="profilePicture" id="editProfilePicture" required>
+                        <p id="profilePreviewLabel" class="preview-label">Selected Image</p>
+                        <div id="profile-preview-container" class="image-preview-container profile-preview-container"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" value="<?= htmlspecialchars($user->getName()) ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" value="<?= htmlspecialchars($user->getUsername()) ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" value="<?= htmlspecialchars($user->getEmail()) ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select name="status" id="status">
+                            <option value="active" <?= $user->getStatus() === 'active' ? 'selected' : '' ?>>Active</option>
+                            <option value="inactive" <?= $user->getStatus() === 'inactive' ? 'selected' : '' ?>>Inactive</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-secondary">Save Changes</button>
                 </form>
-                <a href="/pages/services_history.php?id=<?= htmlspecialchars((string)$user->getId()) ?>"
-                    class="btn-outline btn-transition">Check your services history</a>
-                <a href="/pages/purchase_history.php?id=<?= htmlspecialchars((string)$user->getId()) ?>"
-                    class="btn-outline btn-transition">Check your purchase history</a>
-            </div>
 
-            <div class="messages-overview">
-                <h3>Your Conversations</h3>
-                <ul>
-                    <?php if (empty($conversationUsers)): ?>
-                        <li>No conversations yet.</li>
-                    <?php else: ?>
-                        <?php foreach ($conversationUsers as $otherUser): ?>
-                            <li class="conversation-entry">
-                                <a href="/pages/chat.php?user_id=<?= htmlspecialchars((string)$otherUser->getId()) ?>" class="small-hover-lift">
-                                    <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>"
-                                        alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>"
-                                        class="profile-picture-small">
-                                    <span><?= htmlspecialchars($otherUser->getName()) ?></span>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </ul>
+                <div class="action-buttons">
+                    <form action="/pages/service_creation.php" method="POST">
+                        <input type="hidden" name="csrf_token" value="<?= $session->getCSRFToken() ?? '' ?>">
+                        <input type="hidden" name="userId" value="<?= htmlspecialchars((string)$user->getId()) ?>">
+                        <button type="submit" class="btn-outline">Create new Service</button>
+                    </form>
+                    <a href="/pages/services_history.php?id=<?= htmlspecialchars((string)$user->getId()) ?>" class="btn-outline">Check your services history</a>
+                    <a href="/pages/purchase_history.php?id=<?= htmlspecialchars((string)$user->getId()) ?>" class="btn-outline">Check your purchase history</a> 
+                </div>
             </div>
-        </div>
+            <div class="profile-right-column">
+                <?php drawUserServices($user, $services); ?>
+            </div>
     </section>
+        
+    <div class="profile-conversations-overview">
+        <div class="messages-overview">
+            <h3>Your Conversations</h3>
+            <ul>
+                <?php if (empty($conversationUsers)): ?>
+                    <li>No conversations yet.</li>
+                <?php else: ?>
+                    <?php foreach ($conversationUsers as $otherUser): ?>
+                        <li class="conversation-entry">
+                            <a href="/pages/chat.php?user_id=<?= $otherUser->getId() ?>">
+                                <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>" 
+                                    alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>" 
+                                    class="profile-picture-small">
+                                <span><?= htmlspecialchars($otherUser->getName()) ?></span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>  
 <?php } ?>
 
 <?php
