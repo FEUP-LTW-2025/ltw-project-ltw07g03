@@ -49,6 +49,7 @@ function drawHeader(string $title, PDO $db, Session $session): void
         <script src="/javascript/image_preview.js" defer></script>
         <script src="/javascript/slider.js" defer></script>
         <script src="/javascript/edit_service.js" defer></script>
+        <script src="/javascript/purchase_form.js" defer></script>
     </head>
 
     <body>
