@@ -25,23 +25,66 @@ function drawServices(string $category, array $services, PDO $db): void
             }
             ?>
             <div class="filter-controls">
-                <select id="category-filter">
-                    <option value="">All Categories</option>
-                    <?php foreach ($categories as $cat): ?>
-                        <option value="<?= $cat->getId() ?>">
-                            <?= htmlspecialchars($cat->getName()) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <input type="text" id="search-service-input" placeholder="Search...">
-                <input type="range" id="slider-service-budget" min="0" max="1000" step="20" value="1000">
-                <p>Budget:
-                    <output id="budget-value">1000</output>
-                </p>
-                <input type="range" id="slider-service-rating" min="0" max="5" step="1" value="0">
-                <p>Rating:
-                    <output id="rating-value">0</output>
-                </p>
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#categories-dropdown">
+                        Categories <span class="arrow">▼</span>
+                    </button>
+                    <div id="categories-dropdown" class="dropdown-panel">
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?= $cat->getId() ?>">
+                                    <?= htmlspecialchars($cat->getName()) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#price-dropdown">
+                        Price <span class="arrow">▼</span>
+                    </button>
+                    <div id="price-dropdown" class="dropdown-panel">
+                        <h3>Price</h3>
+                        <p class="range-label">Select range</p>
+                        <div class="slider-container">
+                            <div class="range-values">
+                                <span>5€</span>
+                                <span class="current-value">500€</span>
+                                <span>500€</span>
+                            </div>
+                            <input type="range" id="slider-service-budget" min="5" max="500" value="500">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="clear-btn">Clear</button>
+                            <button class="apply-btn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-dropdown">
+                    <button class="filter-button" data-toggle-dropdown="#rating-dropdown">
+                        Rating <span class="arrow">▼</span>
+                    </button>
+                    <div id="rating-dropdown" class="dropdown-panel">
+                        <h3>Rating</h3>
+                        <p class="range-label">Select range</p>
+                        <div class="slider-container">
+                            <div class="range-values">
+                                <span>0 ⭐</span>
+                                <span class="current-value">0 ⭐</span>
+                                <span>5 ⭐</span>
+                            </div>
+                            <input type="range" id="slider-service-rating" min="0" max="5" step="0.5" value="0">
+                        </div>
+                        <div class="filter-actions">
+                            <button class="clear-btn">Clear</button>
+                            <button class="apply-btn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-wrapper">
+                    <input type="text" id="search-service-input" class="search-bar" placeholder="Search services...">
+                </div>
             </div>
 
             <?php if (empty($services)): ?>
