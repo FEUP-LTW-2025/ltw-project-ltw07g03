@@ -119,18 +119,39 @@ class Purchase
         $this->status = $status;
     }
 
-    public function upload(PDO $db): void
+    public function upload(PDO $db, array $purchase_info): void
     {
-        $stmt = $db->prepare(
-            "INSERT INTO Purchase (serviceId, clientId, date, status) 
+    $stmt = $db->prepare(
+        "INSERT INTO Purchase (serviceId, clientId, date, status) 
          VALUES (:serviceId, :clientId, :date, :status)"
-        );
+    );
 
-        $stmt->bindParam(":serviceId", $this->serviceId);
-        $stmt->bindParam(":clientId", $this->clientId);
-        $stmt->bindParam(":date", $this->date);
-        $stmt->bindParam(":status", $this->status);
+    $stmt->bindParam(":serviceId", $this->serviceId);
+    $stmt->bindParam(":clientId", $this->clientId);
+    $stmt->bindParam(":date", $this->date);
+    $stmt->bindParam(":status", $this->status);
 
-        $stmt->execute();
+    $stmt->execute();
+
+    $purchaseId = $db->lastInsertId();
+
+    $cardNumber = $purchase_info['cardNumber'];
+    $exp_date = $purchase_info['exp_date'];
+    $sec_code = $purchase_info['sec_code'];
+    $cardName = $purchase_info['cardName'];
+
+    $stmt = $db->prepare(
+        "INSERT INTO PurchaseInfo (purchaseId, cardNumber, expirationDate, securityCode, cardHolderName) 
+         VALUES (:purchaseId, :cardNumber, :exp_date, :sec_code, :cardName)"
+    );
+
+    $stmt->bindParam(":purchaseId", $purchaseId);
+    $stmt->bindParam(":cardNumber", $cardNumber);
+    $stmt->bindParam(":exp_date", $exp_date);
+    $stmt->bindParam(":sec_code", $sec_code);
+    $stmt->bindParam(":cardName", $cardName);
+
+    $stmt->execute();
     }
+   
 }
