@@ -74,32 +74,34 @@ function drawUserProfile(User $user): void
                     <a href="/pages/purchase_history.php?id=<?= htmlspecialchars((string)$user->getId()) ?>" class="btn-outline">Check your purchase history</a> 
                 </div>
             </div>
+
             <div class="profile-right-column">
                 <?php drawUserServices($user, $services); ?>
-            </div>
+                
+                <div class="profile-conversations-overview">
+                    <div class="messages-overview">
+                        <h2 class="section-title">Your Conversations</h2>
+                        <ul>
+                            <?php if (empty($conversationUsers)): ?>
+                                <li>No conversations yet.</li>
+                            <?php else: ?>
+                                <?php foreach ($conversationUsers as $otherUser): ?>
+                                    <li class="conversation-entry">
+                                        <a href="/pages/chat.php?user_id=<?= $otherUser->getId() ?>">
+                                            <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>" 
+                                                alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>" 
+                                                class="profile-picture-small">
+                                            <span><?= htmlspecialchars($otherUser->getName()) ?></span>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>  
+            </div>  
+        </div>  
     </section>
-        
-    <div class="profile-conversations-overview">
-        <div class="messages-overview">
-            <h3>Your Conversations</h3>
-            <ul>
-                <?php if (empty($conversationUsers)): ?>
-                    <li>No conversations yet.</li>
-                <?php else: ?>
-                    <?php foreach ($conversationUsers as $otherUser): ?>
-                        <li class="conversation-entry">
-                            <a href="/pages/chat.php?user_id=<?= $otherUser->getId() ?>">
-                                <img src="<?= htmlspecialchars($otherUser->getProfilePicture()) ?>" 
-                                    alt="Profile picture of <?= htmlspecialchars($otherUser->getName()) ?>" 
-                                    class="profile-picture-small">
-                                <span><?= htmlspecialchars($otherUser->getName()) ?></span>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </ul>
-        </div>
-    </div>  
 <?php } ?>
 
 <?php
@@ -127,15 +129,14 @@ function drawAdminStatusBar(User $user, Session $session): void
         return;
     }
 ?>
+
     <section class="user-services-section">
         <div class="category-container">
-            <h3 class="section-category-title"><?= htmlspecialchars($user->getName()) ?>'s services</h3>
+            <h3 class="section-title"><?= htmlspecialchars($user->getName()) ?>'s services</h3>
             <div class="service-grid">
                 <?php foreach ($services as $service): ?>
                     <article class="service-display card-hover-lift">
-
-                        <div class="service-slider"
-                            data-service-id="<?= htmlspecialchars((string)$service->getId()) ?>">
+                        <div class="service-slider" data-service-id="<?= htmlspecialchars((string)$service->getId()) ?>">
                             <?php if (count($service->getImages()) > 1): ?>
                                 <button class="slider-prev">‹</button>
                             <?php endif; ?>

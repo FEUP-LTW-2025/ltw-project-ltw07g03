@@ -17,7 +17,7 @@ function drawServices(string $category, array $services, PDO $db): void
         <div class="category-container">
             <?php
             if (strtolower($category) === 'services') {
-                echo '<h2 class="section-category-title">Services</h2>';
+                echo '<h2 class="section-title">Services</h2>';
             } elseif (str_starts_with($category, '_')) {
                 echo '<h2 class="section-category-title">Search Results for ' . htmlspecialchars(ucfirst(substr($category, 1))) . '</h2>';
             } else {
