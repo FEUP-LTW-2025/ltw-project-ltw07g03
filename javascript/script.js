@@ -346,3 +346,41 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function showSnackbar(message, type = "info") {
+    const container = document.getElementById("snackbar-container");
+    if (!container) return;
+
+    const snackbar = document.createElement("div");
+    snackbar.className = `snackbar ${type}`;
+    snackbar.textContent = message;
+
+    const closeBtn = document.createElement("button");
+    closeBtn.className = "snackbar-close";
+    closeBtn.innerHTML = "×";
+    closeBtn.onclick = function () {
+        removeSnackbar(snackbar);
+    };
+
+    snackbar.appendChild(closeBtn);
+    container.appendChild(snackbar);
+
+    setTimeout(() => {
+        snackbar.classList.add("show");
+    }, 100);
+
+    setTimeout(() => {
+        removeSnackbar(snackbar);
+    }, 5000);
+}
+
+function removeSnackbar(snackbar) {
+    if (!snackbar.parentNode) return;
+
+    snackbar.classList.remove("show");
+    setTimeout(() => {
+        if (snackbar.parentNode) {
+            snackbar.parentNode.removeChild(snackbar);
+        }
+    }, 300);
+}
+
