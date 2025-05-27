@@ -99,6 +99,22 @@ CREATE TABLE Purchase
     CONSTRAINT Purchase_status_CK CHECK (status IN ('pending', 'closed'))
 );
 
+
+
+CREATE TABLE PurchaseInfo (
+    purchaseInfoId  INTEGER PRIMARY KEY,
+    purchaseId      INTEGER NOT NULL,
+    cardNumber      VARCHAR(20) NOT NULL,
+    expirationDate  VARCHAR(10) NOT NULL,
+    securityCode    VARCHAR(4) NOT NULL,
+    cardHolderName  VARCHAR(50) NOT NULL,
+
+    CONSTRAINT Purchase_FK FOREIGN KEY (purchaseId)
+        REFERENCES Purchase(purchaseId) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
 CREATE TABLE Message
 (
     messageId  INTEGER,
