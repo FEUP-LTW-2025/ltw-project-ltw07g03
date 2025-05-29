@@ -22,6 +22,11 @@ if (!Security::validateCSRFToken($session)) {
 
 $db = getDatabaseConnection();
 
+$cardNumber = Security::sanitizeInput($_POST['card_number']);
+$exp_date = Security::sanitizeInput($_POST['exp_date']);
+$sec_code = intval($_POST['sec_code']);
+$cardholder_name = Security::sanitizeInput($_POST['cardholder_name']);
+
 if (isset($_POST['serviceId']) && isset($_POST['clientId'])) {
     $serviceId = intval($_POST['serviceId']);
     $clientId = intval($_POST['clientId']);
@@ -55,7 +60,15 @@ $status = 'pending';
 $date = time();
 
 $purchase = new Purchase($mockId, $serviceId, $clientId, $date, $status);
-$purchase->upload($db);
+
+$purchase_info = [
+    'cardNumber' => $cardNumber,
+    'exp_date' => $exp_date,
+    'sec_code' => $sec_code,
+    'cardName' => $cardholder_name
+];
+
+$purchase->upload($db, $purchase_info);
 
 $session->addMessage('success', 'Purchase successful!');
 header('Location: /pages/services.php');

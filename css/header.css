@@ -1,22 +1,26 @@
 /* Header styles */
 
 .site-header {
-  background: var(--color-black);
-  padding: 0.5rem 0;
-  position: sticky;
-  z-index: 1;
-  top: 0;
-  overflow: hidden;
-  z-index: 1;
+    background: #000;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    z-index: 1;
+    padding: 0.5rem 0;
+    width: 100%;
 }
 
 .header-flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  gap: 1rem;
-  flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .logo-img-big {

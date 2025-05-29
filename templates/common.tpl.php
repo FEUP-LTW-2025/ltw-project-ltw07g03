@@ -33,6 +33,7 @@ function drawHeader(string $title, PDO $db, Session $session): void
         <link rel="stylesheet" href="/css/forms.css">
         <link rel="stylesheet" href="/css/chat.css">
         <link rel="stylesheet" href="/css/responsive.css">
+        <link rel="stylesheet" href="/css/filters.css">
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
@@ -49,6 +50,7 @@ function drawHeader(string $title, PDO $db, Session $session): void
         <script src="/javascript/image_preview.js" defer></script>
         <script src="/javascript/slider.js" defer></script>
         <script src="/javascript/edit_service.js" defer></script>
+        <script src="/javascript/purchase_form.js" defer></script>
     </head>
 
     <body>

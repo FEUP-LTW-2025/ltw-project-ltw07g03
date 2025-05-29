@@ -32,25 +32,25 @@
       <div class="input-group">
         <label for="card_number">Card Number</label>
         <i class="fa-solid fa-credit-card"></i>
-        <input type="number" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+        <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required pattern="\d{4}\s\d{4}\s\d{4}\s\d{4}" maxlength="19">
       </div>
 
       <div class="input-group">
         <label for="exp_date">Expiration Date</label>
         <i class="fa-solid fa-calendar-days"></i>
-        <input type="number" id="exp_date" name="exp_date" placeholder="MM/AA" required>
+        <input type="text" id="exp_date" name="exp_date" placeholder="MM/AA" required  pattern="\d{2}/\d{2}" maxlength="5">
       </div>
 
       <div class="input-group">
         <label for="sec_code">Security Code (CVV)</label>
         <i class="fa-solid fa-lock"></i>
-        <input type="number" id="sec_code" name="sec_code" placeholder="123" maxlength="3" required>
+        <input type="text" id="sec_code" name="sec_code" placeholder="123" required pattern="\d{3}" maxlength="3">
       </div>
 
       <div class="input-group">
         <label for="cardholder_name">Cardholder´s name</label>
         <i class="fa-solid fa-user"></i>
-        <input type="text" id="cardholder_name" name="cardholder_name" placeholder="John Silva" required>
+        <input type="text" id="cardholder_name" name="cardholder_name" placeholder="John Silva" required pattern="[A-Za-zÀ-ÿ\s]+" >
       </div>
 
       <input type="submit" value="Buy" class="btn-transition">

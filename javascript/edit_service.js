@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const deliveryParagraph = document.querySelector(".service-detail-delivery");
         if (deliveryParagraph) {
-            const match = deliveryParagraph.innerText.match(/(\d+)\s*days/);
+            const match = deliveryParagraph.innerText.match(/(\d+)\s*day[s]?/);
             if (match) {
                 const span = document.createElement("span");
                 span.contentEditable = true;
@@ -39,12 +39,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 span.dataset.originalText = match[1];
                 span.innerText = match[1];
 
+                const daySuffix = document.createElement("span");
+                daySuffix.classList.add("day-suffix");
+                daySuffix.innerText = match[1] == 1 ? " day" : " days";
+
                 deliveryParagraph.innerHTML = `<strong>Delivery Time:</strong> `;
                 deliveryParagraph.appendChild(span);
-                deliveryParagraph.innerHTML += ` days`;
-            }
+                deliveryParagraph.appendChild(daySuffix);
+
+                span.addEventListener("input", () => {
+                const val = parseInt(span.innerText.trim());
+                if (!isNaN(val)) {
+                    daySuffix.innerText = val === 1 ? " day" : " days";
+                }
+            });
         }
-    });
+    }
+});
 
     saveButton.addEventListener("click", function () {
         const deliveryDays = document.querySelector(".editable-delivery-days");
